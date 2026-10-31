@@ -817,8 +817,8 @@ export function generateIntelligentPlan(
           id: `r-3-0-mindmap`,
           buocSuPham: isTieuHoc ? '3.0. Hệ thống hóa kiến thức toàn bài qua Sơ đồ tư duy 16:9 3D Pixar' : 'Bước 1: Hệ thống hóa kiến thức toàn bài bằng Sơ đồ tư duy 16:9 3D Pixar',
           soDoTuDuy: generateMindmapData(metadata, topic, subject, isTieuHoc),
-          cot1Trai: `- GV trình chiếu SƠ ĐỒ TƯ DUY 16:9 PHONG CÁCH 3D PIXAR tổng kết toàn bộ kiến thức bài học lên bảng tương tác / màn chiếu.\n- Tổ chức cho học sinh nhìn vào sơ đồ tư duy, lần lượt nêu lại các khái niệm, tính chất, công thức và quy tắc cốt lõi của từng đề mục bài học.\n- Hướng dẫn học sinh phương pháp sơ đồ hóa để ôn tập và ghi nhớ kiến thức lâu dài.`,
-          cot2Phai: `* HỆ THỐNG HÓA KIẾN THỨC CỐT LÕI (SƠ ĐỒ TƯ DUY 16:9 3D PIXAR):\n- Học sinh quan sát sơ đồ tư duy trên màn chiếu, đối chiếu với nội dung đã ghi chép trong vở.\n- Tự giác nhắc lại các từ khóa trọng tâm, công thức tính toán và các mối liên hệ giữa các đề mục của bài học.\n- Vẽ phác thảo hoặc bổ sung các nhánh sơ đồ tư duy vào vở học tập.`
+          cot1Trai: '- GV trình chiếu Sơ đồ tư duy 16:9 (phong cách 3D Pixar) để học sinh quan sát, hệ thống hóa kiến thức toàn bộ bài học.',
+          cot2Phai: '- Học sinh quan sát sơ đồ tư duy 16:9 (phong cách 3D Pixar) và ghi nhớ kiến thức trọng tâm toàn bài.'
         },
         {
           id: `r-3-1`,

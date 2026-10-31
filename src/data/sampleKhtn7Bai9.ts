@@ -275,8 +275,8 @@ export const SAMPLE_KHTN_7_BAI_9_DO_TOC_DO: CompleteLessonPlan = {
           {
             id: 'r-9-3-0-mindmap',
             buocSuPham: 'Bước 1: Hệ thống hóa kiến thức toàn bài bằng Sơ đồ tư duy 16:9 3D Pixar',
-            cot1Trai: '- GV trình chiếu SƠ ĐỒ TƯ DUY 16:9 PHONG CÁCH 3D PIXAR tổng kết toàn bộ 3 nội dung trọng tâm của Bài 9: Đo tốc độ bằng đồng hồ bấm giây -> Dùng cổng quang điện và đồng hồ hiện số -> Thiết bị bắn tốc độ & GPS.\n- Tổ chức cho học sinh nhìn vào sơ đồ và lần lượt nhắc lại nguyên tắc, dụng cụ đo và công thức tính.\n- Hướng dẫn học sinh đối chiếu sơ đồ tư duy để làm các bài tập luyện tập.',
-            cot2Phai: '* HỆ THỐNG KIẾN THỨC CỐT LÕI (SƠ ĐỒ TƯ DUY 16:9 3D PIXAR):\n• Để đo tốc độ luôn cần đo quãng đường s và thời gian t, tính v = s / t.\n• Trong phòng thực hành: Thường dùng đồng hồ bấm giây (đo 3 lần lấy trung bình) hoặc cổng quang điện kết hợp đồng hồ hiện số.\n• Trong an toàn giao thông: Sử dụng camera và thiết bị bắn tốc độ để kiểm soát tốc độ phương tiện, giảm thiểu tai nạn giao thông.',
+            cot1Trai: '- GV trình chiếu Sơ đồ tư duy 16:9 (phong cách 3D Pixar) để học sinh quan sát, hệ thống hóa kiến thức toàn bộ bài học.',
+            cot2Phai: '- Học sinh quan sát sơ đồ tư duy 16:9 (phong cách 3D Pixar) và ghi nhớ kiến thức trọng tâm toàn bài.',
                         soDoTuDuy: {
               id: 'sdd-khtn7-bai9-do-toc-do',
               chuDeChinh: 'BÀI 9: ĐO TỐC ĐỘ (KHTN 7)',

@@ -36,6 +36,7 @@ export async function exportGiaoAnToDocx(data: GiaoAnWordData): Promise<void> {
     '/mindmaps/mindmap-toan-3-hinh-tron.jpg',
     '/mindmaps/mindmap-toan-6-truc-doi-xung.jpg',
     '/mindmaps/mindmap-khtn-7-toc-do.jpg',
+    '/mindmaps/mindmap-khtn7-bai9-do-toc-do.jpg',
     '/mindmaps/mindmap-hoa-8-acid-base.jpg',
     '/mindmaps/mindmap-pixar-bg.jpg'
   ];

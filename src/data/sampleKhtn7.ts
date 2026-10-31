@@ -335,8 +335,8 @@ export const SAMPLE_KHTN_7_TOC_DO: CompleteLessonPlan = {
           {
             id: 'r-khtn7-3-0-mindmap',
             buocSuPham: 'Bước 1: Hệ thống hóa kiến thức toàn bài bằng Sơ đồ tư duy 16:9 3D Pixar',
-            cot1Trai: '- GV trình chiếu SƠ ĐỒ TƯ DUY 16:9 PHONG CÁCH 3D PIXAR tổng kết toàn bộ kiến thức Bài 8: Tốc độ chuyển động lên bảng tương tác.\n- Tổ chức cho học sinh nhìn vào sơ đồ và lần lượt nhắc lại 4 kiến thức cốt lõi của bài học: Khái niệm -> Công thức -> Đơn vị -> Thiết bị đo.\n- Hướng dẫn học sinh đối chiếu sơ đồ tư duy để giải các bài tập luyện tập.',
-            cot2Phai: '* HỆ THỐNG KIẾN THỨC CỐT LÕI (SƠ ĐỒ TƯ DUY 16:9 3D PIXAR):\n1. Khái niệm: Tốc độ = Quãng đường / Thời gian (đặc trưng cho sự nhanh, chậm).\n2. Công thức: v = s / t  <=>  s = v . t  <=>  t = s / v.\n3. Đơn vị: m/s (chuẩn SI) và km/h (thông dụng); 1 m/s = 3,6 km/h.\n4. Thiết bị: Tốc kế (đo tốc độ tức thời) & Thiết bị bắn tốc độ CSGT (bảo đảm an toàn giao thông).',
+            cot1Trai: '- GV trình chiếu Sơ đồ tư duy 16:9 (phong cách 3D Pixar) để học sinh quan sát, hệ thống hóa kiến thức toàn bộ bài học.',
+            cot2Phai: '- Học sinh quan sát sơ đồ tư duy 16:9 (phong cách 3D Pixar) và ghi nhớ kiến thức trọng tâm toàn bài.',
                         soDoTuDuy: {
               id: 'mindmap-khtn-7-toc-do',
               chuDeChinh: 'TỐC ĐỘ CHUYỂN ĐỘNG',
