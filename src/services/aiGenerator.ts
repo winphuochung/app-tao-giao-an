@@ -796,15 +796,8 @@ export function generateIntelligentPlan(
             {
               id: `r-2-${secIdx + 1}-4`,
               buocSuPham: isTH ? `4. Kết luận, nhận định ${sec.deMuc}` : `Bước 4: Kết luận, nhận định (${sec.deMuc})`,
-              cot1Trai: isLastSec
-                ? `- GV chuẩn hóa toàn bộ kiến thức khoa học bám sát nội dung SGK, chiếu SƠ ĐỒ TƯ DUY 16:9 PHONG CÁCH 3D PIXAR lên bảng tương tác.\n- Tổ chức cho học sinh nhìn sơ đồ tư duy, tự nhắc lại định nghĩa và các công thức cốt lõi để khắc sâu kiến thức lâu dài.`
-                : `- GV nhận xét tinh thần học tập chủ động của cả lớp.\n- Chuẩn hóa kiến thức khoa học của ${sec.deMuc} và hướng dẫn HS ghi ý chính vào vở.`,
-              cot2Phai: isLastSec
-                ? `* KẾT LUẬN / CHỐT KIẾN THỨC GHI VỞ (Nội dung trọng tâm HS ghi bài để học):\n- ${sec.deMuc}: Học sinh ghi nhớ kiến thức cốt lõi và nội dung trọng tâm vào vở.\n- Sơ đồ tư duy 16:9 3D Pixar: Khắc sâu toàn bộ kiến thức trọng tâm của "${topic}" để ôn tập và vận dụng thực tiễn.`
-                : `* KẾT LUẬN / CHỐT KIẾN THỨC GHI VỞ (Nội dung trọng tâm HS ghi bài để học):\n- ${sec.deMuc}: Ghi nhớ nội dung trọng tâm, định nghĩa và công thức/quy tắc vào vở bài học.`,
-              ...(isLastSec ? {
-                soDoTuDuy: generateMindmapData(metadata, topic, subject, isTH)
-              } : {})
+              cot1Trai: `- GV nhận xét tinh thần học tập chủ động của cả lớp.\n- Chuẩn hóa kiến thức khoa học chuẩn SGK của ${sec.deMuc} và hướng dẫn học sinh ghi chép nội dung cốt lõi vào vở.`,
+              cot2Phai: `* KẾT LUẬN / CHỐT KIẾN THỨC GHI VỞ (Nội dung trọng tâm HS ghi bài để học):\n- ${sec.deMuc}: Học sinh ghi nhớ kiến thức cốt lõi và nội dung trọng tâm vào vở.\n- Vận dụng kiến thức vừa học để chuẩn bị cho phần luyện tập củng cố.`
             }
           ]
         };
@@ -814,16 +807,23 @@ export function generateIntelligentPlan(
       id: `hd-${Date.now()}-3`,
       soThuTu: 3,
       tenHoatDong: isTieuHoc
-        ? 'Hoạt động 3: Luyện tập, thực hành'
-        : 'Hoạt động 3: Luyện tập',
-      thoiLuong: isTieuHoc ? '10 - 12 phút' : '12 phút',
-      mucTieu: `Rèn luyện kỹ năng vận dụng trực tiếp kiến thức vừa học để giải quyết các bài tập có tính phân hóa.`,
-      noiDung: `HS làm việc độc lập và làm việc nhóm để giải bài tập 1, 2 trong SGK và các câu hỏi tình huống thực tế.`,
-      sanPham: `Lời giải chuẩn xác trong vở ghi bài và đáp án trên bảng phụ của HS.`,
+        ? 'Hoạt động 3: Luyện tập, thực hành (Hệ thống hóa bằng Sơ đồ tư duy 16:9 & Bài tập)'
+        : 'Hoạt động 3: Luyện tập (Hệ thống hóa kiến thức bằng Sơ đồ tư duy 16:9 3D Pixar & Bài tập áp dụng)',
+      thoiLuong: isTieuHoc ? '12 - 15 phút' : '14 phút',
+      mucTieu: `Hệ thống hóa và khắc sâu toàn bộ kiến thức cốt lõi của bài học bằng Sơ đồ tư duy 16:9 3D Pixar trực quan; rèn luyện kỹ năng vận dụng trực tiếp kiến thức vừa học để giải quyết các bài tập có tính phân hóa.`,
+      noiDung: `HS quan sát và phân tích Sơ đồ tư duy 16:9 3D Pixar để tái hiện toàn bộ kiến thức trọng tâm; làm việc độc lập và làm việc nhóm để giải bài tập 1, 2 trong SGK và các câu hỏi tình huống thực tế.`,
+      sanPham: `Sơ đồ tư duy 16:9 hoàn thiện trong vở ghi; Lời giải chuẩn xác các bài tập trong vở ghi bài và đáp án trên bảng phụ của HS.`,
       bangHaiCot: [
         {
+          id: `r-3-0-mindmap`,
+          buocSuPham: isTieuHoc ? '3.0. Hệ thống hóa kiến thức toàn bài qua Sơ đồ tư duy 16:9 3D Pixar' : 'Bước 1: Hệ thống hóa kiến thức toàn bài bằng Sơ đồ tư duy 16:9 3D Pixar',
+          soDoTuDuy: generateMindmapData(metadata, topic, subject, isTieuHoc),
+          cot1Trai: `- GV trình chiếu SƠ ĐỒ TƯ DUY 16:9 PHONG CÁCH 3D PIXAR tổng kết toàn bộ kiến thức bài học lên bảng tương tác / màn chiếu.\n- Tổ chức cho học sinh nhìn vào sơ đồ tư duy, lần lượt nêu lại các khái niệm, tính chất, công thức và quy tắc cốt lõi của từng đề mục bài học.\n- Hướng dẫn học sinh phương pháp sơ đồ hóa để ôn tập và ghi nhớ kiến thức lâu dài.`,
+          cot2Phai: `* HỆ THỐNG HÓA KIẾN THỨC CỐT LÕI (SƠ ĐỒ TƯ DUY 16:9 3D PIXAR):\n- Học sinh quan sát sơ đồ tư duy trên màn chiếu, đối chiếu với nội dung đã ghi chép trong vở.\n- Tự giác nhắc lại các từ khóa trọng tâm, công thức tính toán và các mối liên hệ giữa các đề mục của bài học.\n- Vẽ phác thảo hoặc bổ sung các nhánh sơ đồ tư duy vào vở học tập.`
+        },
+        {
           id: `r-3-1`,
-          buocSuPham: isTieuHoc ? '3.1. Bài tập nhận diện (Mức độ 1-2)' : 'Bước 1 & 2: Chuyển giao & Thực hiện nhiệm vụ Luyện tập',
+          buocSuPham: isTieuHoc ? '3.1. Bài tập nhận diện (Mức độ 1-2)' : 'Bước 2: Chuyển giao & Thực hiện nhiệm vụ Bài tập Luyện tập',
           cot1Trai: isTieuHoc
             ? `- GV cho HS làm bài tập nhận diện trên màn hình hoặc sách giáo khoa.\n${metadata.tichHop.nangLucSo && nangLucSoIndicators[2] ? `- [TÍCH HỢP NĂNG LỰC SỐ - Mã ${nangLucSoIndicators[2].maChiBao}]: GV hướng dẫn tư thế ngồi học an toàn cho mắt khi xem màn hình tivi/bảng chiếu.\n` : ''}${metadata.tichHop.dinhDuongSucKhoe ? `- [LỒNG GHÉP GIÁO DỤC DINH DƯỠNG]: Lồng ghép câu hỏi thực tế gắn với đĩa thức ăn chuẩn cân bằng 4 nhóm chất dinh dưỡng cho học sinh.\n` : ''}- Sử dụng thẻ trắc nghiệm để kiểm tra nhanh mức độ hiểu bài của cả lớp.`
             : `- GV giao hệ thống bài tập luyện tập phân hóa từ cơ bản đến nâng cao.\n${metadata.tichHop.nangLucSo && nangLucSoIndicators[2] ? `- [TÍCH HỢP NĂNG LỰC SỐ - Mã ${nangLucSoIndicators[2].maChiBao}]: Hướng dẫn thiết kế Infographic / Slide tóm tắt bài học.\n` : ''}${metadata.tichHop.dinhDuongSucKhoe ? `- [LỒNG GHÉP GIÁO DỤC DINH DƯỠNG]: Phân tích cấu trúc khoa học trong các loại thực phẩm dinh dưỡng lành mạnh, nhắc nhở bổ sung vitamin và khoáng chất.\n` : ''}- Yêu cầu HS hoàn thành bài cá nhân.`,

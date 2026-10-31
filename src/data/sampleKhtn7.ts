@@ -293,67 +293,6 @@ export const SAMPLE_KHTN_7_TOC_DO: CompleteLessonPlan = {
         tenHoatDong: 'Hoạt động 2.4: Thiết bị đo tốc độ (Đề mục IV SGK KNTT - Trang 48)',
         thoiLuong: '13 phút',
         deMucSGK: 'IV. Thiết bị đo tốc độ',
-        soDoTuDuy: {
-          id: 'mindmap-khtn-7-toc-do',
-          chuDeChinh: 'TỐC ĐỘ CHUYỂN ĐỘNG',
-          moTaChuDe: 'Hệ thống hóa toàn bộ kiến thức cốt lõi Bài 8 - SGK Khoa học tự nhiên 7 (Kết nối tri thức)',
-          tiLe: '16:9',
-          phongCach: '3D Pixar',
-          imageUrl: '/mindmaps/mindmap-khtn-7-toc-do.jpg',
-          ghiChuKetLuan: 'GV trình chiếu sơ đồ tư duy 16:9 3D Pixar để chốt kiến thức toàn bộ 4 đề mục SGK: Khái niệm tốc độ, công thức v = s/t, quy đổi đơn vị 1 m/s = 3,6 km/h và các thiết bị đo tốc độ gắn với an toàn giao thông.',
-          monHoc: 'Khoa học tự nhiên 7',
-          thuatNguChuan: ['Tốc độ chuyển động', 'v = s / t', 'mét trên giây (m/s)', 'kilômét trên giờ (km/h)', 'Tốc kế', 'Thiết bị bắn tốc độ'],
-          danhSachNhanh: [
-            {
-              id: 'b1',
-              tieuDe: '1. Khái niệm tốc độ',
-              mauSac: '#ef4444',
-              icon3D: '🎯',
-              congThuc: 'Quãng đường / Thời gian',
-              cacYCon: [
-                'Đặc trưng cho sự nhanh hay chậm của chuyển động',
-                'Xác định bằng quãng đường đi được trong 1 đơn vị thời gian',
-                'Phân tích Bảng 8.1 SGK: Cùng s = 60m, thời gian t càng nhỏ -> tốc độ càng lớn'
-              ]
-            },
-            {
-              id: 'b2',
-              tieuDe: '2. Công thức tính tốc độ',
-              mauSac: '#10b981',
-              icon3D: '📐',
-              congThuc: 'v = s / t  <=>  s = v . t  <=>  t = s / v',
-              cacYCon: [
-                's: Quãng đường đi được (m, km)',
-                't: Thời gian đi hết quãng đường (s, h)',
-                'v: Tốc độ chuyển động (m/s, km/h)'
-              ]
-            },
-            {
-              id: 'b3',
-              tieuDe: '3. Đơn vị & Quy đổi chuẩn',
-              mauSac: '#f59e0b',
-              icon3D: '⭐',
-              congThuc: '1 m/s = 3,6 km/h  |  1 km/h = 1 / 3,6 m/s',
-              cacYCon: [
-                'Đơn vị đo chuẩn trong hệ SI: mét trên giây (m/s)',
-                'Đơn vị thông dụng đời sống: kilômét trên giờ (km/h)',
-                'Ví dụ quy đổi nhanh: 36 km/h = 10 m/s; 54 km/h = 15 m/s'
-              ]
-            },
-            {
-              id: 'b4',
-              tieuDe: '4. Thiết bị đo & An toàn GT',
-              mauSac: '#8b5cf6',
-              icon3D: '🚦',
-              congThuc: 'Tốc kế + Máy bắn tốc độ Radar',
-              cacYCon: [
-                'Tốc kế: Đo tốc độ tức thời hiển thị trên bảng taplo xe máy, ô tô',
-                'Thiết bị bắn tốc độ: Súng radar/laser + Camera ghi hình phương tiện vi phạm',
-                'Chấp hành nghiêm biển hạn chế tốc độ khu dân cư để bảo vệ an toàn tính mạng'
-              ]
-            }
-          ]
-        },
         mucTieu: 'Mô tả được sơ lược nguyên lý hoạt động và công dụng của các thiết bị đo tốc độ thông dụng: Tốc kế trên phương tiện và thiết bị bắn tốc độ CSGT; lồng ghép ý thức văn hóa an toàn giao thông; hệ thống hóa toàn bộ kiến thức bài học qua Sơ đồ tư duy 16:9 3D Pixar.',
         noiDung: 'Quan sát trực tiếp Hình 8.2 (Tốc kế) và Hình 8.3 (Thiết bị bắn tốc độ CSGT) trong SGK trang 48; phân tích trường hợp phương tiện chạy 68 km/h trên đoạn đường giới hạn 50 km/h; thảo luận nhóm các giải pháp bảo đảm ATGT; quan sát Sơ đồ tư duy 16:9 3D Pixar để chốt kiến thức cốt lõi.',
         sanPham: 'Bản phân tích nguyên lý tốc kế và thiết bị bắn tốc độ; lời giải thích vi phạm giao thông và cam kết chấp hành giới hạn tốc độ; SƠ ĐỒ TƯ DUY 16:9 3D PIXAR chốt kiến thức toàn bộ 4 đề mục SGK.',
@@ -376,11 +315,28 @@ export const SAMPLE_KHTN_7_TOC_DO: CompleteLessonPlan = {
             cot2Phai: 'IV. THIẾT BỊ ĐO TỐC ĐỘ\n1. Tốc kế (Hình 8.2 SGK):\n- Là thiết bị gắn trên ô tô, xe máy để đo trực tiếp tốc độ tức thời của phương tiện tại thời điểm quan sát.\n- Đơn vị đo hiển thị trên mặt tốc kế là km/h.\n\n2. Thiết bị bắn tốc độ (Hình 8.3 SGK):\n- Gồm máy đo tốc độ (dùng sóng radar/laser) kết hợp máy ảnh kĩ thuật số.\n- Tự động tính toán: v = s / t và chụp lại biển số xe, ngày giờ, vị trí làm căn cứ xử phạt vi phạm giao thông.\n\n[GIÁO DỤC ATGT & PHÁP LUẬT]:\n- Lái xe phải quan sát tốc kế để điều chỉnh tốc độ không vượt quá biển báo cho phép.\n- Tuân thủ quy định tốc độ là bảo vệ tính mạng cho chính mình và mọi người!'
           },
           {
-            id: 'r-khtn7-2-4-mindmap',
-            buocSuPham: '2. Chốt kiến thức toàn bài qua Sơ đồ tư duy 16:9 3D Pixar',
-            cot1Trai: '- GV trình chiếu SƠ ĐỒ TƯ DUY 16:9 PHONG CÁCH 3D PIXAR lên bảng tương tác.\n- Cho các nhóm học sinh lần lượt nhìn vào sơ đồ và nhắc lại 4 kiến thức cốt lõi của 4 đề mục SGK: Khái niệm -> Công thức -> Đơn vị -> Thiết bị đo.',
-            cot2Phai: '* KẾT LUẬN / CHỐT KIẾN THỨC GHI VỞ (Nội dung trọng tâm HS ghi bài để học):\n1. Khái niệm: Tốc độ = Quãng đường / Thời gian (đặc trưng cho sự nhanh, chậm).\n2. Công thức: v = s / t  <=>  s = v . t  <=>  t = s / v.\n3. Đơn vị: m/s (chuẩn SI) và km/h (thông dụng); 1 m/s = 3,6 km/h.\n4. Thiết bị: Tốc kế (đo tốc độ tức thời) & Thiết bị bắn tốc độ CSGT (bảo đảm an toàn giao thông).',
-            soDoTuDuy: {
+            id: 'r-khtn7-2-4-conclude',
+            buocSuPham: '2. Kết luận, nhận định Đề mục IV',
+            cot1Trai: '- GV chuẩn hóa kiến thức về tốc kế và thiết bị bắn tốc độ.\n- Yêu cầu học sinh ghi chép nội dung chốt kiến thức vào vở.',
+            cot2Phai: '* KẾT LUẬN / CHỐT KIẾN THỨC GHI VỞ (Nội dung trọng tâm HS ghi bài để học):\n- Tốc kế: Dụng cụ đo trực tiếp tốc độ tức thời của phương tiện giao thông (gắn trên xe máy, ô tô).\n- Thiết bị "bắn tốc độ": Tự động đo tốc độ và chụp ảnh phương tiện để kiểm soát an toàn giao thông đường bộ.'
+          }
+        ]
+      },
+      {
+        id: 'hd-khtn7-3',
+        soThuTu: 3,
+        tenHoatDong: 'Hoạt động 3: Luyện tập (Hệ thống hóa kiến thức bằng Sơ đồ tư duy 16:9 3D Pixar & Bài tập áp dụng)',
+        thoiLuong: '20 phút',
+        mucTieu: 'Hệ thống hóa toàn bộ kiến thức bài học bằng Sơ đồ tư duy 16:9 3D Pixar; rèn luyện kĩ năng biến đổi công thức v = s/t, s = v.t, t = s/v và quy đổi đơn vị đo tốc độ qua các bài toán thực tiễn.',
+        noiDung: 'HS quan sát Sơ đồ tư duy 16:9 3D Pixar tái hiện kiến thức cốt lõi; sau đó làm việc cá nhân hoàn thành 3 bài tập trong phiếu học tập số 2, đổi chéo bài chấm đồng đẳng.',
+        sanPham: 'Sơ đồ tư duy 16:9 hoàn chỉnh trong vở học sinh; Lời giải chi tiết 3 bài tập tính toán tốc độ trong vở.',
+        bangHaiCot: [
+          {
+            id: 'r-khtn7-3-0-mindmap',
+            buocSuPham: 'Bước 1: Hệ thống hóa kiến thức toàn bài bằng Sơ đồ tư duy 16:9 3D Pixar',
+            cot1Trai: '- GV trình chiếu SƠ ĐỒ TƯ DUY 16:9 PHONG CÁCH 3D PIXAR tổng kết toàn bộ kiến thức Bài 8: Tốc độ chuyển động lên bảng tương tác.\n- Tổ chức cho học sinh nhìn vào sơ đồ và lần lượt nhắc lại 4 kiến thức cốt lõi của bài học: Khái niệm -> Công thức -> Đơn vị -> Thiết bị đo.\n- Hướng dẫn học sinh đối chiếu sơ đồ tư duy để giải các bài tập luyện tập.',
+            cot2Phai: '* HỆ THỐNG KIẾN THỨC CỐT LÕI (SƠ ĐỒ TƯ DUY 16:9 3D PIXAR):\n1. Khái niệm: Tốc độ = Quãng đường / Thời gian (đặc trưng cho sự nhanh, chậm).\n2. Công thức: v = s / t  <=>  s = v . t  <=>  t = s / v.\n3. Đơn vị: m/s (chuẩn SI) và km/h (thông dụng); 1 m/s = 3,6 km/h.\n4. Thiết bị: Tốc kế (đo tốc độ tức thời) & Thiết bị bắn tốc độ CSGT (bảo đảm an toàn giao thông).',
+                        soDoTuDuy: {
               id: 'mindmap-khtn-7-toc-do',
               chuDeChinh: 'TỐC ĐỘ CHUYỂN ĐỘNG',
               moTaChuDe: 'Hệ thống hóa toàn bộ kiến thức cốt lõi Bài 8 - SGK Khoa học tự nhiên 7 (Kết nối tri thức)',
@@ -441,18 +397,8 @@ export const SAMPLE_KHTN_7_TOC_DO: CompleteLessonPlan = {
                 }
               ]
             }
-          }
-        ]
-      },
-      {
-        id: 'hd-khtn7-3',
-        soThuTu: 3,
-        tenHoatDong: 'Hoạt động 3: Luyện tập (Rèn kĩ năng tính toán & Chuyển đổi đơn vị tốc độ)',
-        thoiLuong: '20 phút',
-        mucTieu: 'Củng cố kiến thức, rèn luyện kĩ năng biến đổi công thức v = s/t, s = v.t, t = s/v và quy đổi đơn vị đo tốc độ qua các bài toán thực tiễn.',
-        noiDung: 'HS làm việc cá nhân hoàn thành 3 bài tập trong phiếu học tập số 2, sau đó đổi chéo bài chấm chéo đồng đẳng (peer assessment).',
-        sanPham: 'Lời giải chi tiết 3 bài tập tính toán tốc độ trong vở học sinh.',
-        bangHaiCot: [
+
+          },
           {
             id: 'r-khtn7-3-1',
             buocSuPham: 'Bước 1: Chuyển giao nhiệm vụ Luyện tập',

@@ -78,13 +78,13 @@ export const KNOWN_CURRICULUM_SECTIONS: TextbookLessonCurriculum[] = [
       },
       {
         deMuc: 'III. Một số dụng cụ đo và quy tắc an toàn trong phòng thực hành',
-        tenHoatDong: 'Hoạt động 2.3: Dụng cụ đo hiện đại & Sơ đồ tư duy 16:9 (SGK Trang 11 - 13)',
+        tenHoatDong: 'Hoạt động 2.3: Dụng cụ đo hiện đại (SGK Trang 11 - 13)',
         thoiLuong: '12 phút',
         mucTieu: 'Nhận biết và sử dụng đúng cách cổng quang điện, đồng hồ hiện số; hệ thống hóa toàn bài bằng Sơ đồ tư duy 16:9 3D Pixar.',
         noiDung: 'HS tìm hiểu cổng quang điện và đồng hồ đo thời gian hiện số; quan sát Sơ đồ tư duy 16:9 3D Pixar.',
         sanPham: 'Sơ đồ tư duy 16:9 hoàn chỉnh trong vở học sinh.',
         cot1Trai: `- GV hướng dẫn nguyên lý đồng hồ đo thời gian hiện số kết nối cổng quang.
-- Chiếu SƠ ĐỒ TƯ DUY 16:9 PHONG CÁCH 3D PIXAR chốt kiến thức toàn bài.`,
+- [CHỐT KIẾN THỨC]: Hướng dẫn học sinh chốt kiến thức cốt lõi của đề mục vào vở.`,
         cot2Phai: `III. MỘT SỐ DỤNG CỤ ĐO TRONG PHÒNG THỰC HÀNH
 - Đồng hồ đo thời gian hiện số và cổng quang điện dùng để đo các khoảng thời gian rất ngắn và chuyển động nhanh.
 
@@ -147,13 +147,13 @@ export const KNOWN_CURRICULUM_SECTIONS: TextbookLessonCurriculum[] = [
       },
       {
         deMuc: 'III. Khối lượng nguyên tử (Đơn vị amu)',
-        tenHoatDong: 'Hoạt động 2.3: Khối lượng nguyên tử & Sơ đồ tư duy 16:9 (SGK Trang 18 - 19)',
+        tenHoatDong: 'Hoạt động 2.3: Khối lượng nguyên tử (SGK Trang 18 - 19)',
         thoiLuong: '12 phút',
         mucTieu: 'Nêu được đơn vị khối lượng nguyên tử (amu); giải thích vì sao khối lượng nguyên tử tập trung chủ yếu ở hạt nhân; củng cố bằng Sơ đồ tư duy 16:9.',
         noiDung: 'HS so sánh khối lượng p, n với e (me ≈ mp / 1836); giải bài tập tính khối lượng nguyên tử theo amu; vẽ sơ đồ tư duy.',
         sanPham: 'Lời giải bài tập tính khối lượng nguyên tử và Sơ đồ tư duy 16:9 hoàn chỉnh.',
         cot1Trai: `- GV giải thích vì sao khối lượng e rất nhỏ có thể bỏ qua.
-- Chiếu SƠ ĐỒ TƯ DUY 16:9 PHONG CÁCH 3D PIXAR tổng kết toàn bài.`,
+- [CHỐT KIẾN THỨC]: Hướng dẫn học sinh chốt kiến thức cốt lõi của đề mục vào vở.`,
         cot2Phai: `III. KHỐI LƯỢNG NGUYÊN TỬ
 1. Đơn vị amu:
 - Đơn vị khối lượng nguyên tử kí hiệu là amu (atomic mass unit).
@@ -268,13 +268,13 @@ export const KNOWN_CURRICULUM_SECTIONS: TextbookLessonCurriculum[] = [
       },
       {
         deMuc: 'III. Vị trí các nhóm nguyên tố kim loại, phi kim và khí hiếm',
-        tenHoatDong: 'Hoạt động 2.3: Phân loại kim loại, phi kim, khí hiếm & Sơ đồ tư duy 16:9 (SGK Trang 29 - 31)',
+        tenHoatDong: 'Hoạt động 2.3: Phân loại kim loại, phi kim, khí hiếm (SGK Trang 29 - 31)',
         thoiLuong: '12 phút',
         mucTieu: 'Xác định được vị trí của nhóm kim loại, phi kim và khí hiếm (nhóm VIIIA) trên bảng tuần hoàn.',
         noiDung: 'HS tra cứu bảng màu: Kim loại (màu xanh), phi kim (màu hồng), khí hiếm (màu vàng); vẽ sơ đồ tư duy 16:9.',
         sanPham: 'Vị trí 3 nhóm nguyên tố và Sơ đồ tư duy 16:9 hoàn chỉnh trong vở học sinh.',
         cot1Trai: `- Hướng dẫn HS nhận diện 3 khối màu sắc trong bảng tuần hoàn.
-- Chiếu SƠ ĐỒ TƯ DUY 16:9 PHONG CÁCH 3D PIXAR tổng kết toàn bài.`,
+- [CHỐT KIẾN THỨC]: Hướng dẫn học sinh chốt kiến thức cốt lõi của đề mục vào vở.`,
         cot2Phai: `III. PHÂN LOẠI CÁC NGUYÊN TỐ TRONG BẢNG TUẦN HOÀN
 - Kim loại: Hầu hết các nguyên tố ở nhóm IA, IIA, IIIA và các nhóm B.
 - Phi kim: Nằm ở phía trên bên phải của bảng tuần hoàn (nhóm IVA, VA, VIA, VIIA).
@@ -404,7 +404,7 @@ Trong đó:
         sanPham: 'Quy tắc đổi đơn vị tốc độ và Sơ đồ tư duy 16:9 tổng kết bài học trong vở học sinh.',
         cot1Trai: `- Hướng dẫn HS cách đổi: 1 km/h = 1000m / 3600s = 1/3.6 m/s; 1 m/s = 3.6 km/h.
 - Cho HS quan sát tốc kế trên xe máy, ô tô.
-- Chiếu SƠ ĐỒ TƯ DUY 16:9 PHONG CÁCH 3D PIXAR tổng kết toàn bài.`,
+- [CHỐT KIẾN THỨC]: Hướng dẫn học sinh chốt kiến thức cốt lõi của đề mục vào vở.`,
         cot2Phai: `III. ĐƠN VỊ ĐO TỐC ĐỘ
 1. Đơn vị đo hợp pháp:
 - Trong hệ đo lường chính thức của nước ta (SI), đơn vị đo tốc độ là mét trên giây (m/s) và kilômét trên giờ (km/h).
@@ -480,14 +480,14 @@ Trong đó:
       },
       {
         deMuc: 'III. Thiết bị bắn tốc độ',
-        tenHoatDong: 'Hoạt động 2.3: Tìm hiểu thiết bị bắn tốc độ trong an toàn giao thông & Sơ đồ tư duy 16:9 (SGK Trang 51 - 52)',
+        tenHoatDong: 'Hoạt động 2.3: Tìm hiểu thiết bị bắn tốc độ trong an toàn giao thông (SGK Trang 51 - 52)',
         thoiLuong: '12 phút',
         mucTieu: 'Giải thích được sơ lược nguyên tắc hoạt động của thiết bị bắn tốc độ trong kiểm tra phương tiện giao thông; hệ thống hóa toàn bài bằng Sơ đồ tư duy 16:9.',
         noiDung: 'HS đọc thông tin mục III và quan sát Hình 9.4 SGK; giải bài tập camera ghi thời gian ô tô chạy qua 2 vạch mốc (s = 5m, t = 0,35s); quan sát Sơ đồ tư duy 16:9 3D Pixar.',
         sanPham: 'Lời giải bài tập tính tốc độ ô tô (v = 5 / 0,35 = 14,29 m/s = 51,4 km/h < 60 km/h, không vượt tốc độ) và Sơ đồ tư duy hoàn chỉnh.',
         cot1Trai: `- GV hướng dẫn phân tích Hình 9.4 SGK về thiết bị bắn tốc độ gắn camera.
 - Cho HS tính toán bài tập Hình 9.4: Ô tô có vi phạm tốc độ tối đa 60 km/h không?
-- Chiếu SƠ ĐỒ TƯ DUY 16:9 PHONG CÁCH 3D PIXAR tổng kết toàn bài.
+- [CHỐT KIẾN THỨC]: Hướng dẫn học sinh chốt kiến thức cốt lõi của đề mục vào vở.
 - [CHỐT KIẾN THỨC]: Tuyên truyền chấp hành luật an toàn giao thông.`,
         cot2Phai: `III. THIẾT BỊ BẮN TỐC ĐỘ
 1. Nguyên tắc hoạt động (Hình 9.4 SGK):
@@ -555,13 +555,13 @@ Trong đó:
       },
       {
         deMuc: 'III. Vận dụng đồ thị để xác định vị trí, thời gian và tốc độ',
-        tenHoatDong: 'Hoạt động 2.3: Đọc đồ thị tìm vị trí, thời gian, tốc độ & Sơ đồ tư duy 16:9 (SGK Trang 56 - 57)',
+        tenHoatDong: 'Hoạt động 2.3: Đọc đồ thị tìm vị trí, thời gian, tốc độ (SGK Trang 56 - 57)',
         thoiLuong: '12 phút',
         mucTieu: 'Biết khai thác đồ thị để tìm quãng đường, thời gian và tính tốc độ v = s / t; củng cố bằng Sơ đồ tư duy 16:9.',
         noiDung: 'HS tra cứu từ đồ thị Hình 10.2 để tìm vị trí của vật tại t = 3s và tính tốc độ của vật; vẽ sơ đồ tư duy.',
         sanPham: 'Đáp số bài tập tra cứu đồ thị và Sơ đồ tư duy 16:9 hoàn chỉnh.',
         cot1Trai: `- Hướng dẫn phương pháp gióng đường vuông góc từ trục Ot sang trục Os và ngược lại.
-- Chiếu SƠ ĐỒ TƯ DUY 16:9 PHONG CÁCH 3D PIXAR tổng kết toàn bài.`,
+- [CHỐT KIẾN THỨC]: Hướng dẫn học sinh chốt kiến thức cốt lõi của đề mục vào vở.`,
         cot2Phai: `III. TÌM TỐC ĐỘ TỪ ĐỒ THỊ
 - Từ một điểm trên đồ thị: Gióng xuống trục thời gian được t, gióng sang trục quãng đường được s.
 - Tính tốc độ của vật: v = s / t.
@@ -624,7 +624,7 @@ Trong đó:
         noiDung: 'HS áp dụng quy tắc 3 giây tính khoảng cách an toàn khi chạy 60 km/h (s ≈ 50m); vẽ sơ đồ tư duy 16:9.',
         sanPham: 'Thông điệp an toàn giao thông và Sơ đồ tư duy 16:9 hoàn chỉnh trong vở học sinh.',
         cot1Trai: `- Hướng dẫn HS áp dụng quy tắc 3 giây trong thực tế điều khiển phương tiện.
-- Chiếu SƠ ĐỒ TƯ DUY 16:9 PHONG CÁCH 3D PIXAR tổng kết toàn bài.`,
+- [CHỐT KIẾN THỨC]: Hướng dẫn học sinh chốt kiến thức cốt lõi của đề mục vào vở.`,
         cot2Phai: `III. KHOẢNG CÁCH AN TOÀN GIỮA HAI XE
 - Quy tắc 3 giây: Giữ khoảng cách tương đương quãng đường xe chạy trong 3 giây đối với xe chạy phía trước.
 - Khi thời tiết mưa gió, đường trơn trượt: Khoảng cách an toàn cần tăng gấp đôi.
@@ -977,7 +977,7 @@ Trong đó:
       },
       {
         deMuc: '3. Thực hành sử dụng compa vẽ hình tròn',
-        tenHoatDong: 'Hoạt động 2.3: Thực hành dùng compa vẽ hình tròn & Sơ đồ tư duy 16:9 (SGK Trang 65)',
+        tenHoatDong: 'Hoạt động 2.3: Thực hành dùng compa vẽ hình tròn (SGK Trang 65)',
         thoiLuong: '11 phút',
         mucTieu: 'Biết cấu tạo compa và sử dụng compa vẽ được hình tròn có tâm và bán kính cho trước; củng cố bằng Sơ đồ tư duy 16:9.',
         noiDung: 'HS tìm hiểu compa; thực hành vẽ hình tròn tâm O bán kính 3cm vào vở; quan sát Sơ đồ tư duy 16:9.',
@@ -1071,14 +1071,14 @@ export function getIntelligentSectionsForTopic(
 - Quy trình giải toán gồm: Nhận diện giả thiết -> Áp dụng đúng công thức/định lí -> Trình bày lập luận logic -> Kết luận rõ ràng.`
       },
       {
-        deMuc: `3. Vận dụng thực tiễn của ${shortTitle} & Sơ đồ tư duy 16:9`,
-        tenHoatDong: `Hoạt động 2.3: Vận dụng thực tế & Sơ đồ tư duy 16:9 3D Pixar`,
+        deMuc: `3. Vận dụng thực tiễn của ${shortTitle}`,
+        tenHoatDong: `Hoạt động 2.3: Vận dụng thực tế`,
         thoiLuong: '12 phút',
         mucTieu: `Giải bài toán mô hình hóa thực tế trong SGK; hệ thống hóa toàn bộ kiến thức bài học bằng Sơ đồ tư duy 16:9 3D Pixar.`,
         noiDung: `HS giải bài toán tình huống thực tế; quan sát Sơ đồ tư duy 16:9 3D Pixar và tóm tắt phương pháp giải vào vở.`,
         sanPham: `Đáp số bài toán thực tế và Sơ đồ tư duy 16:9 hoàn chỉnh trong vở học sinh.`,
         cot1Trai: `- GV liên hệ toán học với các ứng dụng đời sống, kiến trúc, tài chính.
-- Chiếu SƠ ĐỒ TƯ DUY 16:9 PHONG CÁCH 3D PIXAR tổng kết bài học.
+- [CHỐT KIẾN THỨC]: Hướng dẫn học sinh chốt kiến thức cốt lõi của đề mục vào vở.
 - [CHỐT KIẾN THỨC]: Hướng dẫn HS vẽ sơ đồ tư duy tóm tắt toàn bài vào vở.`,
         cot2Phai: `3. VẬN DỤNG THỰC TIỄN VÀ HỆ THỐNG HÓA KIẾN THỨC
 - Giải quyết các tình huống và mô hình thực tế bằng công cụ toán học.
@@ -1131,14 +1131,14 @@ export function getIntelligentSectionsForTopic(
 - Quy trình tiến hành thí nghiệm: Chuẩn bị dụng cụ an toàn -> Lắp đặt theo sơ đồ -> Thu thập số liệu 3 lần -> Tính giá trị trung bình.`
       },
       {
-        deMuc: `III. Ứng dụng thực tiễn của ${shortTitle} & Sơ đồ tư duy 16:9`,
-        tenHoatDong: `Hoạt động 2.3: Ứng dụng thực tế & Sơ đồ tư duy 16:9 3D Pixar`,
+        deMuc: `III. Ứng dụng thực tiễn của ${shortTitle}`,
+        tenHoatDong: `Hoạt động 2.3: Ứng dụng thực tế`,
         thoiLuong: '12 phút',
         mucTieu: `Liên hệ các ứng dụng thực tế trong đời sống và kỹ thuật; chuẩn hóa và khắc sâu toàn bộ kiến thức bài học bằng Sơ đồ tư duy 16:9 3D Pixar trực quan.`,
         noiDung: `HS liên hệ các ứng dụng khoa học kỹ thuật và an toàn đời sống; quan sát Sơ đồ tư duy 16:9 3D Pixar trên bảng tương tác; hoàn thiện sơ đồ vào vở ghi.`,
         sanPham: `Sơ đồ tư duy 16:9 đầy đủ các nhánh tri thức trong vở học sinh; các ví dụ ứng dụng thực tế sinh động.`,
         cot1Trai: `- GV tổ chức cho HS liên hệ thực tiễn và giáo dục an toàn/môi trường.
-- Chiếu SƠ ĐỒ TƯ DUY 16:9 PHONG CÁCH 3D PIXAR lên màn hình chiếu.
+- [CHỐT KIẾN THỨC]: Hướng dẫn học sinh chốt kiến thức cốt lõi của đề mục vào vở.
 - [CHỐT KIẾN THỨC]: Hướng dẫn HS hệ thống hóa toàn bài theo sơ đồ tư duy.`,
         cot2Phai: `III. ỨNG DỤNG THỰC TIỄN VÀ HỆ THỐNG HÓA KIẾN THỨC
 - Các ứng dụng trong công nghệ, sản xuất và đời sống thực tiễn.
@@ -1187,14 +1187,14 @@ export function getIntelligentSectionsForTopic(
 - Tuân thủ đúng các nguyên tắc kỹ thuật và an toàn trong quá trình thực hành.`
     },
     {
-      deMuc: `III. Vận dụng thực tiễn của ${shortTitle} & Sơ đồ tư duy 16:9`,
-      tenHoatDong: `Hoạt động 2.3: Vận dụng thực tế & Sơ đồ tư duy 16:9 3D Pixar`,
+      deMuc: `III. Vận dụng thực tiễn của ${shortTitle}`,
+      tenHoatDong: `Hoạt động 2.3: Vận dụng thực tế`,
       thoiLuong: '12 phút',
       mucTieu: `Liên hệ nội dung bài học với đời sống thực tế và định hướng phát triển bản thân; hệ thống hóa bài học bằng Sơ đồ tư duy 16:9 3D Pixar.`,
       noiDung: `HS liên hệ các tình huống thực tiễn; quan sát Sơ đồ tư duy 16:9 trên màn hình và hoàn thiện sơ đồ vào vở.`,
       sanPham: `Sơ đồ tư duy 16:9 trong vở học sinh; các bài học liên hệ thực tiễn phong phú.`,
       cot1Trai: `- GV gợi mở các tình huống thực tiễn gắn liền với đời sống.
-- Chiếu SƠ ĐỒ TƯ DUY 16:9 PHONG CÁCH 3D PIXAR tổng kết toàn bài.
+- [CHỐT KIẾN THỨC]: Hướng dẫn học sinh chốt kiến thức cốt lõi của đề mục vào vở.
 - [CHỐT KIẾN THỨC]: Hướng dẫn HS vẽ sơ đồ tư duy tổng kết vào vở.`,
       cot2Phai: `III. VẬN DỤNG THỰC TIỄN VÀ SƠ ĐỒ TƯ DUY TỔNG KẾT
 - Liên hệ thực tế đời sống, xã hội và định hướng ứng dụng.

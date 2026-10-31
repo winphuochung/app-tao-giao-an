@@ -254,11 +254,30 @@ export const SAMPLE_KHTN_7_BAI_9_DO_TOC_DO: CompleteLessonPlan = {
             cot2Phai: 'III. THIẾT BỊ BẮN TỐC ĐỘ\n1. Nguyên tắc hoạt động (Hình 9.4 SGK Trang 51):\n- Dùng camera theo dõi ghi lại thời gian ô tô chạy qua 2 vạch mốc cách nhau khoảng s (thường từ 5m đến 10m).\n- Máy tính gắn trong camera tự động tính tốc độ v = s / t và đối chiếu với tốc độ giới hạn.\n\n2. Giải bài toán tình huống (? SGK Trang 51):\nCho: s = 5 m; t = 0,35 s; v_gioi_han = 60 km/h.\na) Tốc độ của ô tô là:\n   v = s / t = 5 / 0,35 ≈ 14,29 m/s.\n   Đổi ra km/h: v = 14,29 x 3,6 ≈ 51,43 km/h.\nb) So sánh:\n   Vì 51,43 km/h < 60 km/h nên ô tô này KHÔNG VƯỢT QUÁ tốc độ giới hạn của cung đường.'
           },
           {
-            id: 'r-9-2-3-2',
-            buocSuPham: 'Bước 2: Mở rộng định vị GPS & Chuẩn hóa kiến thức bằng Sơ đồ tư duy 16:9 3D Pixar',
-            cot1Trai: '- GV giới thiệu khung "Đọc thêm" SGK trang 51: Đo tốc độ bằng đồng hồ thông minh, smartphone sử dụng hệ thống định vị toàn cầu GPS.\n- [CHUẨN HÓA TOÀN BỘ BÀI HỌC]: GV chiếu SƠ ĐỒ TƯ DUY 16:9 PHONG CÁCH 3D PIXAR lên bảng tương tác.\n- Hướng dẫn HS hệ thống hóa 3 nhánh kiến thức cốt lõi của Bài 9:\n  + Nhánh 1: Đo bằng đồng hồ bấm giây (thước + bấm giây, 3 lần đo Bảng 9.1).\n  + Nhánh 2: Đo bằng cổng quang điện + đồng hồ hiện số (chế độ A <-> B, cực chính xác).\n  + Nhánh 3: Thiết bị bắn tốc độ & GPS (Hình 9.4, ứng dụng an toàn giao thông).',
-            cot2Phai: '* KẾT LUẬN / CHỐT KIẾN THỨC GHI VỞ (Nội dung trọng tâm HS ghi bài để học):\n• Để đo tốc độ luôn cần đo quãng đường s và thời gian t, tính v = s / t.\n• Trong phòng thực hành: Thường dùng đồng hồ bấm giây (đo 3 lần lấy trung bình) hoặc cổng quang điện kết hợp đồng hồ hiện số.\n• Trong an toàn giao thông: Sử dụng camera và thiết bị bắn tốc độ để kiểm soát tốc độ phương tiện, giảm thiểu tai nạn giao thông.',
-            soDoTuDuy: {
+            id: 'r-9-2-3-conclude',
+            buocSuPham: 'Bước 2: Kết luận, nhận định Đề mục III',
+            cot1Trai: '- GV chuẩn hóa nguyên tắc hoạt động của thiết bị bắn tốc độ và công nghệ GPS.\n- Yêu cầu học sinh ghi chép nội dung chốt kiến thức vào vở.',
+            cot2Phai: '* KẾT LUẬN / CHỐT KIẾN THỨC GHI VỞ (Nội dung trọng tâm HS ghi bài để học):\n- Thiết bị bắn tốc độ dùng camera và máy tính để đo tự động tốc độ xe qua hai vạch mốc cố định: v = s / t.\n- Người điều khiển phương tiện phải tuân thủ nghiêm ngặt tốc độ quy định để đảm bảo an toàn giao thông đường bộ.'
+          }
+        ]
+      },
+
+      // HOẠT ĐỘNG 3: LUYỆN TẬP
+      {
+        id: 'hd-khtn7-bai9-3',
+        soThuTu: 3,
+        tenHoatDong: 'Hoạt động 3: Luyện tập (Hệ thống hóa kiến thức bằng Sơ đồ tư duy 16:9 3D Pixar & Bài tập áp dụng)',
+        thoiLuong: '15 phút',
+        mucTieu: 'Hệ thống hóa toàn bộ kiến thức bài học bằng Sơ đồ tư duy 16:9 phong cách 3D Pixar; vận dụng thành thạo các bước đo và công thức tính tốc độ để giải bài tập thực tế cự li 60m và bài toán chuyển đổi đơn vị.',
+        noiDung: 'HS quan sát Sơ đồ tư duy 16:9 3D Pixar tái hiện 3 nhánh phương pháp đo tốc độ; làm việc độc lập giải Bài tập 1 và Bài tập 2 trong phiếu luyện tập cá nhân.',
+        sanPham: 'Sơ đồ tư duy 16:9 hoàn chỉnh trong vở học sinh; Lời giải đúng và đầy đủ trong vở bài tập của học sinh.',
+        bangHaiCot: [
+          {
+            id: 'r-9-3-0-mindmap',
+            buocSuPham: 'Bước 1: Hệ thống hóa kiến thức toàn bài bằng Sơ đồ tư duy 16:9 3D Pixar',
+            cot1Trai: '- GV trình chiếu SƠ ĐỒ TƯ DUY 16:9 PHONG CÁCH 3D PIXAR tổng kết toàn bộ 3 nội dung trọng tâm của Bài 9: Đo tốc độ bằng đồng hồ bấm giây -> Dùng cổng quang điện và đồng hồ hiện số -> Thiết bị bắn tốc độ & GPS.\n- Tổ chức cho học sinh nhìn vào sơ đồ và lần lượt nhắc lại nguyên tắc, dụng cụ đo và công thức tính.\n- Hướng dẫn học sinh đối chiếu sơ đồ tư duy để làm các bài tập luyện tập.',
+            cot2Phai: '* HỆ THỐNG KIẾN THỨC CỐT LÕI (SƠ ĐỒ TƯ DUY 16:9 3D PIXAR):\n• Để đo tốc độ luôn cần đo quãng đường s và thời gian t, tính v = s / t.\n• Trong phòng thực hành: Thường dùng đồng hồ bấm giây (đo 3 lần lấy trung bình) hoặc cổng quang điện kết hợp đồng hồ hiện số.\n• Trong an toàn giao thông: Sử dụng camera và thiết bị bắn tốc độ để kiểm soát tốc độ phương tiện, giảm thiểu tai nạn giao thông.',
+                        soDoTuDuy: {
               id: 'sdd-khtn7-bai9-do-toc-do',
               chuDeChinh: 'BÀI 9: ĐO TỐC ĐỘ (KHTN 7)',
               moTaChuDe: 'Hệ thống hóa toàn bộ phương pháp đo tốc độ trong phòng thực hành và kiểm tra an toàn giao thông',
@@ -323,20 +342,8 @@ export const SAMPLE_KHTN_7_BAI_9_DO_TOC_DO: CompleteLessonPlan = {
                 }
               ]
             }
-          }
-        ]
-      },
 
-      // HOẠT ĐỘNG 3: LUYỆN TẬP
-      {
-        id: 'hd-khtn7-bai9-3',
-        soThuTu: 3,
-        tenHoatDong: 'Hoạt động 3: Luyện tập (Củng cố và rèn kĩ năng tính toán)',
-        thoiLuong: '12 phút',
-        mucTieu: 'Vận dụng thành thạo các bước đo và công thức tính tốc độ để giải bài tập thực tế cự li 60m và bài toán chuyển đổi đơn vị.',
-        noiDung: 'HS làm việc độc lập giải Bài tập 1 và Bài tập 2 trong phiếu luyện tập cá nhân.',
-        sanPham: 'Lời giải đúng và đầy đủ trong vở bài tập của học sinh.',
-        bangHaiCot: [
+          },
           {
             id: 'r-9-3-1',
             buocSuPham: 'Bài tập 1: Tính tốc độ chạy cự li 60m môn Giáo dục thể chất',

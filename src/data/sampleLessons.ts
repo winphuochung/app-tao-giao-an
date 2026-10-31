@@ -188,9 +188,25 @@ export const SAMPLE_LESSONS: Record<string, CompleteLessonPlan> = {
             },
             {
               id: 'row-2-4',
-              buocSuPham: '2.4. Kết luận kiến thức & Sơ đồ tư duy 16:9 3D Pixar (Chuẩn hóa kiến thức cốt lõi)',
+              buocSuPham: '2.4. Kết luận, nhận định Đề mục 2 (Chuẩn hóa kiến thức cốt lõi)',
               cot1Trai: '- GV chuẩn hóa toàn bộ kiến thức về hình tròn, chiếu SƠ ĐỒ TƯ DUY 16:9 phong cách hoạt hình 3D Pixar lên bảng tương tác.\n- Cho học sinh cả lớp cùng đọc to và ghi nhớ quy tắc vàng:\n  + Tâm O là điểm chính giữa hình tròn.\n  + Tất cả các bán kính đều bằng nhau (OA = OB = OM = r).\n  + Độ dài đường kính gấp 2 lần độ dài bán kính (d = 2 x r).\n- [KHẮC SÂU TRỰC QUAN]: GV hướng dẫn học sinh liên kết hình ảnh sơ đồ tư duy 3D với các đồ vật thực tế xung quanh.',
               cot2Phai: '- [HỌC SINH TỰ LĨNH HỘI & KHẮC SÂU KIẾN THỨC]:\n  + Quan sát Sơ đồ tư duy 16:9 3D Pixar, tự ghi nhớ 4 nhánh kiến thức cốt lõi vào vở ghi.\n  + Đồng thanh nhắc lại công thức: "Đường kính bằng 2 lần bán kính: d = 2 x r (r = d : 2)".\n  + Tự tin giải thích mối quan hệ giữa tâm, bán kính và đường kính.',
+              
+            }
+          ]
+        },
+        {
+          id: 'hd-3',
+          soThuTu: 3,
+          tenHoatDong: 'Hoạt động 3: Luyện tập, thực hành (Hệ thống hóa bằng Sơ đồ tư duy 16:9 3D Pixar & Bài tập)',
+          thoiLuong: '15 phút',
+          mucTieu: 'Hệ thống hóa toàn bộ kiến thức về hình tròn bằng Sơ đồ tư duy 16:9 3D Pixar; rèn kỹ năng nhận dạng tâm, bán kính, đường kính trong các hình vẽ phức hợp và vẽ thành thạo hình tròn bằng compa.',
+          bangHaiCot: [
+            {
+              id: 'row-3-0-mindmap',
+              buocSuPham: '3.0. Hệ thống hóa kiến thức toàn bài qua Sơ đồ tư duy 16:9 3D Pixar',
+              cot1Trai: '- GV chuẩn hóa toàn bộ kiến thức về hình tròn, chiếu SƠ ĐỒ TƯ DUY 16:9 phong cách hoạt hình 3D Pixar lên bảng tương tác.\n- Cho học sinh cả lớp cùng đọc to và ghi nhớ quy tắc vàng:\n  + Tâm O là điểm chính giữa hình tròn.\n  + Tất cả các bán kính đều bằng nhau (OA = OB = OM = r).\n  + Độ dài đường kính gấp 2 lần độ dài bán kính (d = 2 x r).\n- [KHẮC SÂU TRỰC QUAN]: GV hướng dẫn học sinh liên kết hình ảnh sơ đồ tư duy 3D với các bài tập sắp làm.',
+              cot2Phai: '* HỆ THỐNG HÓA KIẾN THỨC CỐT LÕI (SƠ ĐỒ TƯ DUY 16:9 3D PIXAR):\n- Quan sát Sơ đồ tư duy 16:9 3D Pixar, tự ghi nhớ 4 nhánh kiến thức cốt lõi vào vở ghi.\n- Đồng thanh nhắc lại công thức: "Đường kính bằng 2 lần bán kính: d = 2 x r (r = d : 2)".\n- Tự tin giải thích mối quan hệ giữa tâm, bán kính và đường kính để giải các bài tập.',
               soDoTuDuy: {
                 id: 'sdd-toan-3-hinh-tron',
                 chuDeChinh: 'HÌNH TRÒN & TÂM - BÁN KÍNH - ĐƯỜNG KÍNH',
@@ -252,16 +268,7 @@ export const SAMPLE_LESSONS: Record<string, CompleteLessonPlan> = {
                   }
                 ]
               }
-            }
-          ]
-        },
-        {
-          id: 'hd-3',
-          soThuTu: 3,
-          tenHoatDong: 'Hoạt động 3: Luyện tập, thực hành',
-          thoiLuong: '13 phút',
-          mucTieu: 'Rèn kỹ năng nhận dạng tâm, bán kính, đường kính trong các hình vẽ phức hợp và vẽ thành thạo hình tròn bằng compa.',
-          bangHaiCot: [
+            },
             {
               id: 'row-3-1',
               buocSuPham: 'Bài tập 1: Xác định thành phần hình tròn & Rèn nếp học tập an toàn',
@@ -704,9 +711,27 @@ export const SAMPLE_LESSONS: Record<string, CompleteLessonPlan> = {
             },
             {
               id: 'row-thcs-2-4',
-              buocSuPham: 'Bước 4: Kết luận, nhận định & Khắc sâu liên môn (Chốt Sơ đồ tư duy 16:9 3D Pixar)',
+              buocSuPham: 'Bước 4: Kết luận, nhận định & Chốt kiến thức ghi vở',
               cot1Trai: '- GV chuẩn hóa kiến thức khoa học bám sát SGK, chiếu SƠ ĐỒ TƯ DUY 16:9 PHONG CÁCH 3D PIXAR tổng kết toàn bộ nội dung trọng tâm.\n- [TÍCH HỢP NĂNG LỰC SỐ - Mã 5.2.TC1a]: GV sử dụng phần mềm GeoGebra chiếu mô phỏng chuyển động phản chiếu qua trục để học sinh thấy tính chất bảo toàn khoảng cách.\n- [BẢO VỆ AN NINH QUỐC PHÒNG (TT 08/2024/TT-BGDĐT)]: GV chiếu hình ảnh Cột mốc chủ quyền biên giới quốc gia (Cột mốc ngã ba biên giới A Pa Chải) và Quốc huy Việt Nam: "Tính đối xứng trục tạo nên sự uy nghiêm, vững chãi cho biểu tượng chủ quyền non sông và các công trình an ninh quốc phòng của Tổ quốc."',
               cot2Phai: 'I. HÌNH CÓ TRỤC ĐỐI XỨNG (KẾT LUẬN TỪ SƠ ĐỒ TƯ DUY 3D PIXAR)\n1. Định nghĩa (SGK trang 50):\nĐường thẳng d gọi là trục đối xứng của hình nếu gấp hình theo d thì hai nửa trùng khít lên nhau.\n2. Trục đối xứng của các hình phẳng (SGK trang 51):\n• Đoạn thẳng AB: 1 trục (đường trung trực)\n• Tam giác đều: 3 trục đối xứng\n• Hình chữ nhật: 2 trục (Đường chéo KHÔNG là trục đối xứng)\n• Hình vuông: 4 trục đối xứng\n• Hình tròn: Vô số trục đối xứng (mọi đường thẳng qua tâm O)\n[Ý THỨC QUỐC PHÒNG]: HS trân trọng giá trị thiêng liêng của mốc chủ quyền biên cương, hải đảo.',
+              
+            }
+          ]
+        },
+        {
+          id: 'hd-thcs-3',
+          soThuTu: 3,
+          tenHoatDong: 'Hoạt động 3: Luyện tập (Hệ thống hóa bằng Sơ đồ tư duy 16:9 3D Pixar & Bài tập áp dụng)',
+          thoiLuong: '14 phút',
+          mucTieu: 'Hệ thống hóa toàn bộ định nghĩa và số trục đối xứng bằng Sơ đồ tư duy 16:9 3D Pixar; củng cố kiến thức, nhận diện nhanh các chữ cái in hoa, biển báo giao thông và logo có trục đối xứng.',
+          noiDung: 'HS quan sát Sơ đồ tư duy 16:9 3D Pixar để khắc sâu kiến thức toàn bài; làm việc cá nhân giải bài tập 1, 2 (SGK trang 53) và phân tích các chữ cái tiếng Việt in hoa: A, B, C, H, M, X, O.',
+          sanPham: 'Sơ đồ tư duy 16:9 hoàn chỉnh trong vở; Bài làm trong vở bài tập của HS; phiếu phân loại chữ cái có trục đối xứng.',
+          bangHaiCot: [
+            {
+              id: 'row-thcs-3-0-mindmap',
+              buocSuPham: 'Bước 1: Hệ thống hóa kiến thức toàn bài bằng Sơ đồ tư duy 16:9 3D Pixar',
+              cot1Trai: '- GV chuẩn hóa kiến thức khoa học bám sát SGK, chiếu SƠ ĐỒ TƯ DUY 16:9 PHONG CÁCH 3D PIXAR tổng kết toàn bộ nội dung trọng tâm lên màn chiếu.\n- Hướng dẫn học sinh nhìn sơ đồ tư duy, nhắc lại số trục đối xứng của 5 hình phẳng cơ bản (đoạn thẳng, tam giác đều, hình chữ nhật, hình vuông, hình tròn).\n- Tổ chức cho học sinh vận dụng sơ đồ tư duy vào thực hiện các bài tập luyện tập.',
+              cot2Phai: '* HỆ THỐNG KIẾN THỨC CỐT LÕI (SƠ ĐỒ TƯ DUY 16:9 3D PIXAR):\n1. Định nghĩa: Gấp hình theo đường thẳng d thì 2 nửa trùng khít lên nhau.\n2. Số trục đối xứng các hình phẳng cơ bản:\n• Đoạn thẳng AB: 1 trục\n• Tam giác đều: 3 trục đối xứng\n• Hình chữ nhật: 2 trục (Đường chéo KHÔNG là trục đối xứng)\n• Hình vuông: 4 trục đối xứng\n• Hình tròn: Vô số trục đối xứng qua tâm O.',
               soDoTuDuy: {
                 id: 'sdd-toan-6-truc-doi-xung',
                 chuDeChinh: 'HÌNH CÓ TRỤC ĐỐI XỨNG & TRỤC ĐỐI XỨNG CÁC HÌNH PHẲNG',
@@ -768,18 +793,7 @@ export const SAMPLE_LESSONS: Record<string, CompleteLessonPlan> = {
                   }
                 ]
               }
-            }
-          ]
-        },
-        {
-          id: 'hd-thcs-3',
-          soThuTu: 3,
-          tenHoatDong: 'Hoạt động 3: Luyện tập',
-          thoiLuong: '12 phút',
-          mucTieu: 'Củng cố kiến thức, nhận diện nhanh các chữ cái in hoa, biển báo giao thông và logo có trục đối xứng.',
-          noiDung: 'HS làm việc cá nhân giải bài tập 1, 2 (SGK trang 53) và phân tích các chữ cái tiếng Việt in hoa: A, B, C, H, M, X, O.',
-          sanPham: 'Bài làm trong vở bài tập của HS; phiếu phân loại chữ cái có trục đối xứng ngang, dọc hoặc cả hai.',
-          bangHaiCot: [
+            },
             {
               id: 'row-thcs-3-1',
               buocSuPham: 'Bước 1: Chuyển giao nhiệm vụ (Thử thách chữ cái và Biển báo giao thông)',
