@@ -92,19 +92,22 @@ export const App: React.FC = () => {
     subject: string
   ) => {
     // 1. Tải bài mẫu chuẩn bám sát 100% SGK nếu chọn các bài chuẩn
-    if (lessonItem.id === 'khtn-7-bai-8' || lessonItem.id === 'thcs-khtn-7-toc-do' || /tốc độ chuyển động/i.test(lessonItem.name)) {
+    const isKhtn = /khoa học tự nhiên|khtn/i.test(subject);
+    const isToan = /toán/i.test(subject);
+
+    if (isKhtn && grade === 7 && (lessonItem.id === 'khtn-7-bai-8' || lessonItem.id === 'thcs-khtn-7-toc-do' || /tốc độ chuyển động/i.test(lessonItem.name))) {
       handleLoadSample('thcs-khtn-7-toc-do');
       return;
     }
-    if (lessonItem.id === 'khtn-7-bai-9' || lessonItem.id === 'thcs-khtn-7-bai-9' || /đo tốc độ/i.test(lessonItem.name)) {
+    if (isKhtn && grade === 7 && (lessonItem.id === 'khtn-7-bai-9' || lessonItem.id === 'thcs-khtn-7-bai-9' || /đo tốc độ/i.test(lessonItem.name))) {
       handleLoadSample('thcs-khtn-7-bai-9');
       return;
     }
-    if (lessonItem.id === 'toan-3-hinh-tron' || /hình tròn/i.test(lessonItem.name)) {
+    if (isToan && grade === 3 && (lessonItem.id === 'toan-3-hinh-tron' || /hình tròn.*tâm.*bán kính/i.test(lessonItem.name))) {
       handleLoadSample('tieu-hoc-toan-3');
       return;
     }
-    if (lessonItem.id === 'toan-6-truc-doi-xung' || /trục đối xứng/i.test(lessonItem.name)) {
+    if (isToan && grade === 6 && (lessonItem.id === 'toan-6-truc-doi-xung' || /trục đối xứng/i.test(lessonItem.name))) {
       handleLoadSample('thcs-toan-6');
       return;
     }
@@ -172,9 +175,9 @@ export const App: React.FC = () => {
   // AI Generation trigger
   const handleGeneratePlan = async () => {
     setIsGenerating(true);
-    setIsAnalysisModalOpen(true);
-    const sgkUrl = `https://taphuan.nxbgd.vn/tap-huan?grade=${currentPlan.giaoAn.metadata.khoiLop}`;
-    showNotification(`🔗 Đang kết nối SGK (${sgkUrl}) & nạp tri thức bài: ${currentPlan.giaoAn.metadata.tenBaiDay}...`, 'info');
+
+
+
     try {
       const generated = await generateLessonPlanWithAI(
         currentPlan.giaoAn.metadata,

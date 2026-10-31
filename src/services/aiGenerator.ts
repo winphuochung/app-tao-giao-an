@@ -180,15 +180,17 @@ export function generateMindmapData(
   subject: string,
   isTieuHoc: boolean
 ): SoDoTuDuy {
-  const isSpeedPhysics = /tốc độ chuyển động/i.test(topic) && /khoa học tự nhiên|khtn|vật lí/i.test(subject);
-  const isChemistry = !isSpeedPhysics && (/hóa|acid|base|chất|nguyên tố/i.test(subject) || /hóa|acid|base|chất|nguyên tố/i.test(topic));
-  const isGeometry = /hình|tam giác|tròn|chữ nhật|vuông|đối xứng/i.test(topic);
+  const isSpeedPhysics = /tốc độ chuyển động/i.test(topic) && /khoa học tự nhiên|khtn|vật lí/i.test(subject) && metadata.khoiLop === 7;
+  const isMeasureSpeed = /đo tốc độ/i.test(topic) && /khoa học tự nhiên|khtn|vật lí/i.test(subject) && metadata.khoiLop === 7;
+  const isCircleMath = /hình tròn/i.test(topic) && /toán/i.test(subject) && metadata.khoiLop === 3;
+  const isSymmetryMath = /đối xứng/i.test(topic) && /toán/i.test(subject) && metadata.khoiLop === 6;
 
-  let defaultImg = '/mindmaps/mindmap-pixar-bg.jpg';
+  let defaultImg: string | undefined = undefined;
   if (isSpeedPhysics) defaultImg = '/mindmaps/mindmap-khtn-7-toc-do.jpg';
-  else if (isChemistry) defaultImg = '/mindmaps/mindmap-hoa-8-acid-base.jpg';
-  else if (isGeometry && isTieuHoc) defaultImg = '/mindmaps/mindmap-toan-3-hinh-tron.jpg';
-  else if (isGeometry && !isTieuHoc) defaultImg = '/mindmaps/mindmap-toan-6-truc-doi-xung.jpg';
+  else if (isMeasureSpeed) defaultImg = '/mindmaps/mindmap-khtn7-bai9-do-toc-do.jpg';
+  else if (isCircleMath) defaultImg = '/mindmaps/mindmap-toan-3-hinh-tron.jpg';
+  else if (isSymmetryMath) defaultImg = '/mindmaps/mindmap-toan-6-truc-doi-xung.jpg';
+  const isChemistry = !isSpeedPhysics && !isMeasureSpeed && (/hóa|acid|base|chất|nguyên tố/i.test(subject) || /hóa|acid|base|chất|nguyên tố/i.test(topic));
 
   let thuatNgu: string[] = [];
   let branches: SoDoTuDuyNhanh[] = [];
@@ -449,6 +451,28 @@ export function generateIntelligentPlan(
     return khtnPlan;
   }
 
+  // Kiểm tra bài học chuẩn KHTN 7: Bài 9: Đo tốc độ
+  const isExactKhtn7Bai9 = metadata.khoiLop === 7 &&
+    /khoa học tự nhiên|khtn/i.test(subject) &&
+    /đo tốc độ/i.test(topic);
+
+  if (isExactKhtn7Bai9) {
+    const khtn9Plan = JSON.parse(JSON.stringify(SAMPLE_KHTN_7_BAI_9_DO_TOC_DO)) as CompleteLessonPlan;
+    khtn9Plan.giaoAn.metadata = {
+      ...khtn9Plan.giaoAn.metadata,
+      ...metadata,
+      capHoc: 'THCS',
+      congVan: '5512/BGDĐT-GDTrH',
+      tenBaiDay: metadata.tenBaiDay?.trim() ? metadata.tenBaiDay : 'Bài 9: Đo tốc độ',
+      khoiLop: 7,
+      monHoc: metadata.monHoc?.trim() ? metadata.monHoc : 'Khoa học tự nhiên',
+      boSach: metadata.boSach || 'Kết nối tri thức với cuộc sống'
+    };
+    khtn9Plan.slideDeck.themeId = themeId;
+    khtn9Plan.slideDeck.themeConfig = theme;
+    return khtn9Plan;
+  }
+
   // Kiểm tra bài học chuẩn Toán 3: Hình tròn, tâm, đường kính, bán kính
   const isExactToan3HinhTron = metadata.khoiLop === 3 &&
     /toán/i.test(subject) &&
@@ -588,7 +612,7 @@ export function generateIntelligentPlan(
   }
 
   // 1. Kiểm tra nếu là Bài 9: Đo tốc độ (KHTN 7) -> Trả về giáo án bám sát 100% SGK Trang 49-51
-  const isMeasureSpeed = (/đo tốc độ/i.test(topic) || (/bài 9/i.test(topic) && /tốc độ/i.test(topic))) && /khoa học tự nhiên|khtn|vật lí/i.test(subject);
+  const isMeasureSpeed = false; // Đã xử lý ở đầu hàm chính xác
   if (isMeasureSpeed) {
     return {
       ...SAMPLE_KHTN_7_BAI_9_DO_TOC_DO,
@@ -610,7 +634,7 @@ export function generateIntelligentPlan(
   }
 
   // 2. Kiểm tra nếu là Bài 8: Tốc độ chuyển động (KHTN 7) -> Trả về giáo án bám sát 100% SGK Trang 45-48
-  const isSpeedPhysics = (/tốc độ chuyển động/i.test(topic) || (/bài 8/i.test(topic) && /tốc độ/i.test(topic))) && /khoa học tự nhiên|khtn|vật lí/i.test(subject);
+  const isSpeedPhysics = false; // Đã xử lý ở đầu hàm chính xác
   if (isSpeedPhysics) {
     return {
       ...SAMPLE_KHTN_7_TOC_DO,
@@ -632,7 +656,7 @@ export function generateIntelligentPlan(
   }
 
   // 3. Kiểm tra các bài mẫu Toán 3 và Toán 6
-  const isCircleMath = /hình tròn/i.test(topic) && /toán/i.test(subject);
+  const isCircleMath = false; // Đã xử lý ở đầu hàm chính xác
   if (isCircleMath && SAMPLE_LESSONS['tieu-hoc-toan-3']) {
     return {
       ...SAMPLE_LESSONS['tieu-hoc-toan-3'],
@@ -653,7 +677,7 @@ export function generateIntelligentPlan(
     };
   }
 
-  const isSymmetryMath = /đối xứng/i.test(topic) && /toán/i.test(subject);
+  const isSymmetryMath = false; // Đã xử lý ở đầu hàm chính xác
   if (isSymmetryMath && SAMPLE_LESSONS['thcs-toan-6']) {
     return {
       ...SAMPLE_LESSONS['thcs-toan-6'],
@@ -687,6 +711,146 @@ export function generateIntelligentPlan(
     sgkImg1 = '/sgk-images/khtn-7-hinh-9-1-toc-ke.png';
     sgkImg2 = '/sgk-images/khtn-7-hinh-9-2-thi-nghiem-bam-giay.png';
   }
+
+  const shortTitle = topic
+    .replace(/^Bài \d+[:\.\-]\s*/i, '')
+    .replace(/\(.*?\)/g, '')
+    .trim() || topic;
+
+  const dynamicWorksheetQuestions = isTieuHoc
+    ? [
+        `Nhiệm vụ 1 (Mực Xanh - Nhóm trưởng): Quan sát hình ảnh và dữ liệu trong SGK bài "${shortTitle}", ghi lại các điểm quan trọng.`,
+        `Nhiệm vụ 2 (Mực Tím - Kỹ thuật viên): Thao tác đồ dùng học tập / đo đạc / làm bài tập thực hành theo hướng dẫn.`,
+        `Nhiệm vụ 3 (Mực Đen - Thư ký): Ghi chép câu trả lời thống nhất của nhóm và công thức / quy tắc ghi nhớ vào phiếu.`,
+        `Nhiệm vụ 4 (Mực Xanh lá - Báo cáo viên): Cùng nhóm tìm một ví dụ hoặc tình huống thực tế liên quan đến "${shortTitle}".`
+      ]
+    : [
+        `Nhiệm vụ 1 (Mực Xanh - Nhóm trưởng): Đọc SGK ${subject} ${metadata.khoiLop}, trích xuất định nghĩa và khái niệm cốt lõi của "${shortTitle}".`,
+        `Nhiệm vụ 2 (Mực Tím - Kỹ thuật viên): Phân tích công thức, quy tắc hoặc thực hiện các bước tính toán / thực nghiệm của "${shortTitle}".`,
+        `Nhiệm vụ 3 (Mực Đỏ - Phản biện): Nhận diện các bẫy sai lầm, lưu ý điều kiện xác định và kiểm tra chéo kết quả của nhóm.`,
+        `Nhiệm vụ 4 (Mực Đen - Thư ký): Tổng hợp 2 ứng dụng thực tế của "${shortTitle}" trong đời sống hoặc bảo vệ môi trường, an toàn.`
+      ];
+
+  const dynamicGroupActivity: HoatDongNhomTichCuc = {
+    tenHoatDong: isTieuHoc
+      ? `Hoạt động Nhóm Tích cực 4 Vai Trò: "Biệt Đội Khám Phá: ${shortTitle}"`
+      : `Hoạt động Nhóm Tích cực 4 Vai Trò: "Dự Án Nghiên Cứu STEM: ${shortTitle}"`,
+    thoiLuong: isTieuHoc ? '12 - 14 phút' : '14 - 16 phút',
+    siSoPhuHop: `${metadata.siSoLop || '35 - 40'} học sinh (Chia lớp thành 8 - 9 nhóm, mỗi nhóm 4 em)`,
+    tinhHuongToMo: `Tình huống kích thích tư duy: Giáo viên đưa ra câu hỏi gợi mở hoặc hiện tượng thực tiễn gắn liền với "${shortTitle}" để học sinh chủ động khám phá tri thức.`,
+    chiaNhomVaPhanCong: {
+      quyMo: 'Mỗi nhóm 4 học sinh - Ngồi đối diện nhau (quy tắc 4 màu mực chống thụ động)',
+      vaiTro: [
+        {
+          tenVaiTro: '1. Nhóm trưởng (Điều phối viên)',
+          nhiemVu: 'Phân chia nhiệm vụ, theo dõi tiến độ và đảm bảo tất cả 4 bạn đều phát biểu ý kiến.',
+          mauMucDongGop: 'Bút mực xanh dương'
+        },
+        {
+          tenVaiTro: '2. Thư ký (Ghi chép tổng hợp)',
+          nhiemVu: 'Ghi lại kết quả thảo luận, sơ đồ và đáp án thống nhất của nhóm vào Phiếu học tập chung.',
+          mauMucDongGop: 'Bút mực đen'
+        },
+        {
+          tenVaiTro: '3. Kỹ thuật viên (Thao tác / Tính toán)',
+          nhiemVu: `Trực tiếp thực hiện các thao tác thí nghiệm, đo đạc hoặc tính toán giải quyết nhiệm vụ của bài "${shortTitle}".`,
+          mauMucDongGop: 'Bút mực tím'
+        },
+        {
+          tenVaiTro: '4. Báo cáo viên & Phản biện',
+          nhiemVu: 'Canh thời gian, chuẩn bị lời trình bày to rõ và đại diện nhóm trả lời phản biện trước lớp.',
+          mauMucDongGop: isTieuHoc ? 'Bút mực xanh lá' : 'Bút mực đỏ'
+        }
+      ]
+    },
+    nhiemVuVuaSuc: [
+      'Quy trình làm việc: Suy nghĩ cá nhân (2 phút) ➔ Tranh luận cặp đôi (3 phút) ➔ Thống nhất toàn nhóm (5 phút)',
+      `Nhiệm vụ 1: Nhận diện khái niệm, định nghĩa cốt lõi của "${shortTitle}" trong SGK.`,
+      `Nhiệm vụ 2: Phân tích các đặc điểm, công thức hoặc quy tắc thực hành của "${shortTitle}".`,
+      `Nhiệm vụ 3: Thảo luận, so sánh và kiểm chứng kết quả thực nghiệm / bài tập nhóm.`,
+      `Nhiệm vụ 4: Vận dụng giải quyết tình huống thực tế đời sống liên quan đến "${shortTitle}".`
+    ],
+    quyTrinhToChuc: [
+      {
+        tenBuoc: 'Bước 1: Chuyển giao nhiệm vụ & Giao quyền (2 phút)',
+        thoiGian: '2 phút',
+        hoatDongGV: '- GV phát Phiếu giao nhiệm vụ nhóm và quán triệt quy tắc 4 màu mực.\n- Chiếu đồng hồ đếm ngược 8-10 phút trên màn hình tivi/bảng.',
+        hoatDongHS: '- Nhận phiếu nhóm, nhanh chóng nhận vai trò và ký tên bằng đúng màu mực quy định.'
+      },
+      {
+        tenBuoc: 'Bước 2: Học sinh thực hiện nhiệm vụ theo cặp và nhóm (8 phút)',
+        thoiGian: '8 phút',
+        hoatDongGV: '- GV đi vòng quanh lớp quan sát, bấm giờ nhắc nhở (còn 5 phút, còn 2 phút).\n- Tuyệt đối không đứng cố định; chủ động đến nhóm có học sinh rụt rè để động viên.',
+        hoatDongHS: '- Cá nhân làm việc độc lập 2 phút đầu, sau đó cặp đôi trao đổi và thư ký tổng hợp vào phiếu.'
+      },
+      {
+        tenBuoc: 'Bước 3: Báo cáo kết quả và thảo luận (3 phút)',
+        thoiGian: '3 phút',
+        hoatDongGV: '- Bốc thăm ngẫu nhiên đại diện 1-2 nhóm lên bảng dán sản phẩm hoặc dùng camera chụp chiếu lên màn hình.\n- Cho các nhóm khác nhận xét và đặt câu hỏi phản biện.',
+        hoatDongHS: '- Báo cáo viên tự tin trình bày kết quả cốt lõi của nhóm; các nhóm khác giơ thẻ biểu quyết.'
+      },
+      {
+        tenBuoc: 'Bước 4: Nhận định, đánh giá và chốt kiến thức (2 phút)',
+        thoiGian: '2 phút',
+        hoatDongGV: `- GV nhận xét tinh thần hợp tác, chuẩn hóa kiến thức trọng tâm của bài "${shortTitle}".\n- Tuyên dương nhóm xuất sắc nhất.`,
+        hoatDongHS: '- Cả lớp ghi chép kiến thức cốt lõi vào vở ghi bài cá nhân.'
+      }
+    ],
+    xuLyTinhHuong: [
+      {
+        tinhHuong: '1. Học sinh im lặng, rụt rè trong nhóm',
+        bieuHienThucTe: 'Em ngồi im nhìn các bạn làm, không dám phát biểu vì sợ nói sai.',
+        giaiPhapSuPham: 'GV đến tận bàn, mỉm cười và giao câu hỏi số 1 (câu nhận biết dễ nhất), động viên em cầm bút viết câu trả lời để tạo sự tự tin.'
+      },
+      {
+        tinhHuong: '2. Một học sinh khá làm thay toàn bộ bài tập cho cả nhóm',
+        bieuHienThucTe: 'Học sinh khá tự viết hết câu trả lời trên phiếu nhóm mà không hỏi ý kiến các bạn.',
+        giaiPhapSuPham: 'GV nhắc nhở tiêu chí chấm điểm: Phiếu phải có đủ 4 màu mực của 4 bạn mới đạt điểm tối đa. Giao cho em khá vai trò hướng dẫn bạn bên cạnh.'
+      },
+      {
+        tinhHuong: '3. Hai học sinh tranh luận gay gắt về đáp án',
+        bieuHienThucTe: 'Không bạn nào chịu nhường bạn nào, mất thời gian thảo luận.',
+        giaiPhapSuPham: 'GV gợi ý ghi cả 2 phương án vào nháp, chỉ ra ưu - nhược điểm của từng phương án để cả lớp cùng phân tích.'
+      }
+    ],
+    phieuGiaoNhiemVu: {
+      tieuDe: `PHIẾU HỌC TẬP DỰ ÁN NHÓM: ${shortTitle.toUpperCase()}`,
+      thongTinNhom: `Nhóm số: ......... Lớp: ${metadata.khoiLop}....... | Thời gian: 8 - 10 phút`,
+      cauHoiNhiemVu: dynamicWorksheetQuestions,
+      phanKhaiBaoDongGop: [
+        '1. Trưởng nhóm (Mực xanh): .................................................',
+        '2. Thư ký (Mực đen): ...........................................................',
+        '3. Kỹ thuật viên (Mực tím): ...................................................',
+        `4. Báo cáo viên (${isTieuHoc ? 'Mực xanh lá' : 'Mực đỏ'}): .............................................`
+      ]
+    },
+    tieuChiDanhGia: [
+      {
+        tieuChi: '1. Tinh thần cộng tác & 4 màu mực',
+        mucTot: '100% thành viên tham gia đầy đủ, thể hiện rõ qua 4 màu mực trên phiếu nhóm.',
+        mucDat: 'Đa số thành viên tích cực, còn 1 bạn chưa chủ động tham gia.',
+        mucCanCoGang: 'Chỉ 1 - 2 bạn làm bài, các thành viên khác thụ động đứng ngoài.'
+      },
+      {
+        tieuChi: '2. Tính chính xác khoa học & Lập luận',
+        mucTot: 'Kết quả tính toán/trả lời chuẩn xác 100%, lập luận chặt chẽ, rõ ràng.',
+        mucDat: 'Kết quả đúng nhưng còn thiếu bước giải thích hoặc trình bày tắt.',
+        mucCanCoGang: 'Kết quả chưa chính xác hoặc nhầm lẫn kiến thức cốt lõi.'
+      },
+      {
+        tieuChi: '3. Kỹ năng báo cáo & Phản biện',
+        mucTot: 'Trình bày tự tin, đúng trọng tâm dưới 60 giây; trả lời tốt câu hỏi phản biện.',
+        mucDat: 'Trình bày đủ ý nhưng còn phụ thuộc nhiều vào phiếu ghi chép.',
+        mucCanCoGang: 'Trình bày ngập ngừng, vượt quá thời gian quy định.'
+      }
+    ],
+    baoCaoNhanh: [
+      'Báo cáo qua ảnh chụp nhanh: GV chụp bài của 1-2 nhóm bằng điện thoại để chiếu lên bảng lớn.',
+      'Bốc thăm phản biện chéo giữa các nhóm trong 30 giây.',
+      'Khóa thời gian báo cáo trong 3 phút, bảo đảm tiến độ tiết học.'
+    ],
+    promptInfographic: generateInfographicPrompts(metadata, dynamicWorksheetQuestions)
+  };
 
   // Intelligent activities construction
   const hoatDongs = [
@@ -752,13 +916,7 @@ export function generateIntelligentPlan(
           noiDung: sec.noiDung,
           sanPham: sec.sanPham,
           ...(secIdx === 1 ? {
-            hoatDongNhomTichCuc: {
-              ...(isTH ? HOAT_DONG_NHOM_TIEU_HOC : HOAT_DONG_NHOM_THCS),
-              promptInfographic: generateInfographicPrompts(
-                metadata,
-                (isTH ? HOAT_DONG_NHOM_TIEU_HOC : HOAT_DONG_NHOM_THCS).phieuGiaoNhiemVu.cauHoiNhiemVu
-              )
-            }
+            hoatDongNhomTichCuc: dynamicGroupActivity
           } : {}),
           bangHaiCot: [
             {
@@ -1089,6 +1247,7 @@ export function generateIntelligentPlan(
         capHoc: metadata.capHoc,
         congVan: isTieuHoc ? '2345/BGDĐT-GDTH' : '5512/BGDĐT-GDTrH'
       },
+      hoatDongNhomTichCuc: dynamicGroupActivity,
       mucTieu: {
         kienThuc: isTieuHoc ? undefined : [
           `Nắm vững định nghĩa, cấu tạo và bản chất khoa học của ${topic}.`,

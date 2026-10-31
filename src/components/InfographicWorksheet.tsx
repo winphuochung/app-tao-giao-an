@@ -34,8 +34,10 @@ export const InfographicWorksheet: React.FC<InfographicWorksheetProps> = ({ data
 
   const meta = data.metadata;
   const isTieuHoc = meta.capHoc === 'TIEU_HOC';
-  const isBai9 = meta.tenBaiDay.toLowerCase().includes('bài 9') || meta.tenBaiDay.toLowerCase().includes('đo tốc độ');
-  const isToan6 = meta.tenBaiDay.toLowerCase().includes('trục đối xứng');
+  const isExactKhtn7Bai8 = meta.khoiLop === 7 && /khoa học tự nhiên|khtn/i.test(meta.monHoc) && /tốc độ chuyển động/i.test(meta.tenBaiDay);
+  const isExactKhtn7Bai9 = meta.khoiLop === 7 && /khoa học tự nhiên|khtn/i.test(meta.monHoc) && /đo tốc độ/i.test(meta.tenBaiDay);
+  const isExactToan3 = meta.khoiLop === 3 && /toán/i.test(meta.monHoc) && /hình tròn/i.test(meta.tenBaiDay);
+  const isExactToan6 = meta.khoiLop === 6 && /toán/i.test(meta.monHoc) && /trục đối xứng/i.test(meta.tenBaiDay);
 
   // Reset image error on style or lesson change
   React.useEffect(() => {
@@ -44,32 +46,32 @@ export const InfographicWorksheet: React.FC<InfographicWorksheetProps> = ({ data
 
   // Dynamically map high-resolution AI generated images matching the lesson
   const getImageForStyle = (st: WorksheetStyle): string => {
-    if (isTieuHoc) {
+    if (isExactToan3) {
       if (st === 'conan-ai') return '/infographics/phieu-hoc-tap-conan.jpg';
       return '/infographics/phieu-hoc-tap-doraemon-toan-3.jpg';
     }
-    if (isBai9) {
+    if (isExactKhtn7Bai9) {
       if (st === 'doraemon-ai') return '/infographics/phieu-doraemon-khtn7-bai9-do-toc-do.jpg';
-      if (st === 'conan-ai') return '/infographics/poster-conan-khtn7-bai8.jpg';
-      if (st === 'science-case-ai') return '/infographics/phieu-vu-an-khoa-hoc-khtn7-bai8.jpg';
-      return '/infographics/phieu-hoc-sinh-khtn7-bai8.jpg';
+      return '';
     }
-    if (isToan6) {
+    if (isExactToan6) {
       if (st === 'doraemon-ai') return '/infographics/phieu-doraemon-toan6-truc-doi-xung.jpg';
-      if (st === 'conan-ai') return '/infographics/poster-conan-khtn7-bai8.jpg';
+      return '';
     }
-    // Bai 8
-    switch (st) {
-      case 'doraemon-ai':
-        return '/infographics/phieu-doraemon-khtn7-bai8-toc-do.jpg';
-      case 'science-case-ai':
-        return '/infographics/phieu-vu-an-khoa-hoc-khtn7-bai8.jpg';
-      case 'conan-ai':
-        return '/infographics/poster-conan-khtn7-bai8.jpg';
-      case 'cute-students-ai':
-      default:
-        return '/infographics/phieu-hoc-sinh-khtn7-bai8.jpg';
+    if (isExactKhtn7Bai8) {
+      switch (st) {
+        case 'doraemon-ai':
+          return '/infographics/phieu-doraemon-khtn7-bai8-toc-do.jpg';
+        case 'science-case-ai':
+          return '/infographics/phieu-vu-an-khoa-hoc-khtn7-bai8.jpg';
+        case 'conan-ai':
+          return '/infographics/poster-conan-khtn7-bai8.jpg';
+        case 'cute-students-ai':
+        default:
+          return '/infographics/phieu-hoc-sinh-khtn7-bai8.jpg';
+      }
     }
+    return '';
   };
 
   // Extract authentic group activity and worksheet matching the lesson
@@ -89,10 +91,10 @@ export const InfographicWorksheet: React.FC<InfographicWorksheetProps> = ({ data
         `Nhiệm vụ 4: Thử thách vận dụng giải quyết tình huống thực tế liên quan đến bài học.`
       ]
     : [
-        `Nhiệm vụ 1: Hoàn thành Bảng 8.1 SGK (tính quãng đường chạy trong 1s của bạn A, B, C). Ai chạy nhanh nhất và vì sao?`,
-        `Nhiệm vụ 2: Viết công thức tính tốc độ v = s/t. Suy ra công thức tính s và t? Đổi 54 km/h sang m/s?`,
-        `Nhiệm vụ 3: Quan sát Hình 8.2 & 8.3 SGK: Thiết bị bắn tốc độ phát hiện ô tô chạy 68 km/h trên đoạn đường có biển báo 50 km/h. Xe này có vi phạm không? Nêu biện pháp phòng ngừa tai nạn.`,
-        `Nhiệm vụ 4: Một đoàn tàu xuất phát từ ga Hà Nội đến Phủ Lý dài 60 km mất 1h15p. Tính tốc độ đoàn tàu theo km/h và m/s?`
+        `Nhiệm vụ 1: Đọc SGK ${meta.monHoc} ${meta.khoiLop}, trích xuất định nghĩa và các thuật ngữ cốt lõi của "${meta.tenBaiDay}".`,
+        `Nhiệm vụ 2: Tổng hợp công thức toán học/khoa học, đặc điểm bản chất và điều kiện áp dụng của "${meta.tenBaiDay}".`,
+        `Nhiệm vụ 3: Thực hiện phép tính toán, phân tích số liệu thí nghiệm hoặc hoàn thành bài tập thực hành của bài học.`,
+        `Nhiệm vụ 4: Phân tích 2 ứng dụng thực tế của "${meta.tenBaiDay}" trong đời sống hoặc liên hệ bảo vệ môi trường, an toàn giao thông.`
       ];
 
   const worksheetTitle =
@@ -311,9 +313,9 @@ export const InfographicWorksheet: React.FC<InfographicWorksheetProps> = ({ data
               </div>
             </div>
 
-            {/* Render Image or Dynamic Visual Card */}
-            <div className="relative rounded-2xl overflow-hidden border-2 border-slate-700 bg-slate-950 shadow-inner group flex justify-center">
-              {!imgError ? (
+            {/* Render Image or Dynamic Visual Comic Card */}
+            <div className="relative rounded-2xl overflow-hidden border-2 border-slate-700 bg-slate-950 shadow-inner group flex justify-center w-full">
+              {currentImageUrl && !imgError ? (
                 <img
                   src={currentImageUrl}
                   alt={`Phiếu học tập ${style} - ${meta.tenBaiDay}`}
@@ -321,21 +323,158 @@ export const InfographicWorksheet: React.FC<InfographicWorksheetProps> = ({ data
                   className="w-full max-h-[750px] object-contain rounded-xl hover:scale-[1.01] transition-transform duration-300"
                 />
               ) : (
-                <div className="p-6 bg-white text-slate-900 rounded-xl w-full max-w-2xl my-4 space-y-4 shadow-xl border-2 border-indigo-400">
-                  <div className="text-center border-b pb-3 space-y-1">
-                    <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800 uppercase">
-                      Bản Infographic Trực Quan Tự Động
-                    </span>
-                    <h3 className="text-lg font-bold text-slate-900 uppercase">{worksheetTitle}</h3>
-                    <p className="text-xs text-slate-500 italic">{groupInfo}</p>
+                <div className="p-4 sm:p-6 bg-white text-slate-900 rounded-2xl w-full max-w-3xl my-2 space-y-4 shadow-2xl border-4 border-blue-600 print:border-none print:shadow-none print:p-0">
+                  {/* Comic Header Banner */}
+                  <div className="bg-gradient-to-r from-blue-700 via-indigo-700 to-blue-800 text-white p-3.5 sm:p-4 rounded-xl border-2 border-amber-400 shadow-md">
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-2 border-b border-blue-400/50 pb-2">
+                      <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-wider text-amber-300 bg-blue-950/70 px-2.5 py-0.5 rounded-full border border-amber-400">
+                        {style === 'doraemon-ai' && 'PHIẾU HỌC TẬP TRUYỆN TRANH DORAEMON • KHỔ A4 (1:1,414)'}
+                        {style === 'science-case-ai' && 'HỒ SƠ VỤ ÁN KHOA HỌC • GIẢI MÃ BÍ MẬT KHỔ A4'}
+                        {style === 'conan-ai' && 'POSTER THÁM TỬ LỪNG DANH CONAN • PHÁ ÁN BÀI HỌC'}
+                        {style === 'cute-students-ai' && `PHIẾU HỌC SINH LỚP ${meta.khoiLop} PIXAR • THẢO LUẬN NHÓM`}
+                      </span>
+                      <span className="text-xs font-semibold text-blue-100">
+                        Nhóm: ......... Lớp: {meta.khoiLop}.......
+                      </span>
+                    </div>
+                    <div className="mt-2 text-center">
+                      <h2 className="text-base sm:text-xl font-black uppercase tracking-tight text-white drop-shadow-xs">
+                        {meta.tenBaiDay} - {meta.monHoc} {meta.khoiLop}
+                      </h2>
+                      <p className="text-xs text-blue-100 mt-0.5">
+                        Bộ sách: {meta.boSach} • Thời gian làm bài: 8 - 10 phút • 4 màu mực chống thụ động
+                      </p>
+                    </div>
                   </div>
-                  <div className="space-y-3 text-xs sm:text-sm">
+
+                  {/* Character Dialogue Section (8 Speech Bubbles) */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-[12.5px] leading-snug">
+                    <div className="p-2.5 rounded-xl border-2 border-amber-400 bg-amber-50/70 space-y-1 shadow-2xs">
+                      <p className="font-bold text-amber-900 flex items-center gap-1">
+                        <span>👨‍🏫</span> <span>Thầy giáo căn dặn:</span>
+                      </p>
+                      <p className="text-amber-950 italic">
+                        "Hôm nay cả lớp cùng phân tích nội dung bài học '{meta.tenBaiDay}' trong SGK {meta.monHoc} {meta.khoiLop} để chinh phục thử thách nhé!"
+                      </p>
+                    </div>
+
+                    <div className="p-2.5 rounded-xl border-2 border-blue-500 bg-blue-50/70 space-y-1 shadow-2xs">
+                      <p className="font-bold text-blue-900 flex items-center gap-1">
+                        <span>🐱</span> <span>Doraemon mách nước:</span>
+                      </p>
+                      <p className="text-blue-950 italic">
+                        "Nobita bình tĩnh! Cùng quan sát kỹ các dữ liệu và bảng số liệu trong SGK, tớ có bảo bối hỗ trợ tư duy đây!"
+                      </p>
+                    </div>
+
+                    <div className="p-2.5 rounded-xl border-2 border-rose-400 bg-rose-50/70 space-y-1 shadow-2xs">
+                      <p className="font-bold text-rose-900 flex items-center gap-1">
+                        <span>👓</span> <span>Nobita bối rối:</span>
+                      </p>
+                      <p className="text-rose-950 italic">
+                        "Oa, nhiều thông tin và câu hỏi quá... Nhìn dữ kiện bài này tớ chưa biết làm thế nào trước Doraemon ơi!"
+                      </p>
+                    </div>
+
+                    <div className="p-2.5 rounded-xl border-2 border-emerald-500 bg-emerald-50/70 space-y-1 shadow-2xs">
+                      <p className="font-bold text-emerald-900 flex items-center gap-1">
+                        <span>💡</span> <span>Dekisugi phân tích:</span>
+                      </p>
+                      <p className="text-emerald-950 italic">
+                        "Đúng vậy! Chúng ta hãy bắt đầu từ khái niệm cốt lõi trước, sau đó áp dụng công thức và quy tắc khoa học!"
+                      </p>
+                    </div>
+
+                    <div className="p-2.5 rounded-xl border-2 border-purple-400 bg-purple-50/70 space-y-1 shadow-2xs">
+                      <p className="font-bold text-purple-900 flex items-center gap-1">
+                        <span>🎀</span> <span>Shizuka cẩn thận nhắc nhở:</span>
+                      </p>
+                      <p className="text-purple-950 italic">
+                        "Các bạn nhớ kiểm tra kỹ đơn vị đo và ghi chép cẩn thận các bước giải vào phiếu nhóm nhé!"
+                      </p>
+                    </div>
+
+                    <div className="p-2.5 rounded-xl border-2 border-indigo-400 bg-indigo-50/70 space-y-1 shadow-2xs">
+                      <p className="font-bold text-indigo-900 flex items-center gap-1">
+                        <span>🔍</span> <span>Dorami gợi ý mở rộng:</span>
+                      </p>
+                      <p className="text-indigo-950 italic">
+                        "Hãy chú ý các tình huống thực tiễn và sơ đồ trong SGK để liên hệ an toàn và ứng dụng đời sống!"
+                      </p>
+                    </div>
+
+                    <div className="p-2.5 rounded-xl border-2 border-orange-400 bg-orange-50/70 space-y-1 shadow-2xs">
+                      <p className="font-bold text-orange-900 flex items-center gap-1">
+                        <span>🎤</span> <span>Jaian & Suneo thi đua:</span>
+                      </p>
+                      <p className="text-orange-950 italic">
+                        "Nhóm tớ đang tích cực tính toán và thảo luận đây! 4 bạn 4 màu mực viết nhanh kẻo hết giờ!"
+                      </p>
+                    </div>
+
+                    <div className="p-2.5 rounded-xl border-2 border-teal-500 bg-teal-50/70 space-y-1 shadow-2xs">
+                      <p className="font-bold text-teal-900 flex items-center gap-1">
+                        <span>🌟</span> <span>Cả nhóm kết luận:</span>
+                      </p>
+                      <p className="text-teal-950 italic">
+                        "Chính xác rồi! Thống nhất phương án và hoàn thành 4 nhiệm vụ bên dưới để báo cáo trước lớp!"
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Tasks Section Header */}
+                  <div className="bg-blue-900 text-white px-3 py-1.5 rounded-lg font-bold text-xs uppercase tracking-wide flex items-center justify-between">
+                    <span>PHẦN CÂU HỎI NHIỆM VỤ NHÓM (HỌC SINH TỰ LÀM VÀO DÒNG CHẤM - KHÔNG CÓ ĐÁP ÁN SẴN):</span>
+                    <span className="text-amber-300 font-mono text-[11px]">4 CÂU HỎI</span>
+                  </div>
+
+                  {/* 4 Question Tasks with Dotted Lines */}
+                  <div className="space-y-3 text-xs sm:text-[13px]">
                     {questions.map((q, idx) => (
-                      <div key={idx} className="p-3 bg-slate-50 border rounded-xl space-y-1">
-                        <p className="font-bold text-blue-900">Nhiệm vụ {idx + 1}: {q}</p>
-                        <p className="text-slate-400 font-mono text-xs">Bài làm: ............................................................................................</p>
+                      <div key={idx} className="p-3 bg-slate-50 border border-slate-300 rounded-xl space-y-1.5">
+                        <div className="flex items-start gap-2">
+                          <span className="bg-blue-700 text-white rounded-full w-5 h-5 flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
+                            {idx + 1}
+                          </span>
+                          <p className="font-bold text-slate-900 leading-snug">
+                            {q}
+                          </p>
+                        </div>
+                        <div className="pl-7 space-y-1 text-slate-400 font-mono text-xs">
+                          <p>Bài làm: .........................................................................................................................................................................................................................</p>
+                          <p>............................................................................................................................................................................................................................................</p>
+                        </div>
                       </div>
                     ))}
+                  </div>
+
+                  {/* 4 Roles Table */}
+                  <div className="pt-1">
+                    <p className="text-xs font-bold text-slate-700 uppercase mb-1">
+                      BẢNG PHÂN CÔNG 4 VAI TRÒ & 4 MÀU MỰC ĐÓNG GÓP (CHỐNG THỤ ĐỘNG):
+                    </p>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+                      <div className="p-2 rounded-lg border border-red-300 bg-red-50 text-red-950">
+                        <p className="font-bold text-red-700">1. Nhóm trưởng</p>
+                        <p className="text-[10px] text-red-600 font-semibold">Mực Xanh dương</p>
+                        <p className="font-mono text-[11px] text-slate-400 pt-1">Ký: ....................</p>
+                      </div>
+                      <div className="p-2 rounded-lg border border-blue-300 bg-blue-50 text-blue-950">
+                        <p className="font-bold text-blue-700">2. Thư ký</p>
+                        <p className="text-[10px] text-blue-600 font-semibold">Mực Đen</p>
+                        <p className="font-mono text-[11px] text-slate-400 pt-1">Ký: ....................</p>
+                      </div>
+                      <div className="p-2 rounded-lg border border-purple-300 bg-purple-50 text-purple-950">
+                        <p className="font-bold text-purple-700">3. Kỹ thuật viên</p>
+                        <p className="text-[10px] text-purple-600 font-semibold">Mực Tím</p>
+                        <p className="font-mono text-[11px] text-slate-400 pt-1">Ký: ....................</p>
+                      </div>
+                      <div className="p-2 rounded-lg border border-emerald-300 bg-emerald-50 text-emerald-950">
+                        <p className="font-bold text-emerald-700">4. Báo cáo viên</p>
+                        <p className="text-[10px] text-emerald-600 font-semibold">Mực Đỏ / Xanh lá</p>
+                        <p className="font-mono text-[11px] text-slate-400 pt-1">Ký: ....................</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}

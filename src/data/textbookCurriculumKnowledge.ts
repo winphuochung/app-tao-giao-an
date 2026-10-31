@@ -28,7 +28,7 @@ export const KNOWN_CURRICULUM_SECTIONS: TextbookLessonCurriculum[] = [
   // 1. KHTN 7 - BÀI 1: PHƯƠNG PHÁP VÀ KĨ NĂNG HỌC TẬP MÔN KHTN
   {
     lessonId: 'khtn-7-bai-1',
-    matchPatterns: [/phương pháp và kĩ năng/i, /học tập môn khtn/i, /bài 1[:\s]/i],
+    matchPatterns: [/phương pháp và kĩ năng/i, /học tập môn khtn/i, /kĩ năng học tập môn/i],
     subject: 'Khoa học tự nhiên',
     grade: 7,
     chapter: 'Mở đầu',
@@ -98,7 +98,7 @@ export const KNOWN_CURRICULUM_SECTIONS: TextbookLessonCurriculum[] = [
   // 2. KHTN 7 - BÀI 2: NGUYÊN TỬ
   {
     lessonId: 'khtn-7-bai-2',
-    matchPatterns: [/nguyên tử/i, /rutherford/i, /bohr/i, /bài 2[:\s]/i],
+    matchPatterns: [/nguyên tử/i, /rutherford/i, /bohr/i],
     subject: 'Khoa học tự nhiên',
     grade: 7,
     chapter: 'Chương I: Nguyên tử - Sơ lược bảng tuần hoàn',
@@ -171,7 +171,7 @@ export const KNOWN_CURRICULUM_SECTIONS: TextbookLessonCurriculum[] = [
   // 3. KHTN 7 - BÀI 3: NGUYÊN TỐ HÓA HỌC
   {
     lessonId: 'khtn-7-bai-3',
-    matchPatterns: [/nguyên tố hóa học/i, /kí hiệu hóa học/i, /bài 3[:\s]/i],
+    matchPatterns: [/nguyên tố hóa học/i, /kí hiệu hóa học/i],
     subject: 'Khoa học tự nhiên',
     grade: 7,
     chapter: 'Chương I: Nguyên tử - Sơ lược bảng tuần hoàn',
@@ -220,7 +220,7 @@ export const KNOWN_CURRICULUM_SECTIONS: TextbookLessonCurriculum[] = [
   // 4. KHTN 7 - BÀI 4: SƠ LƯỢC VỀ BẢNG TUẦN HOÀN CÁC NGUYÊN TỐ HÓA HỌC
   {
     lessonId: 'khtn-7-bai-4',
-    matchPatterns: [/bảng tuần hoàn/i, /sơ lược về bảng tuần hoàn/i, /bài 4[:\s]/i],
+    matchPatterns: [/bảng tuần hoàn/i, /sơ lược về bảng tuần hoàn/i],
     subject: 'Khoa học tự nhiên',
     grade: 7,
     chapter: 'Chương I: Nguyên tử - Sơ lược bảng tuần hoàn',
@@ -290,7 +290,7 @@ export const KNOWN_CURRICULUM_SECTIONS: TextbookLessonCurriculum[] = [
   // 5. KHTN 7 - BÀI 5: PHÂN TỬ - ĐƠN CHẤT - HỢP CHẤT
   {
     lessonId: 'khtn-7-bai-5',
-    matchPatterns: [/phân tử/i, /đơn chất.*hợp chất/i, /bài 5[:\s]/i],
+    matchPatterns: [/phân tử/i, /đơn chất.*hợp chất/i],
     subject: 'Khoa học tự nhiên',
     grade: 7,
     chapter: 'Chương II: Phân tử. Liên kết hóa học',
@@ -343,7 +343,7 @@ export const KNOWN_CURRICULUM_SECTIONS: TextbookLessonCurriculum[] = [
   // 8. KHTN 7 - BÀI 8: TỐC ĐỘ CHUYỂN ĐỘNG
   {
     lessonId: 'khtn-7-bai-8',
-    matchPatterns: [/tốc độ chuyển động/i, /bài 8[:\s]/i],
+    matchPatterns: [/tốc độ chuyển động/i],
     subject: 'Khoa học tự nhiên',
     grade: 7,
     chapter: 'Chương III: Tốc độ',
@@ -424,7 +424,7 @@ Trong đó:
   // 9. KHTN 7 - BÀI 9: ĐO TỐC ĐỘ
   {
     lessonId: 'khtn-7-bai-9',
-    matchPatterns: [/đo tốc độ/i, /bài 9[:\s]/i],
+    matchPatterns: [/đo tốc độ/i],
     subject: 'Khoa học tự nhiên',
     grade: 7,
     chapter: 'Chương III: Tốc độ',
@@ -510,7 +510,7 @@ Trong đó:
   // 10. KHTN 7 - BÀI 10: ĐỒ THỊ QUÃNG ĐƯỜNG - THỜI GIAN
   {
     lessonId: 'khtn-7-bai-10',
-    matchPatterns: [/đồ thị quãng đường/i, /đồ thị quãng đường - thời gian/i, /bài 10[:\s]/i],
+    matchPatterns: [/đồ thị quãng đường/i, /đồ thị quãng đường - thời gian/i],
     subject: 'Khoa học tự nhiên',
     grade: 7,
     chapter: 'Chương III: Tốc độ',
@@ -578,7 +578,7 @@ Trong đó:
   // 11. KHTN 7 - BÀI 11: THẢO LUẬN VỀ ẢNH HƯỞNG CỦA TỐC ĐỘ TRONG AN TOÀN GIAO THÔNG
   {
     lessonId: 'khtn-7-bai-11',
-    matchPatterns: [/ảnh hưởng của tốc độ/i, /an toàn giao thông/i, /bài 11[:\s]/i],
+    matchPatterns: [/ảnh hưởng của tốc độ/i, /an toàn giao thông/i],
     subject: 'Khoa học tự nhiên',
     grade: 7,
     chapter: 'Chương III: Tốc độ',
@@ -638,7 +638,7 @@ Trong đó:
   // 12. KHTN 7 - BÀI 12: SÓNG ÂM
   {
     lessonId: 'khtn-7-bai-12',
-    matchPatterns: [/sóng âm/i, /âm thanh/i, /nguồn âm/i, /bài 12[:\s]/i],
+    matchPatterns: [/sóng âm/i, /nguồn âm/i, /sự truyền sóng âm/i],
     subject: 'Khoa học tự nhiên',
     grade: 7,
     chapter: 'Chương IV: Âm thanh',
@@ -688,7 +688,7 @@ Trong đó:
   // 18. KHTN 7 - BÀI 18: NAM CHÂM
   {
     lessonId: 'khtn-7-bai-18',
-    matchPatterns: [/nam châm/i, /từ tính/i, /cực từ/i, /bài 18[:\s]/i],
+    matchPatterns: [/nam châm/i, /từ tính của nam châm/i, /cực từ của nam châm/i],
     subject: 'Khoa học tự nhiên',
     grade: 7,
     chapter: 'Chương VI: Từ',
@@ -738,7 +738,7 @@ Trong đó:
   // 22. KHTN 7 - BÀI 22: QUANG HỢP Ở THỰC VẬT
   {
     lessonId: 'khtn-7-bai-22',
-    matchPatterns: [/quang hợp/i, /quang hợp ở thực vật/i, /bài 22[:\s]/i],
+    matchPatterns: [/quang hợp ở thực vật/i, /phương trình quang hợp/i],
     subject: 'Khoa học tự nhiên',
     grade: 7,
     chapter: 'Chương VII: Trao đổi chất và chuyển hóa năng lượng',
@@ -789,7 +789,7 @@ Trong đó:
   // 35. KHTN 7 - BÀI 35: SINH TRƯỞNG VÀ PHÁT TRIỂN Ở SINH VẬT
   {
     lessonId: 'khtn-7-bai-35',
-    matchPatterns: [/sinh trưởng và phát triển/i, /sinh vật/i, /bài 35[:\s]/i],
+    matchPatterns: [/sinh trưởng và phát triển ở sinh vật/i, /sinh trưởng ở thực vật và động vật/i],
     subject: 'Khoa học tự nhiên',
     grade: 7,
     chapter: 'Chương IX: Sinh trưởng và phát triển',
@@ -1014,7 +1014,8 @@ export function getIntelligentSectionsForTopic(
 
   // 1. Kiểm tra từ điển các bài đã được định nghĩa chi tiết
   for (const item of KNOWN_CURRICULUM_SECTIONS) {
-    if (item.grade === grade || !item.grade) {
+    const isSubjectMatch = !item.subject || item.subject.toLowerCase() === lowerSubject || lowerSubject.includes(item.subject.toLowerCase()) || item.subject.toLowerCase().includes(lowerSubject);
+    if ((item.grade === grade || !item.grade) && isSubjectMatch) {
       for (const pattern of item.matchPatterns) {
         if (pattern.test(cleanTopic)) {
           return item.sections;
