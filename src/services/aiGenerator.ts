@@ -673,19 +673,18 @@ export function generateIntelligentPlan(
     };
   }
 
-  // Tự động phân loại hình ảnh minh họa SGK phù hợp với môn và bài
-
+  // Chỉ gán hình ảnh khi có ảnh scan thực tế 100% từ SGK chính gốc, tuyệt đối không dùng ảnh giả lập
   let sgkImg1: string | undefined = undefined;
   let sgkImg2: string | undefined = undefined;
-  if (isSpeedPhysics) {
-    sgkImg1 = '/sgk-images/khtn-7-hinh-8-1-bang-chay-60m.png';
-    sgkImg2 = '/sgk-images/khtn-7-bang-toc-do-chuyen-dong.png';
-  } else if (isCircleMath) {
-    sgkImg1 = '/sgk-images/toan-3-hinh-tron-tam-o.png';
-    sgkImg2 = '/sgk-images/toan-3-ban-kinh-duong-kinh.png';
-  } else if (isSymmetryMath) {
-    sgkImg1 = '/sgk-images/toan-6-canh-buom-thap-rua.png';
-    sgkImg2 = '/sgk-images/toan-6-cac-hinh-phang-doi-xung.png';
+
+  const isExactKhtn7Bai9_check = metadata.khoiLop === 7 &&
+    /khoa học tự nhiên|khtn/i.test(subject) &&
+    /đo tốc độ/i.test(topic);
+
+  if (isExactKhtn7Bai9_check) {
+    // Ảnh chụp thực tế từ SGK KHTN 7 Trang 49 - 51
+    sgkImg1 = '/sgk-images/khtn-7-hinh-9-1-toc-ke.png';
+    sgkImg2 = '/sgk-images/khtn-7-hinh-9-2-thi-nghiem-bam-giay.png';
   }
 
   // Intelligent activities construction

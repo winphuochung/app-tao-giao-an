@@ -135,7 +135,7 @@ export const SAMPLE_KHTN_7_BAI_9_DO_TOC_DO: CompleteLessonPlan = {
             hinhAnhSGK: {
               tenHinh: 'Hình 9.1: Tốc kế trên ô tô (SGK KHTN 7 - Trang 49)',
               moTa: 'Bảng đồng hồ hiển thị tốc độ tức thời của ô tô với các vạch chia từ 0 đến 220 km/h.',
-              imageUrl: '/sgk-images/khtn-7-bang-toc-do-chuyen-dong.png',
+              imageUrl: '/sgk-images/khtn-7-hinh-9-1-toc-ke.png',
               cauHoiKhaiThac: [
                 '1. Quan sát Hình 9.1: Thiết bị này tên là gì và được trang bị trên những phương tiện nào?',
                 '2. Trong phòng thực hành, ta có 2 cách đo: Cách 1 (chọn s trước, đo t sau) và Cách 2 (chọn t trước, đo s sau). Thường chọn cách nào? Vì sao?'
@@ -151,7 +151,7 @@ export const SAMPLE_KHTN_7_BAI_9_DO_TOC_DO: CompleteLessonPlan = {
             hinhAnhSGK: {
               tenHinh: 'Hình 9.2: Bố trí thí nghiệm đo tốc độ dùng đồng hồ bấm giây (SGK Trang 50)',
               moTa: 'Tấm gỗ dài 80cm kê một đầu lên vài cuốn sách tạo dốc nghiêng; ô tô đồ chơi đặt ở vạch xuất phát; thước đo khoảng cách giữa 2 vạch phấn.',
-              imageUrl: '/sgk-images/khtn-7-hinh-8-1-bang-chay-60m.png',
+              imageUrl: '/sgk-images/khtn-7-hinh-9-2-thi-nghiem-bam-giay.png',
               cauHoiKhaiThac: [
                 '1. Quan sát Hình 9.2: Nêu các dụng cụ cần chuẩn bị để tiến hành thí nghiệm?',
                 '2. Vì sao phải thực hiện phép đo 3 lần thay vì đo 1 lần duy nhất?',
@@ -194,7 +194,7 @@ export const SAMPLE_KHTN_7_BAI_9_DO_TOC_DO: CompleteLessonPlan = {
             hinhAnhSGK: {
               tenHinh: 'Hình 9.3: Thí nghiệm đo tốc độ dùng đồng hồ thời gian hiện số và cổng quang điện (SGK Trang 51)',
               moTa: 'Sơ đồ lắp ráp hoàn chỉnh gồm: (1) Nam châm điện giữ bi sắt, (2) Viên bi sắt, (3) Cổng quang 1, (4) Cổng quang 2, (5) Công tắc đóng ngắt, (6) Đồng hồ hiện số.',
-              imageUrl: '/sgk-images/khtn-7-hinh-8-1-bang-chay-60m.png',
+              imageUrl: '/sgk-images/khtn-7-hinh-9-3-cong-quang-dien.png',
               cauHoiKhaiThac: [
                 '1. Quan sát Hình 9.3: Hãy kể tên 6 bộ phận tương ứng với các số từ (1) đến (6)?',
                 '2. Cổng quang điện có cấu tạo và chức năng gì khi viên bi chắn ngang tia sáng?',
@@ -230,7 +230,7 @@ export const SAMPLE_KHTN_7_BAI_9_DO_TOC_DO: CompleteLessonPlan = {
       {
         id: 'hd-khtn7-bai9-2-3',
         soThuTu: 2,
-        tenHoatDong: 'Hoạt động 2.3: Thiết bị bắn tốc độ & Sơ đồ tư duy 16:9 3D Pixar (Đề mục III SGK KNTT - Trang 51)',
+        tenHoatDong: 'Hoạt động 2.3: Thiết bị bắn tốc độ (Đề mục III SGK KNTT - Trang 51)',
         thoiLuong: '15 phút',
         deMucSGK: 'III. Thiết bị bắn tốc độ (Nguyên tắc hoạt động & Bài toán thực tế Hình 9.4)',
         mucTieu: 'Giải thích được nguyên tắc hoạt động của thiết bị bắn tốc độ trong kiểm tra an toàn giao thông đường bộ (Hình 9.4 SGK); giải bài toán xác định tốc độ ô tô (s = 5m, t = 0,35s) và đối chiếu với tốc độ giới hạn 60 km/h; liên hệ công nghệ định vị GPS; hệ thống hóa toàn bộ bài học qua Sơ đồ tư duy 16:9 phong cách 3D Pixar.',
@@ -243,7 +243,7 @@ export const SAMPLE_KHTN_7_BAI_9_DO_TOC_DO: CompleteLessonPlan = {
             hinhAnhSGK: {
               tenHinh: 'Hình 9.4: Sơ đồ hoạt động của thiết bị bắn tốc độ đơn giản (SGK Trang 51)',
               moTa: 'Camera theo dõi ghi biển số và thời gian ô tô chạy qua vạch mốc 1 và vạch mốc 2 cách nhau quãng đường s = 5m.',
-              imageUrl: '/sgk-images/khtn-7-bang-toc-do-chuyen-dong.png',
+              imageUrl: '/sgk-images/khtn-7-hinh-9-4-thiet-bi-ban-toc-do.png',
               cauHoiKhaiThac: [
                 '1. Quan sát Hình 9.4: Thiết bị bắn tốc độ đơn giản gồm những bộ phận nào và hoạt động ra sao?',
                 '2. Giải bài toán (? SGK Trang 51): Camera ghi được ô tô chạy qua 2 vạch mốc cách nhau s = 5m là t = 0,35s.\n   a) Tốc độ của ô tô bằng bao nhiêu?\n   b) Nếu tốc độ giới hạn cung đường là 60 km/h thì ô tô có vi phạm không?'

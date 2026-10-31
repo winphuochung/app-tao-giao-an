@@ -473,23 +473,49 @@ export const LessonPlanEditor: React.FC<LessonPlanEditorProps> = ({
                               </p>
                             )}
 
-                            {/* ĐƯA TRỰC TIẾP HÌNH ẢNH SÁCH GIÁO KHOA VÀO ĐÚNG HOẠT ĐỘNG TÌM HIỂU KIẾN THỨC NÀY */}
+                            {/* HÌNH ẢNH THỰC TẾ TỪ SÁCH GIÁO KHOA */}
                             {row.hinhAnhSGK && row.hinhAnhSGK.imageUrl && (
                               <div className="my-2.5 p-2.5 bg-slate-50 border border-slate-300 rounded-lg flex flex-col items-center shadow-xs">
                                 <img
                                   src={row.hinhAnhSGK.imageUrl}
                                   alt={row.hinhAnhSGK.tenHinh}
-                                  className="max-h-64 w-auto object-contain rounded border border-slate-200 bg-white"
+                                  className="max-h-72 w-auto object-contain rounded border border-slate-300 bg-white shadow-2xs"
                                 />
-                                <p className="text-center font-bold text-slate-800 text-[11pt] mt-2">
-                                  {row.hinhAnhSGK.tenHinh}
+                                <p className="text-center font-bold text-slate-900 text-[11pt] mt-2 flex items-center gap-1.5 justify-center">
+                                  <span className="inline-block w-2 h-2 rounded-full bg-blue-600"></span>
+                                  <span>{row.hinhAnhSGK.tenHinh} (Ảnh thực tế SGK)</span>
                                 </p>
                                 {row.hinhAnhSGK.cauHoiKhaiThac && row.hinhAnhSGK.cauHoiKhaiThac.length > 0 && (
                                   <div className="w-full mt-2 p-2 bg-amber-50 border border-amber-200 rounded text-left text-[10pt] text-amber-950">
                                     <span className="font-bold text-amber-900 block mb-1">
-                                      🔍 Định hướng học sinh tự quan sát & khai thác hình ảnh SGK:
+                                      🔍 Định hướng học sinh tự quan sát & khai thác hình ảnh thực tế SGK:
                                     </span>
                                     <ul className="space-y-0.5 pl-3 list-disc text-slate-700">
+                                      {row.hinhAnhSGK.cauHoiKhaiThac.map((q, qi) => (
+                                        <li key={qi} className="italic">{q}</li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                )}
+                              </div>
+                            )}
+
+                            {/* Khi bài học chưa có ảnh scan trực tiếp, hướng dẫn học sinh mở SGK thực tế */}
+                            {row.hinhAnhSGK && !row.hinhAnhSGK.imageUrl && (
+                              <div className="my-2 p-2.5 bg-blue-50/70 border border-blue-200 rounded-lg text-left text-[10.5pt] text-blue-950">
+                                <p className="font-bold text-blue-900 flex items-center gap-1.5 mb-1">
+                                  <span>📖</span>
+                                  <span>{row.hinhAnhSGK.tenHinh}</span>
+                                </p>
+                                {row.hinhAnhSGK.moTa && (
+                                  <p className="text-slate-600 italic text-[10pt] mb-1.5">{row.hinhAnhSGK.moTa}</p>
+                                )}
+                                {row.hinhAnhSGK.cauHoiKhaiThac && row.hinhAnhSGK.cauHoiKhaiThac.length > 0 && (
+                                  <div className="pt-1 border-t border-blue-200/60">
+                                    <span className="font-semibold text-blue-950 text-[10pt] block mb-1">
+                                      🔍 Định hướng học sinh quan sát tranh/bảng số liệu trong SGK:
+                                    </span>
+                                    <ul className="space-y-0.5 pl-3 list-disc text-slate-700 text-[10pt]">
                                       {row.hinhAnhSGK.cauHoiKhaiThac.map((q, qi) => (
                                         <li key={qi} className="italic">{q}</li>
                                       ))}

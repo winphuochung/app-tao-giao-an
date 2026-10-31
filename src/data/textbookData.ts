@@ -107,9 +107,8 @@ export const TEXTBOOK_LESSONS: Record<string, SgkLessonDetail> = {
         hinhAnh: {
           tenHinh: 'Hình 8.1: Bảng kết quả chạy cự li 60 m của học sinh (SGK KHTN 7 KNTT - Trang 45)',
           moTa: 'Bảng số liệu ghi lại quãng đường s = 60m, thời gian chạy t của 3 học sinh A (10s), B (12s), C (9,6s) và quãng đường chạy trong 1s.',
-          imageUrl: '/sgk-images/khtn-7-hinh-8-1-bang-chay-60m.png',
           cauHoiKhaiThac: [
-            'Quan sát cột Thời gian (t) và Quãng đường trong 1s của Bảng 8.1:',
+            'Quan sát cột Thời gian (t) và Quãng đường trong 1s của Bảng 8.1 trong SGK:',
             'Bạn nào chạy nhanh nhất? Vì sao?',
             'Rút ra mối quan hệ giữa tốc độ chuyển động với quãng đường và thời gian.'
           ],
@@ -125,11 +124,10 @@ export const TEXTBOOK_LESSONS: Record<string, SgkLessonDetail> = {
           '3. Một người đi xe đạp đi được quãng đường 12 km trong thời gian 0,8 giờ. Tốc độ của người đó là bao nhiêu?'
         ],
         hinhAnh: {
-          tenHinh: 'Sơ đồ tam giác công thức: v = s / t | s = v . t | t = s / v',
+          tenHinh: 'Sơ đồ tam giác công thức: v = s / t | s = v . t | t = s / v (SGK KHTN 7)',
           moTa: 'Tam giác liên hệ giữa ba đại lượng: Quãng đường (s ở trên), Tốc độ (v ở dưới trái), Thời gian (t ở dưới phải).',
-          imageUrl: '/sgk-images/khtn-7-bang-toc-do-chuyen-dong.png',
           cauHoiKhaiThac: [
-            'Quan sát sơ đồ công thức tam giác:',
+            'Quan sát sơ đồ công thức tam giác trong SGK:',
             'Muốn tính đại lượng nào, ta che đại lượng đó lại: Che v ta được s / t; che s ta được v . t; che t ta được s / v.',
             'Áp dụng giải bài toán ví dụ trong SGK.'
           ],
@@ -147,9 +145,8 @@ export const TEXTBOOK_LESSONS: Record<string, SgkLessonDetail> = {
         hinhAnh: {
           tenHinh: 'Bảng tốc độ của một số vật thể trong tự nhiên & kỹ thuật (SGK KHTN 7 KNTT - Trang 47)',
           moTa: 'Bảng tổng hợp tốc độ từ ốc sên (0,0014 m/s) đến tốc độ ánh sáng (300.000.000 m/s) kèm quy đổi m/s sang km/h.',
-          imageUrl: '/sgk-images/khtn-7-bang-toc-do-chuyen-dong.png',
           cauHoiKhaiThac: [
-            'Quan sát bảng tốc độ các vật thể:',
+            'Quan sát bảng tốc độ các vật thể trong SGK:',
             'Quy đổi tốc độ của xe máy (40 km/h) sang đơn vị m/s?',
             'Vận tốc của âm thanh trong không khí là 340 m/s tương đương bao nhiêu km/h?'
           ],
@@ -160,16 +157,15 @@ export const TEXTBOOK_LESSONS: Record<string, SgkLessonDetail> = {
         deMuc: 'IV. Thiết bị đo tốc độ (Tốc kế & Thiết bị bắn tốc độ)',
         tomTat: 'Trong thực tế, để đo tốc độ chuyển động của các phương tiện giao thông, người ta dùng tốc kế gắn trên phương tiện hoặc thiết bị bắn tốc độ của Cảnh sát giao thông.',
         cauHoiKhaiThac: [
-          '1. Quan sát Hình 8.2: Kim trên mặt đồng hồ tốc kế đang chỉ vào số nào? Đơn vị đo trên mặt đồng hồ là gì?',
-          '2. Quan sát Hình 8.3: Thiết bị bắn tốc độ hoạt động như thế nào và có tác dụng gì trong công tác bảo đảm trật tự ATGT?',
+          '1. Quan sát Hình 8.2 trong SGK: Kim trên mặt đồng hồ tốc kế đang chỉ vào số nào? Đơn vị đo trên mặt đồng hồ là gì?',
+          '2. Quan sát Hình 8.3 trong SGK: Thiết bị bắn tốc độ hoạt động như thế nào và có tác dụng gì trong công tác bảo đảm trật tự ATGT?',
           '3. Tại sao khi tham gia giao thông, người lái xe phải quan sát tốc kế và tuân thủ biển báo tốc độ tối đa cho phép?'
         ],
         hinhAnh: {
           tenHinh: 'Hình 8.2 & 8.3: Tốc kế xe máy/ô tô và Thiết bị bắn tốc độ CSGT (SGK KHTN 7 KNTT - Trang 48)',
           moTa: 'Hình ảnh hiển thị mặt đồng hồ tốc kế chỉ 45 km/h và thiết bị bắn tốc độ laser/radar chụp hình ảnh phương tiện vi phạm 68 km/h trên đoạn đường giới hạn 50 km/h.',
-          imageUrl: '/sgk-images/khtn-7-hinh-8-2-toc-ke-xe.png',
           cauHoiKhaiThac: [
-            'Quan sát màn hình thiết bị bắn tốc độ ở Hình 8.3:',
+            'Quan sát màn hình thiết bị bắn tốc độ ở Hình 8.3 SGK:',
             'Thiết bị ghi nhận các thông số nào của phương tiện?',
             'Phương tiện có vi phạm quy định về tốc độ không? Giải thích vì sao?'
           ],
@@ -207,13 +203,61 @@ export const TEXTBOOK_LESSONS: Record<string, SgkLessonDetail> = {
     noiDungDeMuc: [
       {
         deMuc: 'I. Đo tốc độ dùng đồng hồ bấm giây',
-        tomTat: 'Dùng thước đo quãng đường s, dùng đồng hồ bấm giây đo thời gian t, tính tốc độ v = s/t.',
-        cauHoiKhaiThac: ['Nêu các bước đo tốc độ bằng thước và đồng hồ bấm giây?'],
+        tomTat: 'Dùng thước đo quãng đường s, dùng đồng hồ bấm giây đo thời gian t, tính tốc độ v = s/t. Thực hiện đo nhiều lần rồi tính giá trị trung bình để giảm sai số.',
+        cauHoiKhaiThac: [
+          '1. Để đo tốc độ bằng đồng hồ bấm giây cần những dụng cụ gì?',
+          '2. Nêu các bước tiến hành thí nghiệm đo tốc độ của xe lăn trên máng nghiêng?',
+          '3. Vì sao cần đo thời gian chuyển động nhiều lần và tính giá trị trung bình?'
+        ],
         hinhAnh: {
-          tenHinh: 'Hình 9.1: Bố trí thí nghiệm đo tốc độ bằng đồng hồ bấm giây (SGK KHTN 7)',
-          moTa: 'Học sinh dùng thước dây đo quãng đường chạy và dùng đồng hồ bấm giây.',
-          imageUrl: '/sgk-images/khtn-7-hinh-8-1-bang-chay-60m.png',
-          cauHoiKhaiThac: ['Quan sát thao tác bấm đồng hồ khi xe bắt đầu chuyển động và khi chạm đích.']
+          tenHinh: 'Hình 9.2: Bố trí thí nghiệm đo tốc độ dùng đồng hồ bấm giây (SGK KHTN 7 KNTT - Trang 50)',
+          moTa: 'Bố trí thí nghiệm gồm: máng nghiêng, xe lăn có cọc cắm, thước đo độ dài, đồng hồ bấm giây điện tử.',
+          imageUrl: '/sgk-images/khtn-7-hinh-9-2-thi-nghiem-bam-giay.png',
+          cauHoiKhaiThac: [
+            'Quan sát Hình 9.2 trong SGK:',
+            'Xác định điểm xuất phát A và đích đến B trên máng nghiêng.',
+            'Thao tác bấm nút START khi thả xe và STOP khi xe chạm vạch đích B.'
+          ],
+          ghiChuSuPham: 'Ảnh thực tế trích xuất trực tiếp từ SGK KHTN 7 KNTT trang 50.'
+        }
+      },
+      {
+        deMuc: 'II. Đo tốc độ dùng đồng hồ đo thời gian hiện số và cổng quang điện',
+        tomTat: 'Cổng quang điện tự động phát và thu tín hiệu hồng ngoại. Khi xe đi qua, đồng hồ hiện số tự động đếm thời gian chắn cổng quang điện một cách chính xác tuyệt đối, loại bỏ sai số do phản xạ tay người.',
+        cauHoiKhaiThac: [
+          '1. Cổng quang điện và đồng hồ hiện số hoạt động như thế nào?',
+          '2. Ưu điểm nổi bật của phương pháp đo tốc độ bằng cổng quang điện so với đồng hồ bấm giây thủ công là gì?',
+          '3. Từ bảng kết quả thí nghiệm, hãy tính tốc độ của xe qua cổng quang điện?'
+        ],
+        hinhAnh: {
+          tenHinh: 'Hình 9.3: Thí nghiệm đo tốc độ dùng đồng hồ hiện số và cổng quang điện (SGK KHTN 7 KNTT - Trang 51)',
+          moTa: 'Thí nghiệm gồm máng định hướng, bi thép, nam châm điện giữ bi, hai cổng quang điện E và F kết nối với ổ A và B của đồng hồ đo thời gian hiện số.',
+          imageUrl: '/sgk-images/khtn-7-hinh-9-3-cong-quang-dien.png',
+          cauHoiKhaiThac: [
+            'Quan sát bố trí thiết bị ở Hình 9.3 SGK:',
+            'Khi tấm cản quang chắn chùm tia sáng hồng ngoại ở cổng quang điện, đồng hồ sẽ ghi nhận đại lượng nào?',
+            'Giải thích vì sao phương pháp này giảm thiểu tối đa sai số chủ quan của con người.'
+          ],
+          ghiChuSuPham: 'Ảnh thực tế trích xuất trực tiếp từ SGK KHTN 7 KNTT trang 51.'
+        }
+      },
+      {
+        deMuc: 'III. Thiết bị bắn tốc độ',
+        tomTat: 'Thiết bị bắn tốc độ dùng sóng vô tuyến hoặc laser để đo thời gian giữa hai tín hiệu phản xạ, từ đó camera tự động tính tốc độ xe và chụp biển số nếu vượt quá tốc độ quy định.',
+        cauHoiKhaiThac: [
+          '1. Thiết bị bắn tốc độ hoạt động dựa trên nguyên lý nào?',
+          '2. Hãy phân tích tác dụng của thiết bị bắn tốc độ trong công tác giữ gìn an toàn giao thông?',
+          '3. Ý thức chấp hành luật giao thông đường bộ về tốc độ quy định của học sinh và người điều khiển phương tiện?'
+        ],
+        hinhAnh: {
+          tenHinh: 'Hình 9.4: Sơ đồ hoạt động của thiết bị bắn tốc độ đơn giản (SGK KHTN 7 KNTT - Trang 51)',
+          moTa: 'Sơ đồ phát sóng vô tuyến/laser đến xe đang chuyển động và thu sóng phản xạ để vi xử lý tính tốc độ.',
+          imageUrl: '/sgk-images/khtn-7-hinh-9-4-thiet-bi-ban-toc-do.png',
+          cauHoiKhaiThac: [
+            'Quan sát sơ đồ Hình 9.4 SGK:',
+            'Mô tả đường truyền tín hiệu từ súng bắn tốc độ tới ô tô và quay trở lại thiết bị thu.'
+          ],
+          ghiChuSuPham: 'Ảnh thực tế trích xuất trực tiếp từ SGK KHTN 7 KNTT trang 51.'
         }
       }
     ]
@@ -248,11 +292,10 @@ export const TEXTBOOK_LESSONS: Record<string, SgkLessonDetail> = {
       {
         deMuc: 'I. Lập bảng ghi quãng đường đi được theo thời gian',
         tomTat: 'Ghi lại các cặp giá trị (t, s) tại từng thời điểm chuyển động.',
-        cauHoiKhaiThac: ['Từ bảng số liệu, hãy xác định quãng đường xe đi được sau 2h, 4h?'],
+        cauHoiKhaiThac: ['Từ bảng số liệu trong SGK, hãy xác định quãng đường xe đi được sau 2h, 4h?'],
         hinhAnh: {
-          tenHinh: 'Hình 10.1: Đồ thị quãng đường - thời gian của chuyển động (SGK KHTN 7)',
+          tenHinh: 'Hình 10.1: Đồ thị quãng đường - thời gian của chuyển động (SGK KHTN 7 Trang 54)',
           moTa: 'Hệ trục tọa độ vuông góc biểu diễn mối quan hệ s và t.',
-          imageUrl: '/sgk-images/khtn-7-bang-toc-do-chuyen-dong.png',
           cauHoiKhaiThac: ['Trục hoành biểu diễn đại lượng nào? Trục tung biểu diễn đại lượng nào?']
         }
       }
