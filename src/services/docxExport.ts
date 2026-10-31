@@ -89,14 +89,15 @@ export async function exportGiaoAnToDocx(data: GiaoAnWordData): Promise<void> {
   const isToan6 = meta.tenBaiDay.toLowerCase().includes('trục đối xứng');
 
   let infographicImgUrl = '';
-  if (isTieuHoc) {
+  const gradeNum = Number(meta.khoiLop) || 0;
+  if (isTieuHoc || gradeNum <= 5) {
     infographicImgUrl = '/infographics/phieu-hoc-tap-doraemon-toan-3.jpg';
-  } else if (isBai8) {
-    infographicImgUrl = '/infographics/phieu-doraemon-khtn7-bai8-toc-do.jpg';
   } else if (isBai9) {
     infographicImgUrl = '/infographics/phieu-doraemon-khtn7-bai9-do-toc-do.jpg';
   } else if (isToan6) {
     infographicImgUrl = '/infographics/phieu-doraemon-toan6-truc-doi-xung.jpg';
+  } else {
+    infographicImgUrl = '/infographics/phieu-doraemon-khtn7-bai8-toc-do.jpg';
   }
 
   if (infographicImgUrl) {
@@ -655,7 +656,11 @@ export async function exportGiaoAnToDocx(data: GiaoAnWordData): Promise<void> {
       // NẾU CÓ HÌNH ẢNH SGK Ở ĐỀ MỤC NÀY, CHÈN HÌNH ẢNH THỰC TẾ TRỰC TIẾP VÀO ĐÚNG Ô HOẠT ĐỘNG (ÁP DỤNG CHO MỌI BÀI HỌC)
       if (hinhAnhSGK) {
         const resolvedImg = resolveSgkImageUrl(hinhAnhSGK, data.metadata.monHoc, data.metadata.khoiLop);
-        const imgBuffer = sgkImageMap[resolvedImg] || (hinhAnhSGK.imageUrl && sgkImageMap[hinhAnhSGK.imageUrl]) || sgkImageMap['/sgk-images/khtn-7-hinh-8-2-8-3-toc-ke-va-thiet-bi-ban-toc-do.png'];
+        const imgBuffer =
+          sgkImageMap[resolvedImg] ||
+          (hinhAnhSGK.imageUrl && sgkImageMap[hinhAnhSGK.imageUrl]) ||
+          sgkImageMap['/sgk-images/khtn-7-hinh-8-2-8-3-toc-ke-va-thiet-bi-ban-toc-do.png'] ||
+          Object.values(sgkImageMap)[0];
         
         if (imgBuffer) {
           const imgType = (resolvedImg.endsWith('.jpg') || resolvedImg.endsWith('.jpeg')) ? 'jpg' : 'png';
@@ -667,8 +672,8 @@ export async function exportGiaoAnToDocx(data: GiaoAnWordData): Promise<void> {
                 new ImageRun({
                   data: imgBuffer,
                   transformation: {
-                    width: 240,
-                    height: 130
+                    width: 380,
+                    height: 210
                   },
                   type: imgType
                 })

@@ -180,10 +180,11 @@ export function generateMindmapData(
   subject: string,
   isTieuHoc: boolean
 ): SoDoTuDuy {
-  const isSpeedPhysics = /tốc độ chuyển động/i.test(topic) && /khoa học tự nhiên|khtn|vật lí/i.test(subject) && metadata.khoiLop === 7;
-  const isMeasureSpeed = /đo tốc độ/i.test(topic) && /khoa học tự nhiên|khtn|vật lí/i.test(subject) && metadata.khoiLop === 7;
-  const isCircleMath = /hình tròn/i.test(topic) && /toán/i.test(subject) && metadata.khoiLop === 3;
-  const isSymmetryMath = /đối xứng/i.test(topic) && /toán/i.test(subject) && metadata.khoiLop === 6;
+  const gradeNum = Number(metadata.khoiLop) || 0;
+  const isSpeedPhysics = /tốc độ chuyển động/i.test(topic) && /khoa học tự nhiên|khtn|vật lí/i.test(subject) && gradeNum === 7;
+  const isMeasureSpeed = /đo tốc độ/i.test(topic) && /khoa học tự nhiên|khtn|vật lí/i.test(subject) && gradeNum === 7;
+  const isCircleMath = /hình tròn/i.test(topic) && /toán/i.test(subject) && gradeNum === 3;
+  const isSymmetryMath = /đối xứng/i.test(topic) && /toán/i.test(subject) && gradeNum === 6;
 
   let defaultImg: string | undefined = undefined;
   if (isSpeedPhysics) defaultImg = '/mindmaps/mindmap-khtn-7-toc-do.jpg';
@@ -430,7 +431,8 @@ export function generateIntelligentPlan(
   const secKnowledge = getIntelligentSectionsForTopic(topic, subject, metadata.khoiLop, metadata.boSach);
 
   // Chỉ nạp bài mẫu chuẩn KHTN 7 nếu đúng chính xác là Bài 8 Tốc độ chuyển động (không được bắt nhầm bài khác)
-  const isExactKhtn7Bai8 = metadata.khoiLop === 7 &&
+  const gradeNum = Number(metadata.khoiLop) || 0;
+  const isExactKhtn7Bai8 = gradeNum === 7 &&
     /khoa học tự nhiên|khtn/i.test(subject) &&
     /tốc độ chuyển động/i.test(topic);
 
@@ -452,7 +454,7 @@ export function generateIntelligentPlan(
   }
 
   // Kiểm tra bài học chuẩn KHTN 7: Bài 9: Đo tốc độ
-  const isExactKhtn7Bai9 = metadata.khoiLop === 7 &&
+  const isExactKhtn7Bai9 = gradeNum === 7 &&
     /khoa học tự nhiên|khtn/i.test(subject) &&
     /đo tốc độ/i.test(topic);
 
@@ -474,7 +476,7 @@ export function generateIntelligentPlan(
   }
 
   // Kiểm tra bài học chuẩn Toán 3: Hình tròn, tâm, đường kính, bán kính
-  const isExactToan3HinhTron = metadata.khoiLop === 3 &&
+  const isExactToan3HinhTron = gradeNum === 3 &&
     /toán/i.test(subject) &&
     /hình tròn.*tâm.*đường kính/i.test(topic);
 
@@ -495,7 +497,7 @@ export function generateIntelligentPlan(
   }
 
   // Kiểm tra bài học chuẩn Toán 6: Hình có trục đối xứng
-  const isExactToan6TrucDoiXung = metadata.khoiLop === 6 &&
+  const isExactToan6TrucDoiXung = gradeNum === 6 &&
     /toán/i.test(subject) &&
     /trục đối xứng/i.test(topic);
 
@@ -702,7 +704,7 @@ export function generateIntelligentPlan(
   let sgkImg1: string | undefined = undefined;
   let sgkImg2: string | undefined = undefined;
 
-  const isExactKhtn7Bai9_check = metadata.khoiLop === 7 &&
+  const isExactKhtn7Bai9_check = gradeNum === 7 &&
     /khoa học tự nhiên|khtn/i.test(subject) &&
     /đo tốc độ/i.test(topic);
 

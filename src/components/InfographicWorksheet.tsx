@@ -14,6 +14,18 @@ import {
   FileCheck
 } from 'lucide-react';
 import { GiaoAnWordData } from '../types';
+import {
+  DoraemonAvatar,
+  NobitaAvatar,
+  ShizukaAvatar,
+  DekisugiAvatar,
+  JaianAvatar,
+  SuneoAvatar,
+  SenseiAvatar,
+  ConanAvatar,
+  RanAvatar,
+  PixarStudentAvatar
+} from './CartoonAvatars';
 
 interface InfographicWorksheetProps {
   data: GiaoAnWordData;
@@ -33,11 +45,14 @@ export const InfographicWorksheet: React.FC<InfographicWorksheetProps> = ({ data
   const printableAreaRef = useRef<HTMLDivElement>(null);
 
   const meta = data.metadata;
-  const isTieuHoc = meta.capHoc === 'TIEU_HOC';
-  const isExactKhtn7Bai8 = meta.khoiLop === 7 && /khoa học tự nhiên|khtn/i.test(meta.monHoc) && /tốc độ chuyển động/i.test(meta.tenBaiDay);
-  const isExactKhtn7Bai9 = meta.khoiLop === 7 && /khoa học tự nhiên|khtn/i.test(meta.monHoc) && /đo tốc độ/i.test(meta.tenBaiDay);
-  const isExactToan3 = meta.khoiLop === 3 && /toán/i.test(meta.monHoc) && /hình tròn/i.test(meta.tenBaiDay);
-  const isExactToan6 = meta.khoiLop === 6 && /toán/i.test(meta.monHoc) && /trục đối xứng/i.test(meta.tenBaiDay);
+  const gradeNum = Number(meta.khoiLop) || 0;
+  const isTieuHoc = meta.capHoc === 'TIEU_HOC' || gradeNum <= 5;
+  const isKhtn = /khoa học tự nhiên|khtn|vật lí/i.test(meta.monHoc) || meta.tenBaiDay.toLowerCase().includes('khtn');
+
+  const isExactKhtn7Bai8 = gradeNum === 7 && isKhtn && (meta.tenBaiDay.toLowerCase().includes('tốc độ') || meta.tenBaiDay.toLowerCase().includes('bài 8'));
+  const isExactKhtn7Bai9 = gradeNum === 7 && isKhtn && (meta.tenBaiDay.toLowerCase().includes('đo tốc độ') || meta.tenBaiDay.toLowerCase().includes('bài 9'));
+  const isExactToan3 = gradeNum === 3 && /toán/i.test(meta.monHoc);
+  const isExactToan6 = gradeNum === 6 && /toán/i.test(meta.monHoc);
 
   // Reset image error on style or lesson change
   React.useEffect(() => {
@@ -347,78 +362,129 @@ export const InfographicWorksheet: React.FC<InfographicWorksheetProps> = ({ data
                     </div>
                   </div>
 
-                  {/* Character Dialogue Section (8 Speech Bubbles) */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-[12.5px] leading-snug">
-                    <div className="p-2.5 rounded-xl border-2 border-amber-400 bg-amber-50/70 space-y-1 shadow-2xs">
-                      <p className="font-bold text-amber-900 flex items-center gap-1">
-                        <span>👨‍🏫</span> <span>Thầy giáo căn dặn:</span>
-                      </p>
-                      <p className="text-amber-950 italic">
-                        "Hôm nay cả lớp cùng phân tích nội dung bài học '{meta.tenBaiDay}' trong SGK {meta.monHoc} {meta.khoiLop} để chinh phục thử thách nhé!"
-                      </p>
+                  {/* Character Dialogue Section (8 Authentic Manga Comic Speech Panels with Real Cartoon Avatars) */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs sm:text-[12.5px] leading-snug">
+                    {/* Panel 1 */}
+                    <div className="p-2.5 rounded-2xl border-2 border-amber-400 bg-amber-50/90 shadow-xs flex items-start gap-2.5">
+                      <SenseiAvatar className="w-11 h-11 flex-shrink-0 rounded-full border border-amber-400 bg-white p-0.5 shadow-2xs" />
+                      <div className="space-y-0.5 text-left">
+                        <p className="font-black text-amber-950 flex items-center gap-1">
+                          <span>Thầy giáo căn dặn:</span>
+                        </p>
+                        <p className="text-amber-900 italic leading-snug">
+                          "Hôm nay cả lớp cùng phân tích nội dung bài học '{meta.tenBaiDay}' trong SGK {meta.monHoc} {meta.khoiLop} để hoàn thành phiếu học tập nhé!"
+                        </p>
+                      </div>
                     </div>
 
-                    <div className="p-2.5 rounded-xl border-2 border-blue-500 bg-blue-50/70 space-y-1 shadow-2xs">
-                      <p className="font-bold text-blue-900 flex items-center gap-1">
-                        <span>🐱</span> <span>Doraemon mách nước:</span>
-                      </p>
-                      <p className="text-blue-950 italic">
-                        "Nobita bình tĩnh! Cùng quan sát kỹ các dữ liệu và bảng số liệu trong SGK, tớ có bảo bối hỗ trợ tư duy đây!"
-                      </p>
+                    {/* Panel 2 */}
+                    <div className="p-2.5 rounded-2xl border-2 border-blue-500 bg-blue-50/90 shadow-xs flex items-start gap-2.5">
+                      {style === 'conan-ai' ? (
+                        <ConanAvatar className="w-11 h-11 flex-shrink-0 rounded-full border border-blue-500 bg-white p-0.5 shadow-2xs" />
+                      ) : (
+                        <DoraemonAvatar className="w-11 h-11 flex-shrink-0 rounded-full border border-blue-500 bg-white p-0.5 shadow-2xs" />
+                      )}
+                      <div className="space-y-0.5 text-left">
+                        <p className="font-black text-blue-950 flex items-center gap-1">
+                          <span>{style === 'conan-ai' ? 'Thám tử Conan mách nước:' : 'Doraemon mách nước:'}</span>
+                        </p>
+                        <p className="text-blue-900 italic leading-snug">
+                          "Các bạn bình tĩnh! Cùng quan sát kỹ các số liệu, sơ đồ trong SGK, tớ có phương pháp giải mã manh mối ngay đây!"
+                        </p>
+                      </div>
                     </div>
 
-                    <div className="p-2.5 rounded-xl border-2 border-rose-400 bg-rose-50/70 space-y-1 shadow-2xs">
-                      <p className="font-bold text-rose-900 flex items-center gap-1">
-                        <span>👓</span> <span>Nobita bối rối:</span>
-                      </p>
-                      <p className="text-rose-950 italic">
-                        "Oa, nhiều thông tin và câu hỏi quá... Nhìn dữ kiện bài này tớ chưa biết làm thế nào trước Doraemon ơi!"
-                      </p>
+                    {/* Panel 3 */}
+                    <div className="p-2.5 rounded-2xl border-2 border-rose-400 bg-rose-50/90 shadow-xs flex items-start gap-2.5">
+                      {style === 'conan-ai' ? (
+                        <PixarStudentAvatar className="w-11 h-11 flex-shrink-0 rounded-full border border-rose-400 bg-white p-0.5 shadow-2xs" />
+                      ) : (
+                        <NobitaAvatar className="w-11 h-11 flex-shrink-0 rounded-full border border-rose-400 bg-white p-0.5 shadow-2xs" />
+                      )}
+                      <div className="space-y-0.5 text-left">
+                        <p className="font-black text-rose-950 flex items-center gap-1">
+                          <span>{style === 'conan-ai' ? 'Đội thám tử nhí thắc mắc:' : 'Nobita bối rối:'}</span>
+                        </p>
+                        <p className="text-rose-900 italic leading-snug">
+                          "Oa, nhiều thông tin và câu hỏi quá... Nhìn dữ kiện bài này tớ chưa biết bắt đầu từ đâu trước!"
+                        </p>
+                      </div>
                     </div>
 
-                    <div className="p-2.5 rounded-xl border-2 border-emerald-500 bg-emerald-50/70 space-y-1 shadow-2xs">
-                      <p className="font-bold text-emerald-900 flex items-center gap-1">
-                        <span>💡</span> <span>Dekisugi phân tích:</span>
-                      </p>
-                      <p className="text-emerald-950 italic">
-                        "Đúng vậy! Chúng ta hãy bắt đầu từ khái niệm cốt lõi trước, sau đó áp dụng công thức và quy tắc khoa học!"
-                      </p>
+                    {/* Panel 4 */}
+                    <div className="p-2.5 rounded-2xl border-2 border-emerald-500 bg-emerald-50/90 shadow-xs flex items-start gap-2.5">
+                      <DekisugiAvatar className="w-11 h-11 flex-shrink-0 rounded-full border border-emerald-500 bg-white p-0.5 shadow-2xs" />
+                      <div className="space-y-0.5 text-left">
+                        <p className="font-black text-emerald-950 flex items-center gap-1">
+                          <span>Dekisugi phân tích:</span>
+                        </p>
+                        <p className="text-emerald-900 italic leading-snug">
+                          "Đúng vậy! Chúng ta hãy bắt đầu từ khái niệm cốt lõi trước, sau đó áp dụng công thức và quy tắc toán/khoa học!"
+                        </p>
+                      </div>
                     </div>
 
-                    <div className="p-2.5 rounded-xl border-2 border-purple-400 bg-purple-50/70 space-y-1 shadow-2xs">
-                      <p className="font-bold text-purple-900 flex items-center gap-1">
-                        <span>🎀</span> <span>Shizuka cẩn thận nhắc nhở:</span>
-                      </p>
-                      <p className="text-purple-950 italic">
-                        "Các bạn nhớ kiểm tra kỹ đơn vị đo và ghi chép cẩn thận các bước giải vào phiếu nhóm nhé!"
-                      </p>
+                    {/* Panel 5 */}
+                    <div className="p-2.5 rounded-2xl border-2 border-purple-400 bg-purple-50/90 shadow-xs flex items-start gap-2.5">
+                      {style === 'conan-ai' ? (
+                        <RanAvatar className="w-11 h-11 flex-shrink-0 rounded-full border border-purple-400 bg-white p-0.5 shadow-2xs" />
+                      ) : (
+                        <ShizukaAvatar className="w-11 h-11 flex-shrink-0 rounded-full border border-purple-400 bg-white p-0.5 shadow-2xs" />
+                      )}
+                      <div className="space-y-0.5 text-left">
+                        <p className="font-black text-purple-950 flex items-center gap-1">
+                          <span>{style === 'conan-ai' ? 'Ran Mori nhắc nhở:' : 'Shizuka cẩn thận nhắc nhở:'}</span>
+                        </p>
+                        <p className="text-purple-900 italic leading-snug">
+                          "Các bạn nhớ kiểm tra kỹ đơn vị đo và ghi chép cẩn thận các bước giải vào phiếu nhóm nhé!"
+                        </p>
+                      </div>
                     </div>
 
-                    <div className="p-2.5 rounded-xl border-2 border-indigo-400 bg-indigo-50/70 space-y-1 shadow-2xs">
-                      <p className="font-bold text-indigo-900 flex items-center gap-1">
-                        <span>🔍</span> <span>Dorami gợi ý mở rộng:</span>
-                      </p>
-                      <p className="text-indigo-950 italic">
-                        "Hãy chú ý các tình huống thực tiễn và sơ đồ trong SGK để liên hệ an toàn và ứng dụng đời sống!"
-                      </p>
+                    {/* Panel 6 */}
+                    <div className="p-2.5 rounded-2xl border-2 border-indigo-400 bg-indigo-50/90 shadow-xs flex items-start gap-2.5">
+                      {style === 'conan-ai' ? (
+                        <ConanAvatar className="w-11 h-11 flex-shrink-0 rounded-full border border-indigo-400 bg-white p-0.5 shadow-2xs" />
+                      ) : (
+                        <DoraemonAvatar className="w-11 h-11 flex-shrink-0 rounded-full border border-indigo-400 bg-white p-0.5 shadow-2xs" />
+                      )}
+                      <div className="space-y-0.5 text-left">
+                        <p className="font-black text-indigo-950 flex items-center gap-1">
+                          <span>{style === 'conan-ai' ? 'Manh mối phá án:' : 'Bảo bối hỗ trợ tư duy:'}</span>
+                        </p>
+                        <p className="text-indigo-900 italic leading-snug">
+                          "Hãy chú ý các tình huống thực tiễn và sơ đồ trong SGK để liên hệ an toàn và ứng dụng đời sống!"
+                        </p>
+                      </div>
                     </div>
 
-                    <div className="p-2.5 rounded-xl border-2 border-orange-400 bg-orange-50/70 space-y-1 shadow-2xs">
-                      <p className="font-bold text-orange-900 flex items-center gap-1">
-                        <span>🎤</span> <span>Jaian & Suneo thi đua:</span>
-                      </p>
-                      <p className="text-orange-950 italic">
-                        "Nhóm tớ đang tích cực tính toán và thảo luận đây! 4 bạn 4 màu mực viết nhanh kẻo hết giờ!"
-                      </p>
+                    {/* Panel 7 */}
+                    <div className="p-2.5 rounded-2xl border-2 border-orange-400 bg-orange-50/90 shadow-xs flex items-start gap-2.5">
+                      <div className="flex -space-x-2 flex-shrink-0">
+                        <JaianAvatar className="w-9 h-9 rounded-full border border-orange-400 bg-white p-0.5" />
+                        <SuneoAvatar className="w-9 h-9 rounded-full border border-orange-400 bg-white p-0.5" />
+                      </div>
+                      <div className="space-y-0.5 text-left">
+                        <p className="font-black text-orange-950 flex items-center gap-1">
+                          <span>Jaian & Suneo thi đua:</span>
+                        </p>
+                        <p className="text-orange-900 italic leading-snug">
+                          "Nhóm tớ đang tích cực tính toán và thảo luận đây! 4 bạn 4 màu mực viết nhanh kẻo hết giờ!"
+                        </p>
+                      </div>
                     </div>
 
-                    <div className="p-2.5 rounded-xl border-2 border-teal-500 bg-teal-50/70 space-y-1 shadow-2xs">
-                      <p className="font-bold text-teal-900 flex items-center gap-1">
-                        <span>🌟</span> <span>Cả nhóm kết luận:</span>
-                      </p>
-                      <p className="text-teal-950 italic">
-                        "Chính xác rồi! Thống nhất phương án và hoàn thành 4 nhiệm vụ bên dưới để báo cáo trước lớp!"
-                      </p>
+                    {/* Panel 8 */}
+                    <div className="p-2.5 rounded-2xl border-2 border-teal-500 bg-teal-50/90 shadow-xs flex items-start gap-2.5">
+                      <NobitaAvatar className="w-11 h-11 flex-shrink-0 rounded-full border border-teal-500 bg-white p-0.5 shadow-2xs" />
+                      <div className="space-y-0.5 text-left">
+                        <p className="font-black text-teal-950 flex items-center gap-1">
+                          <span>Cả nhóm thống nhất:</span>
+                        </p>
+                        <p className="text-teal-900 italic leading-snug">
+                          "Chính xác rồi! Thống nhất phương án và hoàn thành 4 nhiệm vụ bên dưới để báo cáo trước lớp!"
+                        </p>
+                      </div>
                     </div>
                   </div>
 

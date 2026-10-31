@@ -38,6 +38,7 @@ interface SidebarControlProps {
   onOpenTextbookModal?: () => void;
   onSelectSampleLesson?: (sampleKey: string) => void;
   onSelectCurriculumLesson?: (lesson: FullCurriculumLessonItem, grade: number, subject: string) => void;
+  onOpenGeminiBridgeModal?: () => void;
 }
 
 export const SidebarControl: React.FC<SidebarControlProps> = ({
@@ -49,7 +50,8 @@ export const SidebarControl: React.FC<SidebarControlProps> = ({
   isGenerating,
   onOpenTextbookModal,
   onSelectSampleLesson,
-  onSelectCurriculumLesson
+  onSelectCurriculumLesson,
+  onOpenGeminiBridgeModal
 }) => {
 
   const handleCapHocChange = (newCap: CapHoc) => {
@@ -515,6 +517,19 @@ export const SidebarControl: React.FC<SidebarControlProps> = ({
                 <span>⚡ Soạn ngay bài này</span>
               </button>
             </div>
+
+            {/* Nút Liên Kết Google Gemini AI */}
+            {onOpenGeminiBridgeModal && (
+              <button
+                type="button"
+                onClick={onOpenGeminiBridgeModal}
+                className="w-full mt-2 px-3 py-2 rounded-xl text-xs font-black text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-sm cursor-pointer border border-blue-300"
+                title="Mở Google Gemini Web AI và nạp trực tiếp kết quả vào Giáo án Word + Slide PowerPoint"
+              >
+                <Sparkles className="w-4 h-4 text-amber-300 animate-pulse" />
+                <span>🤖 Soạn bằng Google Gemini AI</span>
+              </button>
+            )}
 
             {/* Quick Pick Sample Lessons */}
             <div className="pt-2.5 border-t border-blue-200">

@@ -32,6 +32,7 @@ import { InfographicPromptModal } from './components/InfographicPromptModal';
 import { InfographicWorksheet } from './components/InfographicWorksheet';
 import { TextbookExplorerModal } from './components/TextbookExplorerModal';
 import { AiLessonAnalysisModal } from './components/AiLessonAnalysisModal';
+import { GeminiBridgeModal } from './components/GeminiBridgeModal';
 
 type ActiveTab = 'giao-an' | 'phieu-hoc-tap' | 'slide-deck' | 'quiz-game';
 
@@ -57,6 +58,7 @@ export const App: React.FC = () => {
   const [isInfographicModalOpen, setIsInfographicModalOpen] = useState<boolean>(false);
   const [isTextbookModalOpen, setIsTextbookModalOpen] = useState<boolean>(false);
   const [isAnalysisModalOpen, setIsAnalysisModalOpen] = useState<boolean>(false);
+  const [isGeminiBridgeModalOpen, setIsGeminiBridgeModalOpen] = useState<boolean>(false);
 
   // Load API key from localStorage on mount
   useEffect(() => {
@@ -233,6 +235,7 @@ export const App: React.FC = () => {
         onOpenApiKeyModal={() => setIsApiKeyModalOpen(true)}
         onOpenStoryboardModal={() => setIsStoryboardModalOpen(true)}
         onOpenInfographicModal={() => setIsInfographicModalOpen(true)}
+        onOpenGeminiBridgeModal={() => setIsGeminiBridgeModalOpen(true)}
         onOpenTextbookModal={() => setIsTextbookModalOpen(true)}
         onLoadSample={handleLoadSample}
         isExportingDocx={isExportingDocx}
@@ -270,6 +273,7 @@ export const App: React.FC = () => {
             onOpenTextbookModal={() => setIsTextbookModalOpen(true)}
             onSelectSampleLesson={handleLoadSample}
             onSelectCurriculumLesson={handleCurriculumLessonSelect}
+            onOpenGeminiBridgeModal={() => setIsGeminiBridgeModalOpen(true)}
           />
 
           {/* Right Column: Main Content with 3 Tabs */}
@@ -431,6 +435,18 @@ export const App: React.FC = () => {
         isAnalyzing={isGenerating}
         onExportDocx={handleExportDocx}
         onExportPptx={handleExportPptx}
+      />
+
+      <GeminiBridgeModal
+        isOpen={isGeminiBridgeModalOpen}
+        onClose={() => setIsGeminiBridgeModalOpen(false)}
+        currentPlan={currentPlan}
+        onApplyPlan={(updated) => {
+          setCurrentPlan(updated);
+          showNotification(`✅ Đã nạp thành công Giáo án Word & Slide PPTX từ Google Gemini: ${updated.giaoAn.metadata.tenBaiDay}`, 'success');
+        }}
+        onAutoGenerateInApp={handleGeneratePlan}
+        isGeneratingInApp={isGenerating}
       />
 
     </div>
