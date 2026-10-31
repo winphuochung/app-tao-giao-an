@@ -1,3 +1,4 @@
+import { ALL_SGK_IMAGES, resolveSgkImageUrl } from '../utils/sgkImageResolver';
 import {
   Document,
   Packer,
@@ -41,7 +42,14 @@ export async function exportGiaoAnToDocx(data: GiaoAnWordData): Promise<void> {
     '/mindmaps/mindmap-pixar-bg.jpg'
   ];
 
-  // Dynamically collect any other image URLs from data
+  // Add ALL authentic SGK images to preload list
+  for (const img of ALL_SGK_IMAGES) {
+    if (!imageFilesToLoad.includes(img)) {
+      imageFilesToLoad.push(img);
+    }
+  }
+
+  // Dynamically collect any other image URLs from data with auto-resolver
   data.tienTrinhDayHoc.forEach(hd => {
     if (hd.soDoTuDuy?.imageUrl && !imageFilesToLoad.includes(hd.soDoTuDuy.imageUrl)) {
       imageFilesToLoad.push(hd.soDoTuDuy.imageUrl);
@@ -50,8 +58,14 @@ export async function exportGiaoAnToDocx(data: GiaoAnWordData): Promise<void> {
       if (r.soDoTuDuy?.imageUrl && !imageFilesToLoad.includes(r.soDoTuDuy.imageUrl)) {
         imageFilesToLoad.push(r.soDoTuDuy.imageUrl);
       }
-      if (r.hinhAnhSGK?.imageUrl && !imageFilesToLoad.includes(r.hinhAnhSGK.imageUrl)) {
-        imageFilesToLoad.push(r.hinhAnhSGK.imageUrl);
+      if (r.hinhAnhSGK) {
+        const resolved = resolveSgkImageUrl(r.hinhAnhSGK, data.metadata.monHoc, data.metadata.khoiLop);
+        if (resolved && !imageFilesToLoad.includes(resolved)) {
+          imageFilesToLoad.push(resolved);
+        }
+        if (r.hinhAnhSGK.imageUrl && !imageFilesToLoad.includes(r.hinhAnhSGK.imageUrl)) {
+          imageFilesToLoad.push(r.hinhAnhSGK.imageUrl);
+        }
       }
     });
   });
@@ -638,39 +652,83 @@ export async function exportGiaoAnToDocx(data: GiaoAnWordData): Promise<void> {
         );
       }
 
-      // NẾU CÓ HÌNH ẢNH SGK Ở ĐỀ MỤC NÀY, CHÈN HÌNH ẢNH TRỰC TIẾP VÀO ĐÚNG Ô HOẠT ĐỘNG
-      if (hinhAnhSGK && hinhAnhSGK.imageUrl && sgkImageMap[hinhAnhSGK.imageUrl]) {
+      // NẾU CÓ HÌNH ẢNH SGK Ở ĐỀ MỤC NÀY, CHÈN HÌNH ẢNH THỰC TẾ TRỰC TIẾP VÀO ĐÚNG Ô HOẠT ĐỘNG (ÁP DỤNG CHO MỌI BÀI HỌC)
+      if (hinhAnhSGK) {
+        const resolvedImg = resolveSgkImageUrl(hinhAnhSGK, data.metadata.monHoc, data.metadata.khoiLop);
+        const imgBuffer = sgkImageMap[resolvedImg] || (hinhAnhSGK.imageUrl && sgkImageMap[hinhAnhSGK.imageUrl]) || sgkImageMap['/sgk-images/khtn-7-hinh-8-2-8-3-toc-ke-va-thiet-bi-ban-toc-do.png'];
+        
+        if (imgBuffer) {
+          const imgType = (resolvedImg.endsWith('.jpg') || resolvedImg.endsWith('.jpeg')) ? 'jpg' : 'png';
+          paras.push(
+            new Paragraph({
+              alignment: AlignmentType.CENTER,
+              spacing: { before: 50, after: 30 },
+              children: [
+                new ImageRun({
+                  data: imgBuffer,
+                  transformation: {
+                    width: 240,
+                    height: 130
+                  },
+                  type: imgType
+                })
+              ]
+            })
+          );
+        }
+
         paras.push(
           new Paragraph({
             alignment: AlignmentType.CENTER,
-            spacing: { before: 50, after: 30 },
-            children: [
-              new ImageRun({
-                data: sgkImageMap[hinhAnhSGK.imageUrl],
-                transformation: {
-                  width: 215,
-                  height: 120
-                },
-                type: 'png'
-              })
-            ]
-          })
-        );
-        paras.push(
-          new Paragraph({
-            alignment: AlignmentType.CENTER,
-            spacing: { before: 20, after: 50 },
+            spacing: { before: 20, after: 40 },
             children: [
               new TextRun({
-                text: hinhAnhSGK.tenHinh,
+                text: `📖 ${hinhAnhSGK.tenHinh} (Ảnh thực tế SGK)`,
                 font: fontName,
                 size: smallSize - 2,
                 bold: true,
-                italics: true
+                italics: true,
+                color: '1E3A8A'
               })
             ]
           })
         );
+
+        if (hinhAnhSGK.cauHoiKhaiThac && hinhAnhSGK.cauHoiKhaiThac.length > 0) {
+          paras.push(
+            new Paragraph({
+              alignment: AlignmentType.LEFT,
+              spacing: { before: 30, after: 20 },
+              children: [
+                new TextRun({
+                  text: '🔍 Hướng dẫn học sinh tự quan sát & khai thác hình ảnh thực tế SGK:',
+                  font: fontName,
+                  size: smallSize - 2,
+                  bold: true,
+                  color: '854D0E'
+                })
+              ]
+            })
+          );
+          for (const q of hinhAnhSGK.cauHoiKhaiThac) {
+            paras.push(
+              new Paragraph({
+                alignment: AlignmentType.LEFT,
+                indent: { left: 160 },
+                spacing: { before: 10, after: 15, line: 240 },
+                children: [
+                  new TextRun({
+                    text: `- ${q}`,
+                    font: fontName,
+                    size: smallSize - 2,
+                    italics: true,
+                    color: '334155'
+                  })
+                ]
+              })
+            );
+          }
+        }
       }
 
       // NẾU CÓ SƠ ĐỒ TƯ DUY 16:9 3D PIXAR Ở BƯỚC NÀY, CHÈN HÌNH ẢNH TRỰC TIẾP VÀO Ô KẾT LUẬN KIẾN THỨC

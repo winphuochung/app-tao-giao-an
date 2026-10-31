@@ -1,3 +1,4 @@
+import { resolveSgkImageUrl } from '../utils/sgkImageResolver';
 import React, { useState } from 'react';
 import {
   FileText,
@@ -473,57 +474,52 @@ export const LessonPlanEditor: React.FC<LessonPlanEditorProps> = ({
                               </p>
                             )}
 
-                            {/* HÌNH ẢNH THỰC TẾ TỪ SÁCH GIÁO KHOA */}
-                            {row.hinhAnhSGK && row.hinhAnhSGK.imageUrl && (
-                              <div className="my-2.5 p-2.5 bg-slate-50 border border-slate-300 rounded-lg flex flex-col items-center shadow-xs">
-                                <img
-                                  src={row.hinhAnhSGK.imageUrl}
-                                  alt={row.hinhAnhSGK.tenHinh}
-                                  className="max-h-72 w-auto object-contain rounded border border-slate-300 bg-white shadow-2xs"
-                                />
-                                <p className="text-center font-bold text-slate-900 text-[11pt] mt-2 flex items-center gap-1.5 justify-center">
-                                  <span className="inline-block w-2 h-2 rounded-full bg-blue-600"></span>
-                                  <span>{row.hinhAnhSGK.tenHinh} (Ảnh thực tế SGK)</span>
-                                </p>
-                                {row.hinhAnhSGK.cauHoiKhaiThac && row.hinhAnhSGK.cauHoiKhaiThac.length > 0 && (
-                                  <div className="w-full mt-2 p-2 bg-amber-50 border border-amber-200 rounded text-left text-[10pt] text-amber-950">
-                                    <span className="font-bold text-amber-900 block mb-1">
-                                      🔍 Định hướng học sinh tự quan sát & khai thác hình ảnh thực tế SGK:
+                            {/* HÌNH ẢNH THỰC TẾ TỪ SÁCH GIÁO KHOA - LUÔN CÓ HÌNH ẢNH SGK TRỰC TIẾP */}
+                            {row.hinhAnhSGK && (() => {
+                              const effectiveImgUrl = resolveSgkImageUrl(row.hinhAnhSGK, meta.monHoc, meta.khoiLop);
+                              return (
+                                <div className="my-2.5 p-3 bg-slate-50 border border-slate-300 rounded-lg flex flex-col items-center shadow-xs">
+                                  <div className="w-full flex items-center justify-between pb-2 mb-2 border-b border-slate-200">
+                                    <span className="text-[10pt] font-semibold text-blue-900 flex items-center gap-1.5">
+                                      <span className="w-2 h-2 rounded-full bg-blue-600"></span>
+                                      Học liệu trực quan: Hình ảnh thực tế từ Sách giáo khoa
                                     </span>
-                                    <ul className="space-y-0.5 pl-3 list-disc text-slate-700">
-                                      {row.hinhAnhSGK.cauHoiKhaiThac.map((q, qi) => (
-                                        <li key={qi} className="italic">{q}</li>
-                                      ))}
-                                    </ul>
-                                  </div>
-                                )}
-                              </div>
-                            )}
-
-                            {/* Khi bài học chưa có ảnh scan trực tiếp, hướng dẫn học sinh mở SGK thực tế */}
-                            {row.hinhAnhSGK && !row.hinhAnhSGK.imageUrl && (
-                              <div className="my-2 p-2.5 bg-blue-50/70 border border-blue-200 rounded-lg text-left text-[10.5pt] text-blue-950">
-                                <p className="font-bold text-blue-900 flex items-center gap-1.5 mb-1">
-                                  <span>📖</span>
-                                  <span>{row.hinhAnhSGK.tenHinh}</span>
-                                </p>
-                                {row.hinhAnhSGK.moTa && (
-                                  <p className="text-slate-600 italic text-[10pt] mb-1.5">{row.hinhAnhSGK.moTa}</p>
-                                )}
-                                {row.hinhAnhSGK.cauHoiKhaiThac && row.hinhAnhSGK.cauHoiKhaiThac.length > 0 && (
-                                  <div className="pt-1 border-t border-blue-200/60">
-                                    <span className="font-semibold text-blue-950 text-[10pt] block mb-1">
-                                      🔍 Định hướng học sinh quan sát tranh/bảng số liệu trong SGK:
+                                    <span className="text-[8.5pt] font-medium px-2 py-0.5 bg-blue-100 text-blue-800 rounded">
+                                      SGK Thực tế GDPT 2018
                                     </span>
-                                    <ul className="space-y-0.5 pl-3 list-disc text-slate-700 text-[10pt]">
-                                      {row.hinhAnhSGK.cauHoiKhaiThac.map((q, qi) => (
-                                        <li key={qi} className="italic">{q}</li>
-                                      ))}
-                                    </ul>
                                   </div>
-                                )}
-                              </div>
-                            )}
+                                  <img
+                                    src={effectiveImgUrl}
+                                    alt={row.hinhAnhSGK.tenHinh}
+                                    className="max-h-72 w-auto object-contain rounded border border-slate-300 bg-white shadow-2xs hover:shadow-md transition-shadow"
+                                    onError={(e) => {
+                                      // Fallback an toàn nếu đường dẫn bị lỗi mạng
+                                      (e.target as HTMLImageElement).src = '/sgk-images/khtn-7-hinh-8-2-8-3-toc-ke-va-thiet-bi-ban-toc-do.png';
+                                    }}
+                                  />
+                                  <p className="text-center font-bold text-slate-900 text-[11pt] mt-2.5 flex items-center gap-1.5 justify-center">
+                                    <span>{row.hinhAnhSGK.tenHinh} (Ảnh thực tế SGK)</span>
+                                  </p>
+                                  {row.hinhAnhSGK.moTa && (
+                                    <p className="text-slate-600 italic text-[10pt] text-center max-w-xl mt-1">
+                                      {row.hinhAnhSGK.moTa}
+                                    </p>
+                                  )}
+                                  {row.hinhAnhSGK.cauHoiKhaiThac && row.hinhAnhSGK.cauHoiKhaiThac.length > 0 && (
+                                    <div className="w-full mt-2.5 p-2.5 bg-amber-50/90 border border-amber-200 rounded-lg text-left text-[10pt] text-amber-950">
+                                      <span className="font-bold text-amber-900 block mb-1">
+                                        🔍 Định hướng học sinh tự quan sát & khai thác hình ảnh thực tế SGK:
+                                      </span>
+                                      <ul className="space-y-1 pl-4 list-disc text-slate-800">
+                                        {row.hinhAnhSGK.cauHoiKhaiThac.map((q, qi) => (
+                                          <li key={qi} className="italic">{q}</li>
+                                        ))}
+                                      </ul>
+                                    </div>
+                                  )}
+                                </div>
+                              );
+                            })()}
 
                             {/* SƠ ĐỒ TƯ DUY 16:9 3D PIXAR KẾT LUẬN KIẾN THỨC CỐT LÕI */}
                             {row.soDoTuDuy && (

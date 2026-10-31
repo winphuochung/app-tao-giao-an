@@ -106,6 +106,7 @@ export const TEXTBOOK_LESSONS: Record<string, SgkLessonDetail> = {
         ],
         hinhAnh: {
           tenHinh: 'Hình 8.1: Bảng kết quả chạy cự li 60 m của học sinh (SGK KHTN 7 KNTT - Trang 45)',
+          imageUrl: '/sgk-images/khtn-7-hinh-8-1-bang-chay-60m.png',
           moTa: 'Bảng số liệu ghi lại quãng đường s = 60m, thời gian chạy t của 3 học sinh A (10s), B (12s), C (9,6s) và quãng đường chạy trong 1s.',
           cauHoiKhaiThac: [
             'Quan sát cột Thời gian (t) và Quãng đường trong 1s của Bảng 8.1 trong SGK:',
@@ -125,6 +126,7 @@ export const TEXTBOOK_LESSONS: Record<string, SgkLessonDetail> = {
         ],
         hinhAnh: {
           tenHinh: 'Sơ đồ tam giác công thức: v = s / t | s = v . t | t = s / v (SGK KHTN 7)',
+          imageUrl: '/sgk-images/khtn-7-hinh-8-2-tam-giac-cong-thuc.png',
           moTa: 'Tam giác liên hệ giữa ba đại lượng: Quãng đường (s ở trên), Tốc độ (v ở dưới trái), Thời gian (t ở dưới phải).',
           cauHoiKhaiThac: [
             'Quan sát sơ đồ công thức tam giác trong SGK:',
@@ -163,6 +165,7 @@ export const TEXTBOOK_LESSONS: Record<string, SgkLessonDetail> = {
         ],
         hinhAnh: {
           tenHinh: 'Hình 8.2 & 8.3: Tốc kế xe máy/ô tô và Thiết bị bắn tốc độ CSGT (SGK KHTN 7 KNTT - Trang 48)',
+          imageUrl: '/sgk-images/khtn-7-hinh-8-2-8-3-toc-ke-va-thiet-bi-ban-toc-do.png',
           moTa: 'Hình ảnh hiển thị mặt đồng hồ tốc kế chỉ 45 km/h và thiết bị bắn tốc độ laser/radar chụp hình ảnh phương tiện vi phạm 68 km/h trên đoạn đường giới hạn 50 km/h.',
           cauHoiKhaiThac: [
             'Quan sát màn hình thiết bị bắn tốc độ ở Hình 8.3 SGK:',

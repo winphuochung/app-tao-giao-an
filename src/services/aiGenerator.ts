@@ -1,3 +1,4 @@
+import { resolveSgkImageUrl } from '../utils/sgkImageResolver';
 import { CompleteLessonPlan, LessonMetadata, SlideThemeId, ChiBaoNangLucSo, HoatDongNhomTichCuc, SoDoTuDuy, SoDoTuDuyNhanh } from '../types';
 import { SLIDE_THEMES } from '../data/themes';
 import { HOAT_DONG_NHOM_TIEU_HOC, HOAT_DONG_NHOM_THCS } from '../data/activeGroupActivities';
@@ -766,12 +767,19 @@ export function generateIntelligentPlan(
               hinhAnhSGK: {
                 tenHinh: sec.tenHinhSGK || `Hình ${secIdx + 1}: Tranh ảnh/Sơ đồ ${sec.deMuc} (SGK ${subject} ${metadata.khoiLop} - ${metadata.boSach})`,
                 moTa: sec.moTaHinhSGK || `Hình ảnh trực quan trong SGK minh họa nội dung, sơ đồ hoặc tình huống gắn với ${sec.deMuc}.`,
-                imageUrl: secIdx === 0 ? sgkImg1 : secIdx === 1 ? sgkImg2 : undefined,
+                imageUrl: resolveSgkImageUrl(
+                  {
+                    tenHinh: sec.tenHinhSGK || `Hình ${secIdx + 1}: Tranh ảnh/Sơ đồ ${sec.deMuc}`,
+                    moTa: sec.moTaHinhSGK || `${sec.deMuc} ${metadata.monHoc} ${metadata.tenBaiDay}`
+                  },
+                  metadata.monHoc,
+                  metadata.khoiLop
+                ),
                 cauHoiKhaiThac: sec.cauHoiKhaiThac || [
-                  `1. Quan sát hình ảnh trong SGK: Em nhìn thấy những yếu tố, sự vật hay đối tượng nào?`,
-                  `2. Thảo luận cặp đôi/nhóm: Rút ra định nghĩa hoặc quy tắc của ${sec.deMuc}.`
+                  `1. Quan sát hình ảnh thực tế trong SGK: Em nhìn thấy những yếu tố, thông số hay hiện tượng nào?`,
+                  `2. Thảo luận nhóm: Phân tích ý nghĩa của hình ảnh và rút ra kết luận khoa học của ${sec.deMuc}.`
                 ],
-                ghiChuSuPham: 'Lấy HS làm trung tâm: Hướng dẫn HS tự quan sát, tự đặt câu hỏi và tự rút ra bản chất trước khi GV chốt.'
+                ghiChuSuPham: 'Lấy HS làm trung tâm: Hướng dẫn HS tự quan sát hình ảnh SGK, tự đặt câu hỏi và tự rút ra bản chất trước khi GV chốt.'
               },
               cot1Trai: isTH
                 ? `- GV hướng dẫn HS mở SGK trang bài học, quan sát hình ảnh và đọc thông tin ${sec.deMuc}.\n- Giao nhiệm vụ thảo luận: "Em hãy quan sát thật kĩ và trao đổi cùng bạn bên cạnh trong 3 phút."\n${metadata.tichHop.nangLucSo && nangLucSoIndicators[secIdx] ? `- [TÍCH HỢP NĂNG LỰC SỐ - Mã ${nangLucSoIndicators[secIdx].maChiBao}]: Hướng dẫn HS đối chiếu tranh SGK với hình ảnh/mô phỏng số trên màn hình tương tác.\n` : ''}- GV đi vòng quanh lớp, khuyến khích các em tự tin nêu suy nghĩ cá nhân.`

@@ -192,8 +192,7 @@ export const SAMPLE_KHTN_7_TOC_DO: CompleteLessonPlan = {
             hinhAnhSGK: {
               tenHinh: 'Hình 8.1: Bảng kết quả chạy cự li 60 m của học sinh (SGK KHTN 7 KNTT - Trang 45)',
               moTa: 'Bảng số liệu ghi lại quãng đường s = 60m, thời gian t của 3 bạn học sinh A, B, C và hàng tính quãng đường đi trong 1s.',
-              // Chỉ sử dụng hình ảnh thực tế từ SGK scan
-              imageUrl: undefined,
+              imageUrl: '/sgk-images/khtn-7-hinh-8-1-bang-chay-60m.png',
               cauHoiKhaiThac: [
                 '1. Quan sát Bảng 8.1 SGK: Bạn A, B, C cùng chạy quãng đường bao nhiêu mét?',
                 '2. Thời gian chạy của mỗi bạn là bao nhiêu? Hãy tính quãng đường mỗi bạn đi được trong 1 giây?',
@@ -234,7 +233,7 @@ export const SAMPLE_KHTN_7_TOC_DO: CompleteLessonPlan = {
             hinhAnhSGK: {
               tenHinh: 'Sơ đồ tam giác công thức: v = s / t | s = v . t | t = s / v',
               moTa: 'Tam giác liên hệ giữa 3 đại lượng: s (ở trên), v (ở dưới trái), t (ở dưới phải) giúp học sinh biến đổi công thức dễ dàng.',
-              imageUrl: undefined,
+              imageUrl: '/sgk-images/khtn-7-hinh-8-2-tam-giac-cong-thuc.png',
               cauHoiKhaiThac: [
                 '1. Quan sát sơ đồ công thức: Muốn tính v ta che v lại thì được biểu thức nào?',
                 '2. Muốn tính s hoặc t ta biến đổi như thế nào từ công thức v = s / t?',
@@ -269,7 +268,7 @@ export const SAMPLE_KHTN_7_TOC_DO: CompleteLessonPlan = {
             hinhAnhSGK: {
               tenHinh: 'Bảng tốc độ của một số vật thể trong tự nhiên & kỹ thuật (SGK KHTN 7 KNTT - Trang 47)',
               moTa: 'Bảng tổng hợp tốc độ các chuyển động từ con ốc sên, người đi bộ, xe máy, ô tô đến tốc độ âm thanh và ánh sáng.',
-              imageUrl: undefined,
+              imageUrl: '/sgk-images/khtn-7-bang-8-2-toc-do-vat-the.png',
               cauHoiKhaiThac: [
                 '1. Quan sát Bảng số liệu: Đơn vị đo tốc độ thường dùng là gì?',
                 '2. Hãy biến đổi: 1 km = 1000m, 1 h = 3600s để suy ra mối quan hệ giữa 1 km/h và 1 m/s?',
@@ -304,7 +303,7 @@ export const SAMPLE_KHTN_7_TOC_DO: CompleteLessonPlan = {
             hinhAnhSGK: {
               tenHinh: 'Hình 8.2 & 8.3: Tốc kế xe máy/ô tô & Thiết bị bắn tốc độ CSGT (SGK KHTN 7 KNTT - Trang 48)',
               moTa: 'Tốc kế chỉ thị 45 km/h và Thiết bị bắn tốc độ radar/laser kèm camera ghi lại hình ảnh ô tô vi phạm 68 km/h trên đường giới hạn 50 km/h.',
-              imageUrl: undefined,
+              imageUrl: '/sgk-images/khtn-7-hinh-8-2-8-3-toc-ke-va-thiet-bi-ban-toc-do.png',
               cauHoiKhaiThac: [
                 '1. Quan sát Hình 8.2: Tốc kế gắn ở vị trí nào trên xe? Đồng hồ đang chỉ bao nhiêu km/h?',
                 '2. Quan sát Hình 8.3: Thiết bị bắn tốc độ gồm những bộ phận nào và ghi nhận những thông tin gì?',
