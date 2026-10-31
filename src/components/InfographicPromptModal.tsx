@@ -12,6 +12,7 @@ import {
   CheckCircle2
 } from 'lucide-react';
 import { CompleteLessonPlan } from '../types';
+import { generateInfographicPrompts } from '../utils/infographicPrompts';
 
 interface InfographicPromptModalProps {
   isOpen: boolean;
@@ -77,100 +78,22 @@ export const InfographicPromptModal: React.FC<InfographicPromptModalProps> = ({
     'Giải quyết bài toán đố thực tiễn ứng dụng kiến thức vừa học.'
   ];
 
-  // Specific subject-tailored formulas (standard LaTeX)
-  const latexFormulas = metadata.tenBaiDay.toLowerCase().includes('tốc độ')
-    ? 'Công thức tính tốc độ: $v = \\frac{s}{t}$, Quãng đường: $s = v \\cdot t$, Thời gian: $t = \\frac{s}{v}$, Đổi đơn vị: $1\\text{ m/s} = 3{,}6\\text{ km/h}$'
-    : isTieuHoc
-    ? 'Đường kính và bán kính: $d = 2 \\times r$ (hay $d = 2r$), Chu vi: $C = d \\times 3{,}14$'
-    : 'Công thức toán học/khoa học cốt lõi của bài học theo SGK';
-
-  // Generate Prompt 1: Doraemon
-  const promptDoraemon = `Thiết kế 1 ảnh infographic phiếu học tập có câu hỏi (không có đáp án) bằng truyện tranh có đối thoại nói chuyện qua lại về các nội dung trong bài trên có dùng các nhân vật trong phim hoạt hình Doraemon có nhiều nhân vật, nổi bật nhất là nhóm bạn thân gồm Doraemon, Nobita (Nôbita), Shizuka (Xuka), Jaian (Chaien), và Suneo (Xêko), cùng nhiều nhân vật phụ khác như Dorami (em gái Doraemon), Dekisugi, bố mẹ Nobita (ông Nobisuke, bà Tamako), thầy giáo. tỉ lệ 1:1,414.
-
-• Thông tin bài học:
-- Môn học: ${metadata.monHoc}
-- Lớp: ${metadata.khoiLop}
-- Bài học: ${metadata.tenBaiDay}
-- Bộ sách: ${metadata.boSach}
-
-• Cốt truyện đối thoại:
-- Khung 1: Thầy giáo giao phiếu thử thách bài học "${metadata.tenBaiDay}". Nobita gãi đầu bối rối: "Ôi trời, bài này khó quá, làm sao đây Doraemon ơi!".
-- Khung 2: Doraemon lấy bảo bối thần kỳ bảo Nobita bình tĩnh. Dekisugi thông thái mỉm cười gợi ý quy luật cốt lõi của bài học.
-- Khung 3: Shizuka cẩn thận nhắc nhở các bạn chú ý các chi tiết quan trọng: "${sampleQuestions[0] || 'Quan sát hình ảnh và các dữ liệu đã cho'}".
-- Khung 4: Jaian và Suneo tranh luận sôi nổi về bài toán đố: "${sampleQuestions[1] || 'Đo đạc và tính toán các đại lượng'}".
-- Khung 5: Dorami xuất hiện mang đến câu đố mở rộng: "${sampleQuestions[2] || 'Tìm mối quan hệ giữa các đại lượng'}".
-
-• Nội dung câu hỏi phiếu học tập (để trống dòng kẻ chấm "............" cho học sinh làm bài, KHÔNG có đáp án):
-1. ${sampleQuestions[0] || 'Câu hỏi nhận biết khái niệm cơ bản'}
-2. ${sampleQuestions[1] || 'Câu hỏi thực hành đo đạc / tính toán'}
-3. ${sampleQuestions[2] || 'Câu hỏi tìm mối quan hệ / công thức'}
-4. ${sampleQuestions[3] || 'Thử thách ứng dụng thực tế sáng tạo'}
-
-• Yêu cầu kỹ thuật:
-- Tỉ lệ: 1:1,414 (Khổ A4 dọc tiêu chuẩn in ấn phiếu học tập).
-- Phong cách: Anime / Manga Doraemon nét vẽ hoạt hình Nhật Bản sắc nét, rực rỡ sắc màu, các khung tranh (comic panels) bố cục khoa học từ trên xuống dưới, bóng thoại (speech bubble) tiếng Việt rõ ràng, tuyệt đối không có đáp án sẵn.`;
-
-  // Generate Prompt 2: Science Case File
-  const promptScienceCase = `Bạn là một chuyên gia giáo dục, chuyên thiết kế các "infographic kiến thức - vụ án khoa học" cho học sinh. Hãy đọc và phân tích kiến thức trong bài học này, sau đó thiết kế cho tôi chi tiết một "vụ án khoa học".
-
-• Thông tin bài học:
-- Môn học: ${metadata.monHoc}
-- Lớp: ${metadata.khoiLop}
-- Tên bài học: ${metadata.tenBaiDay}
-- Bộ sách giáo khoa: Kết nối tri thức với cuộc sống (Bộ GD&ĐT)
-
-Yêu cầu chi tiết:
-1. Tên vụ án: Đặt tên vụ án khoa học ly kỳ, hấp dẫn liên quan trực tiếp đến bài học.
-2. Số lượng: 2 infographic liên hoàn:
-- Infographic 1: Bối cảnh vụ án & 4 Manh mối khoa học.
-- Infographic 2: Từng bài tập trắc nghiệm / trả lời ngắn liên quan trực tiếp để học sinh giải mã.
-3. Phần kết quả: Nằm RIÊNG 1 phần dùng cho giáo viên làm đáp án chấm bài.
-4. Định dạng đầu ra: Chuẩn công thức dạng LaTeX: ${latexFormulas}.`;
-
-  // Generate Prompt 3: Conan Anime Poster
-  const promptConan = `Thiết kế 1 ảnh infographic "vụ án khoa học" với những câu hỏi (không có đáp án) được dẫn dắt bởi nhân vật Conan (trong bộ truyện Thám tử lừng danh Conan) với các khung truyện tranh anime có màu, hấp dẫn lôi cuốn, như những tấm poster. Tỉ lệ 1,414:1.
-
-• Chủ đề bài học: "${metadata.tenBaiDay}" - Môn ${metadata.monHoc} Lớp ${metadata.khoiLop} (Bộ sách: ${metadata.boSach}).
-
-• Bối cảnh poster & Nhân vật:
-- Nhân vật trung tâm: Thám tử Edogawa Conan đeo kính định vị lóe sáng, nơ biến đổi giọng nói.
-- Nhân vật hỗ trợ: Đội thám tử nhí Lớp 1B (Ayumi, Genta, Mitsuhiko) cùng Ran Mori và Bác tiến sĩ Agasa.
-- Khung cảnh: Phông nền hiện trường phá án khoa học bí ẩn với các tia sáng xanh neon cinematic.
-
-• Nội dung câu hỏi truy tìm chân tướng:
-- Manh mối số 1: ${sampleQuestions[0]}
-- Manh mối số 2: ${sampleQuestions[1]}
-- Manh mối số 3: ${sampleQuestions[2]}
-- Manh mối số 4: ${sampleQuestions[3]}
-
-• Yêu cầu kỹ thuật đồ họa:
-- Tỉ lệ: 1,414:1 (Khổ ngang A4 Landscape Poster chuẩn điện ảnh).
-- Bố cục: Phong cách Anime Movie Poster rực rỡ, kịch tính, kết hợp bảng infographic dữ liệu khoa học.`;
-
-  // Generate Prompt 4: Cute Students Cartoon
-  const promptCuteStudents = `Thiết kế 1 ảnh infographic phiếu học tập có câu hỏi (không có đáp án), phong cách hoạt hình với nhân vật là các bạn học sinh lớp ${metadata.khoiLop}, dễ thương đối thoại nói chuyện qua lại về các nội dung trong bài học "${metadata.tenBaiDay}" - Môn ${metadata.monHoc} (Bộ sách: ${metadata.boSach}), bố cục màu sắc, dễ nhìn, sáng tạo. Tỉ lệ 1:1,414.
-
-• Nhân vật & Bối cảnh:
-- Một nhóm gồm 4 bạn học sinh Lớp ${metadata.khoiLop} Việt Nam cực kỳ dễ thương (phong cách hoạt hình 3D Pixar / Chibi 2D đáng yêu), đại diện 4 vai trò: Nhóm trưởng (Mực đỏ), Thư ký (Mực xanh dương), Kỹ thuật viên (Mực xanh lá), Báo cáo viên (Mực tím/đen).
-
-• Nội dung đối thoại & Câu hỏi phiếu học tập:
-- Bạn Minh (Nhóm trưởng): "Các bạn ơi, bài học '${metadata.tenBaiDay}' hôm nay thú vị lắm! Cùng giải mã câu hỏi 1 nào!" ➔ [${sampleQuestions[0]}]
-- Bạn Lan (Thư ký): "Tớ ghi lại số liệu đây rồi! Câu hỏi 2 là gì nhỉ?" ➔ [${sampleQuestions[1]}]
-- Bạn An (Kỹ thuật): "Tớ vừa tính xong công thức chuẩn rồi!" ➔ [${sampleQuestions[2]}]
-- Bạn Hoa (Báo cáo viên): "Thử thách vận dụng cuối cùng đây rồi!" ➔ [${sampleQuestions[3]}]`;
+  const prompts =
+    groupActivity?.promptInfographic ||
+    generateInfographicPrompts(metadata, sampleQuestions);
 
   const getActivePromptText = (): string => {
     switch (activeTab) {
       case 'doraemon':
-        return promptDoraemon;
+        return prompts.promptDoraemon;
       case 'science-case':
-        return promptScienceCase;
+        return prompts.promptVuAnKhoaHoc;
       case 'conan':
-        return promptConan;
+        return prompts.promptConan;
       case 'cute-students':
-        return promptCuteStudents;
+        return prompts.promptHoatHinh;
       default:
-        return promptDoraemon;
+        return prompts.promptDoraemon;
     }
   };
 

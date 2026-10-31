@@ -29,11 +29,18 @@ type WorksheetStyle =
 
 export const InfographicWorksheet: React.FC<InfographicWorksheetProps> = ({ data }) => {
   const [style, setStyle] = useState<WorksheetStyle>('doraemon-ai');
+  const [imgError, setImgError] = useState<boolean>(false);
   const printableAreaRef = useRef<HTMLDivElement>(null);
 
   const meta = data.metadata;
   const isTieuHoc = meta.capHoc === 'TIEU_HOC';
   const isBai9 = meta.tenBaiDay.toLowerCase().includes('bài 9') || meta.tenBaiDay.toLowerCase().includes('đo tốc độ');
+  const isToan6 = meta.tenBaiDay.toLowerCase().includes('trục đối xứng');
+
+  // Reset image error on style or lesson change
+  React.useEffect(() => {
+    setImgError(false);
+  }, [style, meta.tenBaiDay]);
 
   // Dynamically map high-resolution AI generated images matching the lesson
   const getImageForStyle = (st: WorksheetStyle): string => {
@@ -46,6 +53,10 @@ export const InfographicWorksheet: React.FC<InfographicWorksheetProps> = ({ data
       if (st === 'conan-ai') return '/infographics/poster-conan-khtn7-bai8.jpg';
       if (st === 'science-case-ai') return '/infographics/phieu-vu-an-khoa-hoc-khtn7-bai8.jpg';
       return '/infographics/phieu-hoc-sinh-khtn7-bai8.jpg';
+    }
+    if (isToan6) {
+      if (st === 'doraemon-ai') return '/infographics/phieu-doraemon-toan6-truc-doi-xung.jpg';
+      if (st === 'conan-ai') return '/infographics/poster-conan-khtn7-bai8.jpg';
     }
     // Bai 8
     switch (st) {
@@ -300,13 +311,34 @@ export const InfographicWorksheet: React.FC<InfographicWorksheetProps> = ({ data
               </div>
             </div>
 
-            {/* Render Image */}
+            {/* Render Image or Dynamic Visual Card */}
             <div className="relative rounded-2xl overflow-hidden border-2 border-slate-700 bg-slate-950 shadow-inner group flex justify-center">
-              <img
-                src={currentImageUrl}
-                alt={`Phiếu học tập ${style} - ${meta.tenBaiDay}`}
-                className="w-full max-h-[750px] object-contain rounded-xl hover:scale-[1.01] transition-transform duration-300"
-              />
+              {!imgError ? (
+                <img
+                  src={currentImageUrl}
+                  alt={`Phiếu học tập ${style} - ${meta.tenBaiDay}`}
+                  onError={() => setImgError(true)}
+                  className="w-full max-h-[750px] object-contain rounded-xl hover:scale-[1.01] transition-transform duration-300"
+                />
+              ) : (
+                <div className="p-6 bg-white text-slate-900 rounded-xl w-full max-w-2xl my-4 space-y-4 shadow-xl border-2 border-indigo-400">
+                  <div className="text-center border-b pb-3 space-y-1">
+                    <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800 uppercase">
+                      Bản Infographic Trực Quan Tự Động
+                    </span>
+                    <h3 className="text-lg font-bold text-slate-900 uppercase">{worksheetTitle}</h3>
+                    <p className="text-xs text-slate-500 italic">{groupInfo}</p>
+                  </div>
+                  <div className="space-y-3 text-xs sm:text-sm">
+                    {questions.map((q, idx) => (
+                      <div key={idx} className="p-3 bg-slate-50 border rounded-xl space-y-1">
+                        <p className="font-bold text-blue-900">Nhiệm vụ {idx + 1}: {q}</p>
+                        <p className="text-slate-400 font-mono text-xs">Bài làm: ............................................................................................</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="p-3 bg-slate-800/80 border border-slate-700 rounded-xl text-xs text-slate-300 flex flex-col sm:flex-row items-center justify-between gap-2">
