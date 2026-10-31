@@ -16,7 +16,10 @@ import {
   Image as ImageIcon,
   Users,
   Lightbulb,
-  ExternalLink
+  ExternalLink,
+  HelpCircle,
+  ChevronDown,
+  ChevronUp
 } from 'lucide-react';
 import { GiaoAnWordData, AiAnalysisReport } from '../types';
 import { generateInfographicPrompts } from '../utils/infographicPrompts';
@@ -44,6 +47,8 @@ export const LessonPlanEditor: React.FC<LessonPlanEditorProps> = ({
   const [zoomLevel, setZoomLevel] = useState<number>(100);
   const [activePromptTab, setActivePromptTab] = useState<'doraemon' | 'science-case' | 'conan' | 'cute-students'>('doraemon');
   const [copiedPromptKey, setCopiedPromptKey] = useState<string | null>(null);
+  const [isAnalysisExpanded, setIsAnalysisExpanded] = useState<boolean>(false);
+  const [showGuideTooltip, setShowGuideTooltip] = useState<boolean>(false);
 
   const handleCopyPrompt = (text: string, key: string) => {
     navigator.clipboard.writeText(text);
@@ -107,6 +112,32 @@ export const LessonPlanEditor: React.FC<LessonPlanEditorProps> = ({
             </button>
           </div>
 
+          {/* Reassuring Notice Tooltip (Compact Question Mark) */}
+          <div className="relative inline-block">
+            <button
+              type="button"
+              onMouseEnter={() => setShowGuideTooltip(true)}
+              onMouseLeave={() => setShowGuideTooltip(false)}
+              onClick={() => setShowGuideTooltip(!showGuideTooltip)}
+              className="w-8 h-8 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold flex items-center justify-center text-xs border border-blue-200 transition-colors shadow-2xs cursor-pointer"
+              title="Hướng dẫn chuẩn thể thức & chỉnh sửa Word"
+            >
+              <HelpCircle className="w-4 h-4" />
+            </button>
+            {showGuideTooltip && (
+              <div className="absolute right-0 top-10 z-50 w-80 sm:w-96 p-3.5 bg-slate-900/95 backdrop-blur-md text-white rounded-xl shadow-2xl text-[11px] leading-relaxed border border-slate-700 animate-in fade-in zoom-in-95">
+                <div className="flex items-start gap-2">
+                  <Sparkles className="w-4 h-4 text-amber-300 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <strong className="text-amber-200 block mb-1">Chuẩn thể thức sư phạm & Dễ dàng chỉnh sửa trên Word:</strong>
+                    Bản xem trước được trình bày đúng chuẩn thể thức hành chính, phân tách gạch đầu dòng (-) rõ ràng cho từng ý.
+                    Khi tải file <span className="font-bold text-amber-300">.docx</span> về máy, mỗi ý là một đoạn riêng biệt (Paragraph), Thầy/Cô chỉ cần đặt con trỏ chuột bấm <kbd className="px-1 py-0.2 bg-slate-800 border border-slate-600 rounded font-mono text-[10px]">Enter</kbd> để thêm ý mới, hoặc bấm <kbd className="px-1 py-0.2 bg-slate-800 border border-slate-600 rounded font-mono text-[10px]">Backspace</kbd> để xóa bớt ý trên Microsoft Word một cách thuận tiện nhất.
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
           <button
             onClick={handlePrint}
             className="px-3.5 py-1.5 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors flex items-center gap-1.5"
@@ -126,77 +157,70 @@ export const LessonPlanEditor: React.FC<LessonPlanEditorProps> = ({
         </div>
       </div>
 
-      {/* Reassuring Notice for Teachers */}
-      <div className="bg-blue-50/80 border border-blue-200 rounded-xl p-3.5 text-xs text-slate-700 flex items-start gap-2.5 shadow-xs">
-        <Sparkles className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
-        <div className="leading-relaxed">
-          <strong className="text-blue-900">Chuẩn thể thức sư phạm & Dễ dàng chỉnh sửa trên Word:</strong> Bản xem trước bên dưới được trình bày đúng chuẩn thể thức hành chính, phân tách <strong>gạch đầu dòng (-) rõ ràng cho từng ý</strong>.
-          Khi tải file <span className="font-bold text-blue-800">.docx</span> về máy, mỗi ý là một đoạn riêng biệt (Paragraph) hoàn toàn mở, Thầy/Cô chỉ cần đặt con trỏ chuột bấm <kbd className="px-1.5 py-0.5 bg-white border border-slate-300 rounded font-mono text-[10px]">Enter</kbd> để thêm ý mới, hoặc bấm <kbd className="px-1.5 py-0.5 bg-white border border-slate-300 rounded font-mono text-[10px]">Backspace</kbd> để xóa bớt ý trên Microsoft Word một cách thuận tiện nhất.
-        </div>
-      </div>
-
-      {/* AI Analysis & Textbook Link Card */}
-      <div className="bg-gradient-to-r from-blue-50 via-indigo-50 to-emerald-50 border-2 border-indigo-200 rounded-2xl p-4 shadow-xs space-y-3">
+      {/* AI Analysis & Textbook Link Card (Collapsible to maximize vertical view) */}
+      <div className="bg-gradient-to-r from-blue-50/80 via-indigo-50/80 to-emerald-50/80 border border-indigo-200 rounded-2xl p-3 shadow-xs space-y-2 transition-all">
         <div className="flex flex-wrap items-center justify-between gap-2">
-          <div className="flex items-center gap-2.5">
-            <span className="w-8 h-8 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold text-sm shadow-xs">
+          <div className="flex items-center gap-2">
+            <span className="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center font-bold text-xs shadow-2xs">
               🧠
             </span>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-black text-indigo-950 uppercase tracking-wide">
-                  AI Phân Tích Bài Học & Đồng Bộ Cổng SGK Điện Tử
-                </span>
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-600 text-white shadow-2xs">
-                  ✓ Chuẩn {meta.congVan}
-                </span>
-              </div>
-              <p className="text-[11px] text-indigo-900 font-medium">
-                Tự động bóc tách từng đề mục SGK thành các hoạt động khám phá độc lập (Hoạt động 2.1, 2.2, 2.3...)
-              </p>
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-black text-indigo-950 uppercase tracking-wide">
+                AI Phân Tích Bài Học & Đề Mục SGK
+              </span>
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-600 text-white shadow-2xs">
+                ✓ Chuẩn {meta.congVan}
+              </span>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
-            <a
-              href={`https://taphuan.nxbgd.vn/tap-huan?grade=${meta.khoiLop}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-2.5 py-1.5 rounded-lg text-[11px] font-bold text-emerald-800 bg-white hover:bg-emerald-100 border border-emerald-300 shadow-2xs transition-all flex items-center gap-1 cursor-pointer"
-            >
-              <span>🔗 Mở Cổng SGK Lớp {meta.khoiLop}</span>
-              <ExternalLink className="w-3.5 h-3.5 text-emerald-600" />
-            </a>
-
+          <div className="flex items-center gap-1.5">
             {onOpenAnalysisModal && (
               <button
                 type="button"
                 onClick={onOpenAnalysisModal}
-                className="px-3 py-1.5 rounded-lg text-[11px] font-bold text-white bg-indigo-600 hover:bg-indigo-700 active:scale-95 shadow-2xs transition-all flex items-center gap-1 cursor-pointer"
+                className="px-2.5 py-1 rounded-lg text-[11px] font-bold text-white bg-indigo-600 hover:bg-indigo-700 active:scale-95 shadow-2xs transition-all flex items-center gap-1 cursor-pointer"
               >
-                <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-                <span>Xem Báo Cáo Phân Tích AI</span>
+                <Sparkles className="w-3 h-3 text-amber-300" />
+                <span>Xem Báo Cáo Phân Tích</span>
               </button>
             )}
+
+            <button
+              type="button"
+              onClick={() => setIsAnalysisExpanded(!isAnalysisExpanded)}
+              className="px-2.5 py-1 rounded-lg text-[11px] font-bold text-indigo-800 bg-white hover:bg-indigo-100 border border-indigo-300 shadow-2xs transition-all flex items-center gap-1 cursor-pointer"
+              title="Đóng / mở khung đề mục SGK để tối đa không gian xem trang giáo án"
+            >
+              <span>{isAnalysisExpanded ? 'Thu gọn đề mục' : 'Xem đề mục bóc tách'}</span>
+              {isAnalysisExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+            </button>
           </div>
         </div>
 
-        {/* Section Pill List */}
-        <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-indigo-200/70 text-xs">
-          <span className="font-bold text-slate-700 text-[11px]">📑 Cấu trúc đề mục bóc tách:</span>
-          {data.tienTrinhDayHoc
-            .filter((h) => h.deMucSGK || (h.soThuTu === 2 && h.tenHoatDong.includes('2.')))
-            .map((h, i) => (
-              <span
-                key={h.id || i}
-                className="px-2.5 py-1 rounded-lg bg-white border border-indigo-200 text-indigo-900 font-semibold text-[11px] shadow-2xs flex items-center gap-1.5"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
-                <span className="font-bold">{h.deMucSGK ? h.deMucSGK.split('.')[0] + '.' : `2.${i+1}.`}</span>
-                <span className="truncate max-w-[220px]">{h.deMucSGK ? h.deMucSGK.replace(/^I+[\.\s\-]+/, '') : h.tenHoatDong.replace(/^Hoạt động 2\.\d+:\s*/, '')}</span>
-              </span>
-            ))}
-        </div>
+        {/* Expandable Content */}
+        {isAnalysisExpanded && (
+          <div className="pt-2 border-t border-indigo-200/70 space-y-2 animate-in fade-in duration-150">
+            <p className="text-[11px] text-indigo-900 font-medium">
+              Tự động bóc tách từng đề mục SGK thành các hoạt động khám phá độc lập (Hoạt động 2.1, 2.2, 2.3...):
+            </p>
+            {/* Section Pill List */}
+            <div className="flex flex-wrap items-center gap-1.5 text-xs">
+              {data.tienTrinhDayHoc
+                .filter((h) => h.deMucSGK || (h.soThuTu === 2 && h.tenHoatDong.includes('2.')))
+                .map((h, i) => (
+                  <span
+                    key={h.id || i}
+                    className="px-2.5 py-1 rounded-lg bg-white border border-indigo-200 text-indigo-900 font-semibold text-[11px] shadow-2xs flex items-center gap-1.5"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
+                    <span className="font-bold">{h.deMucSGK ? h.deMucSGK.split('.')[0] + '.' : `2.${i+1}.`}</span>
+                    <span className="truncate max-w-[220px]">{h.deMucSGK ? h.deMucSGK.replace(/^I+[\.\s\-]+/, '') : h.tenHoatDong.replace(/^Hoạt động 2\.\d+:\s*/, '')}</span>
+                  </span>
+                ))}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* A4 Paper Container with Official Margins Simulation */}

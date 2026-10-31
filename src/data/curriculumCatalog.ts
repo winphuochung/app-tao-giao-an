@@ -3925,15 +3925,17 @@ export const FULL_CURRICULUM_CATALOG: Record<string, CurriculumLessonItem[]> = {
   ]
 };
 
-// Danh sách các môn học chuẩn theo từng cấp học
+// Danh sách các môn học chuẩn theo từng cấp học GDPT 2018
 export const OFFICIAL_SUBJECTS_THCS = [
   'Khoa học tự nhiên',
   'Toán',
   'Ngữ văn',
-  'Công nghệ',
-  'Tin học',
   'Lịch sử và Địa lí',
   'Giáo dục công dân',
+  'Tin học',
+  'Công nghệ',
+  'Nghệ thuật (Mĩ thuật, Âm nhạc)',
+  'Giáo dục thể chất',
   'Tiếng Anh',
   'Hoạt động trải nghiệm, hướng nghiệp'
 ];
@@ -3943,23 +3945,56 @@ export const OFFICIAL_SUBJECTS_TIEU_HOC = [
   'Tiếng Việt',
   'Tự nhiên và Xã hội',
   'Khoa học',
+  'Lịch sử và Địa lí',
   'Tin học',
   'Công nghệ',
-  'Lịch sử và Địa lí',
   'Đạo đức',
+  'Nghệ thuật (Mĩ thuật, Âm nhạc)',
+  'Giáo dục thể chất',
   'Tiếng Anh',
   'Hoạt động trải nghiệm'
 ];
 
 export function getSubjectsForGrade(grade: number): string[] {
   if (grade <= 2) {
-    return ['Toán', 'Tiếng Việt', 'Tự nhiên và Xã hội', 'Đạo đức', 'Hoạt động trải nghiệm'];
+    return [
+      'Toán',
+      'Tiếng Việt',
+      'Tự nhiên và Xã hội',
+      'Đạo đức',
+      'Nghệ thuật (Mĩ thuật, Âm nhạc)',
+      'Giáo dục thể chất',
+      'Hoạt động trải nghiệm'
+    ];
   }
   if (grade === 3) {
-    return ['Toán', 'Tiếng Việt', 'Tự nhiên và Xã hội', 'Tin học', 'Công nghệ', 'Tiếng Anh', 'Đạo đức', 'Hoạt động trải nghiệm'];
+    return [
+      'Toán',
+      'Tiếng Việt',
+      'Tự nhiên và Xã hội',
+      'Tin học',
+      'Công nghệ',
+      'Tiếng Anh',
+      'Đạo đức',
+      'Nghệ thuật (Mĩ thuật, Âm nhạc)',
+      'Giáo dục thể chất',
+      'Hoạt động trải nghiệm'
+    ];
   }
   if (grade <= 5) {
-    return ['Toán', 'Tiếng Việt', 'Khoa học', 'Lịch sử và Địa lí', 'Tin học', 'Công nghệ', 'Tiếng Anh', 'Đạo đức', 'Hoạt động trải nghiệm'];
+    return [
+      'Toán',
+      'Tiếng Việt',
+      'Khoa học',
+      'Lịch sử và Địa lí',
+      'Tin học',
+      'Công nghệ',
+      'Tiếng Anh',
+      'Đạo đức',
+      'Nghệ thuật (Mĩ thuật, Âm nhạc)',
+      'Giáo dục thể chất',
+      'Hoạt động trải nghiệm'
+    ];
   }
   // THCS (Lớp 6, 7, 8, 9)
   return OFFICIAL_SUBJECTS_THCS;

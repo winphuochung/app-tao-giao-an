@@ -50,15 +50,26 @@ export const InfographicWorksheet: React.FC<InfographicWorksheetProps> = ({ data
   const isTieuHoc = meta.capHoc === 'TIEU_HOC' || gradeNum <= 5;
   const isKhtn = /khoa học tự nhiên|khtn|vật lí/i.test(meta.monHoc) || meta.tenBaiDay.toLowerCase().includes('khtn');
 
-  const isExactKhtn7Bai8 = gradeNum === 7 && isKhtn && (meta.tenBaiDay.toLowerCase().includes('tốc độ') || meta.tenBaiDay.toLowerCase().includes('bài 8'));
-  const isExactKhtn7Bai9 = gradeNum === 7 && isKhtn && (meta.tenBaiDay.toLowerCase().includes('đo tốc độ') || meta.tenBaiDay.toLowerCase().includes('bài 9'));
-  const isExactToan3 = gradeNum === 3 && /toán/i.test(meta.monHoc);
-  const isExactToan6 = gradeNum === 6 && /toán/i.test(meta.monHoc);
+  const isExactKhtn7Bai9 = gradeNum === 7 && isKhtn && (
+    meta.tenBaiDay.toLowerCase().includes('đo tốc độ') || 
+    (meta.tenBaiDay.toLowerCase().includes('bài 9') && !meta.tenBaiDay.toLowerCase().includes('bài 8'))
+  );
+  const isExactKhtn7Bai8 = gradeNum === 7 && isKhtn && !isExactKhtn7Bai9 && (
+    /bài 8\b/i.test(meta.tenBaiDay) ||
+    /tốc độ chuyển động/i.test(meta.tenBaiDay)
+  );
+  const isExactToan3 = gradeNum === 3 && /toán/i.test(meta.monHoc) && (
+    /hình tròn/i.test(meta.tenBaiDay) ||
+    /tâm.*đường kính/i.test(meta.tenBaiDay)
+  );
+  const isExactToan6 = gradeNum === 6 && /toán/i.test(meta.monHoc) && (
+    /trục đối xứng/i.test(meta.tenBaiDay)
+  );
 
   // Reset image error on style or lesson change
   React.useEffect(() => {
     setImgError(false);
-  }, [style, meta.tenBaiDay]);
+  }, [style, meta.tenBaiDay, meta.khoiLop, meta.monHoc, meta.boSach]);
 
   // Extract authentic group activity and worksheet matching the lesson
   const groupActivity =
@@ -522,30 +533,95 @@ export const InfographicWorksheet: React.FC<InfographicWorksheetProps> = ({ data
                     </div>
                   </div>
 
-                  {/* Tasks Section Header */}
-                  <div className="bg-blue-900 text-white px-3 py-1.5 rounded-lg font-bold text-xs uppercase tracking-wide flex items-center justify-between">
-                    <span>PHẦN CÂU HỎI NHIỆM VỤ NHÓM (HỌC SINH TỰ LÀM VÀO DÒNG CHẤM - KHÔNG CÓ ĐÁP ÁN SẴN):</span>
-                    <span className="text-amber-300 font-mono text-[11px]">4 CÂU HỎI</span>
+                  {/* Tasks Section Header: Lộ Trình Học Tập Dạng Trạm */}
+                  <div className="p-3 bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white rounded-xl shadow-md space-y-2">
+                    <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider">
+                      <span className="flex items-center gap-1.5 text-amber-300">
+                        <Sparkles className="w-4 h-4 text-amber-400 animate-pulse" />
+                        LỘ TRÌNH 4 TRẠM NHIỆM VỤ (HỌC SINH TỰ LÀM VÀO DÒNG CHẤM - KHÔNG CÓ ĐÁP ÁN):
+                      </span>
+                      <span className="font-mono text-[11px] text-blue-200">Trạm 1 ➔ Trạm 2 ➔ Trạm 3 ➔ Trạm 4</span>
+                    </div>
+
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-[11px] font-bold">
+                      <div className="p-1.5 bg-blue-800/80 border border-blue-400 rounded-lg text-center flex items-center justify-center gap-1">
+                        <span>🚩 Trạm 1:</span>
+                        <span className="text-blue-200 font-normal truncate">Khởi Động</span>
+                      </div>
+                      <div className="p-1.5 bg-indigo-800/80 border border-indigo-400 rounded-lg text-center flex items-center justify-center gap-1">
+                        <span>🔍 Trạm 2:</span>
+                        <span className="text-indigo-200 font-normal truncate">Khám Phá</span>
+                      </div>
+                      <div className="p-1.5 bg-purple-800/80 border border-purple-400 rounded-lg text-center flex items-center justify-center gap-1">
+                        <span>✏️ Trạm 3:</span>
+                        <span className="text-purple-200 font-normal truncate">Luyện Tập</span>
+                      </div>
+                      <div className="p-1.5 bg-emerald-800/80 border border-emerald-400 rounded-lg text-center flex items-center justify-center gap-1">
+                        <span>🚀 Trạm 4:</span>
+                        <span className="text-emerald-200 font-normal truncate">Vận Dụng</span>
+                      </div>
+                    </div>
                   </div>
 
-                  {/* 4 Question Tasks with Dotted Lines */}
-                  <div className="space-y-3 text-xs sm:text-[13px]">
-                    {questions.map((q, idx) => (
-                      <div key={idx} className="p-3 bg-slate-50 border border-slate-300 rounded-xl space-y-1.5">
-                        <div className="flex items-start gap-2">
-                          <span className="bg-blue-700 text-white rounded-full w-5 h-5 flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
-                            {idx + 1}
-                          </span>
-                          <p className="font-bold text-slate-900 leading-snug">
-                            {q}
-                          </p>
+                  {/* 4 Station Task Cards with Character Hints and Dotted Lines */}
+                  <div className="space-y-3.5 text-xs sm:text-[13px]">
+                    {questions.map((q, idx) => {
+                      const stationNames = [
+                        'TRẠM 1: KHỞI ĐỘNG & KÍCH HOẠT TƯ DUY',
+                        'TRẠM 2: KHÁM PHÁ & CHIẾM LĨNH TRI THỨC',
+                        'TRẠM 3: LUYỆN TẬP & THỬ THÁCH 4 MÀU MỰC',
+                        'TRẠM 4: VẬN DỤNG & THỰC TIỄN CUỘC SỐNG'
+                      ];
+                      const stationColors = [
+                        'border-blue-400 bg-blue-50/40 text-blue-900',
+                        'border-indigo-400 bg-indigo-50/40 text-indigo-900',
+                        'border-purple-400 bg-purple-50/40 text-purple-900',
+                        'border-emerald-400 bg-emerald-50/40 text-emerald-900'
+                      ];
+                      const companionAvatars = [
+                        <DoraemonAvatar key="a1" className="w-8 h-8 rounded-full border border-blue-400 bg-white p-0.5 flex-shrink-0" />,
+                        <ShizukaAvatar key="a2" className="w-8 h-8 rounded-full border border-rose-400 bg-white p-0.5 flex-shrink-0" />,
+                        <DekisugiAvatar key="a3" className="w-8 h-8 rounded-full border border-purple-400 bg-white p-0.5 flex-shrink-0" />,
+                        <PixarStudentAvatar key="a4" className="w-8 h-8 rounded-full border border-emerald-400 bg-white p-0.5 flex-shrink-0" />
+                      ];
+                      const companionHints = [
+                        'Doraemon gợi ý: "Quan sát kỹ bảng dữ liệu và hiện tượng mở đầu nhé!"',
+                        'Shizuka nhắc nhở: "Cùng trích xuất thông số trọng tâm và ghi chép cẩn thận!"',
+                        'Dekisugi mách nước: "Vận dụng đúng công thức và phân công 4 màu mực!"',
+                        'Đồng đội khích lệ: "Liên hệ thực tiễn và hoàn thành báo cáo nhóm xuất sắc!"'
+                      ];
+
+                      return (
+                        <div key={idx} className={`p-3.5 border-2 rounded-2xl space-y-2 shadow-2xs ${stationColors[idx % 4]}`}>
+                          <div className="flex items-center justify-between border-b pb-1.5 border-slate-200">
+                            <span className="font-black text-xs uppercase tracking-wide flex items-center gap-1.5">
+                              <span className="w-5 h-5 rounded-full bg-slate-900 text-white flex items-center justify-center text-[10px] font-black">
+                                {idx + 1}
+                              </span>
+                              <span>{stationNames[idx % 4]}</span>
+                            </span>
+                            <div className="flex items-center gap-1.5">
+                              {companionAvatars[idx % 4]}
+                              <span className="text-[10.5px] italic text-slate-600 hidden sm:inline">
+                                {companionHints[idx % 4]}
+                              </span>
+                            </div>
+                          </div>
+
+                          <div className="flex items-start gap-2">
+                            <p className="font-bold text-slate-900 text-[12.5px] leading-relaxed">
+                              {q}
+                            </p>
+                          </div>
+
+                          <div className="space-y-1 text-slate-400 font-mono text-xs pt-1">
+                            <p>Bài làm: .........................................................................................................................................................................................................................</p>
+                            <p>............................................................................................................................................................................................................................................</p>
+                            <p>............................................................................................................................................................................................................................................</p>
+                          </div>
                         </div>
-                        <div className="pl-7 space-y-1 text-slate-400 font-mono text-xs">
-                          <p>Bài làm: .........................................................................................................................................................................................................................</p>
-                          <p>............................................................................................................................................................................................................................................</p>
-                        </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
 
                   {/* 4 Roles Table */}

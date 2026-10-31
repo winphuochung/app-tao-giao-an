@@ -21,6 +21,7 @@ import { SAMPLE_KHTN_7_TOC_DO } from '../data/sampleKhtn7';
 import { SAMPLE_KHTN_7_BAI_9_DO_TOC_DO } from '../data/sampleKhtn7Bai9';
 import { SAMPLE_LESSONS } from '../data/sampleLessons';
 import { generateIntelligentPlan } from '../services/aiGenerator';
+import { calculateLessonDuration } from '../utils/durationCalculator';
 
 interface TextbookExplorerModalProps {
   isOpen: boolean;
@@ -56,7 +57,7 @@ export const TextbookExplorerModal: React.FC<TextbookExplorerModalProps> = ({
     tenBaiDay: foundInCatalog?.name || 'Bài học chuẩn SGK',
     soTiet: foundInCatalog?.periods || '2 tiết',
     tietTheoPPCT: foundInCatalog?.ppct || 'Tiết 1 - 2',
-    thoiLuong: currentGrade <= 5 ? '35 phút' : (foundInCatalog?.periods === '1 tiết' ? '45 phút' : '90 phút'),
+    thoiLuong: calculateLessonDuration(foundInCatalog?.periods || '2 tiết', currentGrade <= 5),
     tuanThucHien: 'Tuần 1',
     sgkUrl: `https://taphuan.nxbgd.vn/tap-huan?grade=${currentGrade}`,
     sgkTrang: `SGK Lớp ${currentGrade}`,
@@ -140,7 +141,7 @@ export const TextbookExplorerModal: React.FC<TextbookExplorerModalProps> = ({
         tenBaiDay: targetLesson?.name || currentLesson.tenBaiDay,
         soTiet: targetLesson?.periods || currentLesson.soTiet || '2 tiết',
         tietTheoPPCT: targetLesson?.ppct || currentLesson.tietTheoPPCT || '',
-        thoiLuong: isTieuHoc ? '35 phút' : (targetLesson?.periods === '1 tiết' ? '45 phút' : '90 phút'),
+        thoiLuong: calculateLessonDuration(targetLesson?.periods || currentLesson.soTiet || '2 tiết', isTieuHoc),
         tuanThucHien: 'Tuần 1',
         tichHop: {
           nangLucSo: true,

@@ -17,7 +17,7 @@ export const SAMPLE_KHTN_7_BAI_9_DO_TOC_DO: CompleteLessonPlan = {
       tuanThucHien: 'Tuần 8 đến 9',
       siSoLop: '40 học sinh (Chia 8 nhóm, mỗi nhóm 5 em)',
       dacDiemHocSinh: 'Học sinh hào hứng với thí nghiệm thực hành đo đạc; cần rèn luyện tính cẩn thận và trung thực trong ghi chép số liệu.',
-      truong: 'Trường THCS Chu Văn An',
+      truong: '',
       toChuyenMon: 'Tổ Khoa học tự nhiên (Lí - Hóa - Sinh)',
       giaoVien: 'Nguyễn Văn A',
       tichHop: {

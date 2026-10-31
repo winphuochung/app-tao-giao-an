@@ -530,7 +530,7 @@ export const SAMPLE_LESSONS: Record<string, CompleteLessonPlan> = {
         siSoLop: '40 học sinh (Chia 8 nhóm, mỗi nhóm 5 em)',
         dacDiemHocSinh: 'Có một số em thụ động, ngại phát biểu, thường phụ thuộc vào bạn học khá',
         tuanThucHien: 'Tuần 10',
-        truong: 'Trường THCS Chu Văn An',
+        truong: '',
         toChuyenMon: 'Tổ Toán - Tin học',
         giaoVien: '',
         ngayThucHien: 'Tháng 11 năm 2026',

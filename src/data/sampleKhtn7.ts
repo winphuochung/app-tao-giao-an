@@ -16,7 +16,7 @@ const metaKhtn7 = {
   siSoLop: '40 học sinh (Chia 8 nhóm, mỗi nhóm 5 em)',
   dacDiemHocSinh: 'Có một số em thụ động, ngại tính toán, thường phụ thuộc vào nhóm trưởng khi xử lý số liệu',
   tuanThucHien: 'Tuần 7 đến 8',
-  truong: 'Trường THCS Chu Văn An',
+  truong: '',
   toChuyenMon: 'Tổ Khoa học tự nhiên',
   giaoVien: '',
   ngayThucHien: 'Năm học 2026 - 2027',

@@ -134,7 +134,7 @@ export const HOAT_DONG_NHOM_TIEU_HOC: HoatDongNhomTichCuc = {
       thoiLuong: '35 phút',
       siSoLop: '35 học sinh',
       giaoVien: 'Nguyễn Văn A',
-      truong: 'Trường Tiểu học Chu Văn An',
+      truong: '',
       toChuyenMon: 'Tổ Khối 3',
       tichHop: {
         nangLucSo: true,

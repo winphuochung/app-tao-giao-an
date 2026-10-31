@@ -45,9 +45,13 @@ Nhiệm vụ của bạn là nhận thông tin bài học từ Giáo viên và t
       + Mỗi đề mục trong SGK là một hoạt động riêng biệt giúp học sinh tự chiếm lĩnh và lĩnh hội tri thức.
       + Tuyệt đối không viết chung chung, phải ghi rõ các số liệu, ví dụ, câu hỏi, bài tập y như trong sách giáo khoa.
       + Đưa đúng hình ảnh mô tả SGK vào TRỰC TIẾP trong từng dòng đề mục tương ứng (trường hinhAnhSGK trong mỗi dòng bangHaiCotRow), kèm hệ thống câu hỏi định hướng để học sinh tự quan sát tranh ảnh SGK và tự rút ra kiến thức cốt lõi.
-    - TẤT CẢ giáo án BẮT BUỘC phải có hoạt động thảo luận nhóm 4 vai trò (Nhóm trưởng, Thư ký, Kỹ thuật viên thao tác, Báo cáo viên) kèm quy tắc 4 màu mực chống thụ động, phân công công việc công bằng.
+    - ĐA DẠNG HÓA PHƯƠNG PHÁP & KĨ THUẬT DẠY HỌC TÍCH CỰC (CHỐNG RẬP KHUÔN):
+      + Không dùng một kịch bản rập khuôn cho mọi bài. Linh hoạt luân chuyển các kĩ thuật dạy học theo môn và hoạt động: Kĩ thuật Khăn trải bàn, Kĩ thuật Mảnh ghép, Trạm học tập (Learning Stations), Sơ đồ tư duy, Đóng vai, Giải quyết tình huống thực tiễn, Thí nghiệm khám phá.
+      + Hoạt động thảo luận nhóm 4 vai trò (Nhóm trưởng, Thư ký, Kỹ thuật viên thao tác, Báo cáo viên) kèm quy tắc 4 màu mực chống thụ động, phân công công việc công bằng.
+    - CÁ NHÂN HÓA THEO ĐẶC ĐIỂM HỌC SINH VÀ SĨ SỐ LỚP:
+      + Sĩ số lớp: ${metadata.siSoLop || '35 - 40 học sinh'}. Phương án chia nhóm phải khớp với sĩ số này.
+      + Đặc điểm học sinh: ${metadata.dacDiemHocSinh || 'Học sinh có sự phân hóa, cần giao nhiệm vụ vừa sức và hỗ trợ bạn chậm tiến bộ'}.
     - Lấy học sinh làm trung tâm, giáo viên chỉ tổ chức và chuyển giao nhiệm vụ; học sinh tự tay thao tác (gấp giấy, đo đạc, đọc SGK, thảo luận, làm thí nghiệm) và tự rút ra kết luận khoa học.
-    - Áp dụng các phương pháp & kĩ thuật dạy học tích cực đa dạng (Khăn trải bàn, Mảnh ghép, Phòng tranh, KWL, Đánh giá đồng đẳng...).
     - Mỗi tiết học là một tiết học sinh động, hào hứng, mở đầu bằng trò chơi khởi động lôi cuốn và liên hệ thực tế gần gũi.
 (2) Cấu trúc kịch bản Slide PowerPoint chuyên nghiệp tương ứng với bài học đó.
 (3) Bộ câu hỏi trắc nghiệm trò chơi khởi động gồm 4 câu hỏi.
@@ -60,6 +64,8 @@ CHỈ TRẢ VỀ DUY NHẤT MÃ JSON HỢP LỆ, KHÔNG KÈM THEO BẤT KỲ L�
 - Bộ sách: ${metadata.boSach}
 - Tên bài dạy: ${metadata.tenBaiDay}
 - Số tiết: ${metadata.soTiet} (Thời lượng: ${metadata.thoiLuong})
+- Sĩ số lớp: ${metadata.siSoLop || '40 học sinh (8 nhóm)'}
+- Đặc điểm học sinh: ${metadata.dacDiemHocSinh || 'Đa dạng, tích cực hợp tác, 4 màu mực chống thụ động'}
 - Tích hợp: Năng lực số (${metadata.tichHop.nangLucSo}), STEM (${metadata.tichHop.stem}), ATGT (${metadata.tichHop.anToanGiaoThong}), Kỹ năng sống (${metadata.tichHop.kyNangSong}), Môi trường (${metadata.tichHop.baoVeMoiTruong})
 - Phong cách Slide: ${theme.name}
 

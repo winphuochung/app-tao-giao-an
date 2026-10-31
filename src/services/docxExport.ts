@@ -125,19 +125,20 @@ export async function exportGiaoAnToDocx(data: GiaoAnWordData): Promise<void> {
 
   // Load authentic Infographic Worksheet image matching this lesson if available
   let worksheetInfographicBuffer: Uint8Array | null = null;
+  const gradeNum = Number(meta.khoiLop) || 0;
+  const isToan3 = (isTieuHoc || gradeNum <= 5) && /hình tròn/i.test(meta.tenBaiDay);
   const isBai9 = meta.tenBaiDay.toLowerCase().includes('bài 9') || meta.tenBaiDay.toLowerCase().includes('đo tốc độ');
-  const isBai8 = !isBai9 && (meta.tenBaiDay.toLowerCase().includes('bài 8') || meta.tenBaiDay.toLowerCase().includes('tốc độ'));
+  const isBai8 = !isBai9 && (meta.tenBaiDay.toLowerCase().includes('bài 8') || /tốc độ chuyển động/i.test(meta.tenBaiDay));
   const isToan6 = meta.tenBaiDay.toLowerCase().includes('trục đối xứng');
 
   let infographicImgUrl = '';
-  const gradeNum = Number(meta.khoiLop) || 0;
-  if (isTieuHoc || gradeNum <= 5) {
+  if (isToan3) {
     infographicImgUrl = '/infographics/phieu-hoc-tap-doraemon-toan-3.jpg';
   } else if (isBai9) {
     infographicImgUrl = '/infographics/phieu-doraemon-khtn7-bai9-do-toc-do.jpg';
   } else if (isToan6) {
     infographicImgUrl = '/infographics/phieu-doraemon-toan6-truc-doi-xung.jpg';
-  } else {
+  } else if (isBai8) {
     infographicImgUrl = '/infographics/phieu-doraemon-khtn7-bai8-toc-do.jpg';
   }
 

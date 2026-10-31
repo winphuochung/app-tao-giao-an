@@ -20,6 +20,7 @@ import { exportGiaoAnToDocx } from './services/docxExport';
 import { exportSlideDeckToPptx } from './services/pptxExport';
 import { generateLessonPlanWithAI, generateIntelligentPlan } from './services/aiGenerator';
 import { FullCurriculumLessonItem } from './data/textbookData';
+import { calculateLessonDuration } from './utils/durationCalculator';
 
 import { Header } from './components/Header';
 import { SidebarControl } from './components/SidebarControl';
@@ -68,6 +69,33 @@ export const App: React.FC = () => {
       setApiKey(savedKey);
     }
   }, []);
+
+  // 1. Quản lý State & Cache: Lắng nghe sự thay đổi của Khối lớp, Bộ sách, Môn học, Tên bài học
+  // Đảm bảo không lưu đệm hình ảnh bài cũ và đồng bộ dữ liệu chuẩn bài mới
+  const currentMeta = currentPlan.giaoAn.metadata;
+  const lessonIdentityKey = `${currentMeta.khoiLop}|${currentMeta.boSach}|${currentMeta.monHoc}|${currentMeta.tenBaiDay}`;
+  const prevLessonKeyRef = React.useRef(lessonIdentityKey);
+
+  useEffect(() => {
+    if (prevLessonKeyRef.current !== lessonIdentityKey) {
+      prevLessonKeyRef.current = lessonIdentityKey;
+      // Invalidate old caches and enforce authentic duration formula
+      const isTH = currentMeta.capHoc === 'TIEU_HOC' || Number(currentMeta.khoiLop) <= 5;
+      const expectedDuration = calculateLessonDuration(currentMeta.soTiet || '2 tiết', isTH);
+      if (currentMeta.thoiLuong !== expectedDuration) {
+        setCurrentPlan(prev => ({
+          ...prev,
+          giaoAn: {
+            ...prev.giaoAn,
+            metadata: {
+              ...prev.giaoAn.metadata,
+              thoiLuong: expectedDuration
+            }
+          }
+        }));
+      }
+    }
+  }, [lessonIdentityKey, currentMeta.thoiLuong, currentMeta.soTiet, currentMeta.capHoc, currentMeta.khoiLop]);
 
   const showNotification = (message: string, type: 'success' | 'info' | 'error' = 'success') => {
     setNotification({ message, type });
@@ -136,7 +164,7 @@ export const App: React.FC = () => {
       tenBaiDay: lessonItem.name,
       soTiet: lessonItem.periods || '2 tiết',
       tietTheoPPCT: lessonItem.ppct || '',
-      thoiLuong: isTieuHoc ? '35 phút' : (lessonItem.periods === '1 tiết' ? '45 phút' : '90 phút'),
+      thoiLuong: calculateLessonDuration(lessonItem.periods || '2 tiết', isTieuHoc),
       tuanThucHien: calculatedWeek
     };
 
