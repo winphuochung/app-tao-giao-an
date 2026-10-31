@@ -274,9 +274,9 @@ export const SAMPLE_KHTN_7_BAI_9_DO_TOC_DO: CompleteLessonPlan = {
         bangHaiCot: [
           {
             id: 'r-9-3-0-mindmap',
-            buocSuPham: 'Bước 1: Hệ thống hóa kiến thức toàn bài bằng Sơ đồ tư duy 16:9 3D Pixar',
-            cot1Trai: '- GV trình chiếu Sơ đồ tư duy 16:9 (phong cách 3D Pixar) để học sinh quan sát, hệ thống hóa kiến thức toàn bộ bài học.',
-            cot2Phai: '- Học sinh quan sát sơ đồ tư duy 16:9 (phong cách 3D Pixar) và ghi nhớ kiến thức trọng tâm toàn bài.',
+            buocSuPham: 'Bước 1: Hệ thống hóa kiến thức toàn bài bằng Sơ đồ tư duy',
+            cot1Trai: '- GV trình chiếu Sơ đồ tư duy để học sinh quan sát, hệ thống hóa kiến thức toàn bộ bài học.',
+            cot2Phai: '- Học sinh quan sát sơ đồ tư duy và ghi nhớ kiến thức trọng tâm toàn bài.',
                         soDoTuDuy: {
               id: 'sdd-khtn7-bai9-do-toc-do',
               chuDeChinh: 'BÀI 9: ĐO TỐC ĐỘ (KHTN 7)',

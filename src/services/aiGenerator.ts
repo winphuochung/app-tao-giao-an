@@ -815,10 +815,10 @@ export function generateIntelligentPlan(
       bangHaiCot: [
         {
           id: `r-3-0-mindmap`,
-          buocSuPham: isTieuHoc ? '3.0. Hệ thống hóa kiến thức toàn bài qua Sơ đồ tư duy 16:9 3D Pixar' : 'Bước 1: Hệ thống hóa kiến thức toàn bài bằng Sơ đồ tư duy 16:9 3D Pixar',
+          buocSuPham: isTieuHoc ? '3.0. Hệ thống hóa kiến thức toàn bài qua Sơ đồ tư duy' : 'Bước 1: Hệ thống hóa kiến thức toàn bài bằng Sơ đồ tư duy',
           soDoTuDuy: generateMindmapData(metadata, topic, subject, isTieuHoc),
-          cot1Trai: '- GV trình chiếu Sơ đồ tư duy 16:9 (phong cách 3D Pixar) để học sinh quan sát, hệ thống hóa kiến thức toàn bộ bài học.',
-          cot2Phai: '- Học sinh quan sát sơ đồ tư duy 16:9 (phong cách 3D Pixar) và ghi nhớ kiến thức trọng tâm toàn bài.'
+          cot1Trai: '- GV trình chiếu Sơ đồ tư duy để học sinh quan sát, hệ thống hóa kiến thức toàn bài.',
+          cot2Phai: '- Học sinh quan sát sơ đồ tư duy và ghi nhớ kiến thức trọng tâm của bài học.'
         },
         {
           id: `r-3-1`,

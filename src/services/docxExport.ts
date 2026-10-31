@@ -632,8 +632,8 @@ export async function exportGiaoAnToDocx(data: GiaoAnWordData): Promise<void> {
               new ImageRun({
                 data: sgkImageMap[hinhAnhSGK.imageUrl],
                 transformation: {
-                  width: 380,
-                  height: 200
+                  width: 215,
+                  height: 120
                 },
                 type: 'png'
               })
@@ -667,8 +667,8 @@ export async function exportGiaoAnToDocx(data: GiaoAnWordData): Promise<void> {
               new ImageRun({
                 data: sgkImageMap[soDoTuDuy.imageUrl],
                 transformation: {
-                  width: 420,
-                  height: 236.25 // Chuẩn tỉ lệ 16:9
+                  width: 215,
+                  height: 121 // Chuẩn tỉ lệ 16:9
                 },
                 type: 'jpg'
               })
