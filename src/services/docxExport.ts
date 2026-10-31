@@ -68,19 +68,6 @@ export async function exportGiaoAnToDocx(data: GiaoAnWordData): Promise<void> {
     }
   }
 
-  // Load Infographic Image if available (Doraemon or Conan)
-  let infographicImageBuffer: Uint8Array | null = null;
-  try {
-    const imgUrl = isTieuHoc ? '/infographics/phieu-hoc-tap-doraemon-toan-3.jpg' : '/infographics/phieu-hoc-tap-conan.jpg';
-    const res = await fetch(imgUrl);
-    if (res.ok) {
-      const arr = await res.arrayBuffer();
-      infographicImageBuffer = new Uint8Array(arr);
-    }
-  } catch (err) {
-    console.warn('Infographic image fetch skipped:', err);
-  }
-
   // Nghị định 30/2020/NĐ-CP Margins (in dxa: 1cm ≈ 567 dxa)
   // Top: 2cm = 1134, Bottom: 2cm = 1134, Left: 3cm = 1701, Right: 1.5cm = 850
   // Total printable width = 11906 - 1701 - 850 = 9355 dxa.
@@ -968,25 +955,35 @@ export async function exportGiaoAnToDocx(data: GiaoAnWordData): Promise<void> {
                     new TextRun({ text: 'A. CÁC NHIỆM VỤ THẢO LUẬN & THỰC HÀNH:', font: fontName, size: smallSize, bold: true })
                   ]
                 }),
-                ...appendixHdn.phieuGiaoNhiemVu.cauHoiNhiemVu.map((ch) =>
+                ...appendixHdn.phieuGiaoNhiemVu.cauHoiNhiemVu.flatMap((ch) => [
                   new Paragraph({
                     alignment: AlignmentType.LEFT,
-                    spacing: { before: 30, after: 30, line: 240 },
-                    children: [new TextRun({ text: ch, font: fontName, size: smallSize })]
+                    spacing: { before: 30, after: 15, line: 240 },
+                    children: [new TextRun({ text: ch, font: fontName, size: smallSize, bold: true })]
+                  }),
+                  new Paragraph({
+                    alignment: AlignmentType.LEFT,
+                    spacing: { before: 10, after: 10, line: 240 },
+                    children: [new TextRun({ text: '  Bài làm: ........................................................................................................................................................', font: fontName, size: smallSize - 2, italics: true, color: '555555' })]
+                  }),
+                  new Paragraph({
+                    alignment: AlignmentType.LEFT,
+                    spacing: { before: 10, after: 25, line: 240 },
+                    children: [new TextRun({ text: '  ...........................................................................................................................................................................', font: fontName, size: smallSize - 2, italics: true, color: '555555' })]
                   })
-                ),
+                ]),
                 new Paragraph({
                   alignment: AlignmentType.LEFT,
-                  spacing: { before: 60, after: 20, line: 240 },
+                  spacing: { before: 50, after: 20, line: 240 },
                   children: [
-                    new TextRun({ text: 'B. PHẦN KHAI BÁO THÀNH VIÊN VÀ MÀU MỰC ĐÓNG GÓP:', font: fontName, size: smallSize, bold: true })
+                    new TextRun({ text: 'B. PHẦN KHAI BÁO THÀNH VIÊN VÀ MÀU MỰC ĐÓNG GÓP (4 VAI TRÒ CHỐNG THỤ ĐỘNG):', font: fontName, size: smallSize, bold: true })
                   ]
                 }),
                 ...appendixHdn.phieuGiaoNhiemVu.phanKhaiBaoDongGop.map((kb) =>
                   new Paragraph({
                     alignment: AlignmentType.LEFT,
-                    spacing: { before: 20, after: 20, line: 240 },
-                    children: [new TextRun({ text: kb, font: fontName, size: smallSize, italics: true })]
+                    spacing: { before: 15, after: 15, line: 240 },
+                    children: [new TextRun({ text: `• ${kb}`, font: fontName, size: smallSize, italics: true })]
                   })
                 )
               ]
@@ -994,45 +991,6 @@ export async function exportGiaoAnToDocx(data: GiaoAnWordData): Promise<void> {
           ]
         })
       ];
-
-      // Nhúng trực tiếp Ảnh Infographic Phiếu học tập vào Giáo án Word
-      if (infographicImageBuffer) {
-        children.push(
-          p('• HÌNH ẢNH INFOGRAPHIC PHIẾU HỌC TẬP (IN VÀ PHÁT TRỰC TIẾP CHO HỌC SINH):', {
-            leftIndent: 280,
-            bold: true,
-            size: headingSize - 2,
-            spaceBefore: 40,
-            spaceAfter: 20
-          })
-        );
-        children.push(
-          new Paragraph({
-            alignment: AlignmentType.CENTER,
-            spacing: { before: 20, after: 40 },
-            children: [
-              new ImageRun({
-                data: infographicImageBuffer,
-                transformation: {
-                  width: isTieuHoc ? 450 : 540,
-                  height: isTieuHoc ? 636 : 382
-                },
-                type: 'jpg'
-              })
-            ]
-          })
-        );
-        children.push(p('', { spaceBefore: 20, spaceAfter: 10 }));
-      }
-
-      children.push(
-        p('• BẢN VĂN BẢN PHIẾU GIAO NHIỆM VỤ NHÓM (4 VAI TRÒ & 4 MÀU MỰC CHỐNG THỤ ĐỘNG):', {
-          leftIndent: 280,
-          bold: true,
-          spaceBefore: 30,
-          spaceAfter: 20
-        })
-      );
 
       const phieuTable = new Table({
         width: { size: 9355, type: WidthType.DXA },

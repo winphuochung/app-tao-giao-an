@@ -50,9 +50,11 @@ export const InfographicPromptModal: React.FC<InfographicPromptModalProps> = ({
   ];
 
   // Specific subject-tailored formulas (standard LaTeX)
-  const latexFormulas = isTieuHoc
-    ? 'Đường kính và bán kính: $d = 2 \\times r$ (hay $d = 2r$), Chu vi hình tròn: $C = d \\times 3{,}14 = 2 \\times r \\times 3{,}14$'
-    : 'Trục đối xứng $\\Delta$: $\\forall M \\in (H) \\implies M\' = D_\\Delta(M) \\in (H)$, Tọa độ đối xứng qua $Oy$: $(x, y) \\mapsto (-x, y)$';
+  const latexFormulas = metadata.tenBaiDay.toLowerCase().includes('tốc độ')
+    ? 'Công thức tính tốc độ: $v = \\frac{s}{t}$, Quãng đường: $s = v \\cdot t$, Thời gian: $t = \\frac{s}{v}$, Đổi đơn vị: $1\\text{ m/s} = 3{,}6\\text{ km/h}$'
+    : isTieuHoc
+    ? 'Đường kính và bán kính: $d = 2 \\times r$ (hay $d = 2r$), Chu vi: $C = d \\times 3{,}14$'
+    : 'Công thức toán học/khoa học cốt lõi của bài học theo SGK';
 
   // Generate Prompt 1: Doraemon
   const promptDoraemon = `Thiết kế 1 ảnh infographic phiếu học tập có câu hỏi (không có đáp án) bằng truyện tranh có đối thoại nói chuyện qua lại về các nội dung trong bài học "${metadata.tenBaiDay}" - Môn ${metadata.monHoc} Lớp ${metadata.khoiLop} (Bộ sách Kết nối tri thức với cuộc sống).
