@@ -517,7 +517,12 @@ export const LessonPlanEditor: React.FC<LessonPlanEditorProps> = ({
                             )}
 
                             <div className="space-y-1.5 leading-relaxed">
-                              {row.cot1Trai.split('\n').map((line, lIdx) => {
+                              {row.cot1Trai
+                                .replace(/\\r\\n/g, '\n')
+                                .replace(/\\n/g, '\n')
+                                .replace(/\r\n/g, '\n')
+                                .split('\n')
+                                .map((line, lIdx) => {
                                 const trimmed = line.trim();
                                 if (!trimmed) return null;
 
@@ -528,7 +533,6 @@ export const LessonPlanEditor: React.FC<LessonPlanEditorProps> = ({
                                   const rest = tagMatch[3].trim();
                                   const isSgkTag = /^\[HÌNH\s*ẢNH\s*SGK/i.test(rawTag);
                                   if (isSgkTag && !rest) {
-                                    // Bỏ hẳn các nhãn placeholder thô [HÌNH ẢNH SGK TRANG ...]
                                     return null;
                                   }
                                   const displayTag = isSgkTag ? '[Khai thác hình ảnh SGK]:' : rawTag;
@@ -541,7 +545,29 @@ export const LessonPlanEditor: React.FC<LessonPlanEditorProps> = ({
                                   );
                                 }
 
-                                const isHeader = /^(Bước\s+\d+|[1-4]\.|\*|Bài tập)/i.test(trimmed);
+                                const isRomanHeader = /^(?:[I|V|X]+\.|\d+\.\s+[A-ZÀ-Ỵ])/i.test(trimmed);
+                                const isConclusionHeader = /^\*?\s*(?:KẾT LUẬN|CHỐT KIẾN THỨC|GHI NHỚ)/i.test(trimmed);
+                                const isHeader = isRomanHeader || isConclusionHeader || /^(Bước\s+\d+|[1-4]\.|\*|Bài tập|\+|Dự kiến|Nội dung ghi bảng)/i.test(trimmed);
+
+                                if (isConclusionHeader) {
+                                  return (
+                                    <div key={lIdx} className="bg-amber-50 border-l-4 border-amber-500 rounded-r-lg p-2 my-1 text-amber-950 shadow-2xs">
+                                      <p className="font-bold text-amber-900 flex items-center gap-1.5 text-[11.5px]">
+                                        <span>📌</span>
+                                        <span>{trimmed.startsWith('*') ? trimmed : `* ${trimmed}`}</span>
+                                      </p>
+                                    </div>
+                                  );
+                                }
+
+                                if (isRomanHeader) {
+                                  return (
+                                    <p key={lIdx} className="font-bold text-blue-950 pt-1 pb-0.5 border-b border-blue-100 text-[12px]">
+                                      {trimmed}
+                                    </p>
+                                  );
+                                }
+
                                 if (isHeader) {
                                   return (
                                     <p key={lIdx} className="font-bold text-slate-900 pt-1">
@@ -562,11 +588,38 @@ export const LessonPlanEditor: React.FC<LessonPlanEditorProps> = ({
                           {/* Col 2 */}
                           <td className="p-3 align-top text-justify">
                             <div className="space-y-1.5 leading-relaxed">
-                              {row.cot2Phai.split('\n').map((line, lIdx) => {
+                              {row.cot2Phai
+                                .replace(/\\r\\n/g, '\n')
+                                .replace(/\\n/g, '\n')
+                                .replace(/\r\n/g, '\n')
+                                .split('\n')
+                                .map((line, lIdx) => {
                                 const trimmed = line.trim();
                                 if (!trimmed) return null;
 
-                                const isHeader = /^(Bước\s+\d+|[1-4]\.|\*|Bài tập|\+|Dự kiến|Nội dung ghi bảng)/i.test(trimmed);
+                                const isRomanHeader = /^(?:[I|V|X]+\.|\d+\.\s+[A-ZÀ-Ỵ])/i.test(trimmed);
+                                const isConclusionHeader = /^\*?\s*(?:KẾT LUẬN|CHỐT KIẾN THỨC|GHI NHỚ)/i.test(trimmed);
+                                const isHeader = isRomanHeader || isConclusionHeader || /^(Bước\s+\d+|[1-4]\.|\*|Bài tập|\+|Dự kiến|Nội dung ghi bảng)/i.test(trimmed);
+
+                                if (isConclusionHeader) {
+                                  return (
+                                    <div key={lIdx} className="bg-amber-50 border-l-4 border-amber-500 rounded-r-lg p-2.5 my-2 text-amber-950 shadow-2xs">
+                                      <p className="font-bold text-amber-900 flex items-center gap-1.5 text-[11.5px]">
+                                        <span>📌</span>
+                                        <span>{trimmed.startsWith('*') ? trimmed : `* ${trimmed}`}</span>
+                                      </p>
+                                    </div>
+                                  );
+                                }
+
+                                if (isRomanHeader) {
+                                  return (
+                                    <p key={lIdx} className="font-bold text-blue-950 pt-1 pb-0.5 border-b border-blue-100 text-[12px]">
+                                      {trimmed}
+                                    </p>
+                                  );
+                                }
+
                                 if (isHeader) {
                                   return (
                                     <p key={lIdx} className="font-bold text-slate-900 pt-0.5">

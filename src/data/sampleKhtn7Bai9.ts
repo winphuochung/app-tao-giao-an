@@ -172,7 +172,7 @@ export const SAMPLE_KHTN_7_BAI_9_DO_TOC_DO: CompleteLessonPlan = {
             id: 'r-9-2-1-4',
             buocSuPham: 'Bước 4: Kết luận, nhận định Đề mục I',
             cot1Trai: '- GV nhận xét tinh thần hợp tác của các nhóm.\n- Chuẩn hóa: Để đo tốc độ bằng đồng hồ bấm giây, cần xác định s trước, bấm t sau; luôn đo 3 lần để lấy trung bình cộng nhằm giảm sai số.',
-            cot2Phai: '* KẾT LUẬN ĐỀ MỤC I:\n- Ghi nhớ các bước đo tốc độ bằng đồng hồ bấm giây.\n- Nắm vững cách tính giá trị trung bình s_tb, t_tb và v = s / t.'
+            cot2Phai: '* KẾT LUẬN / CHỐT KIẾN THỨC GHI VỞ (Nội dung trọng tâm HS ghi bài để học):\n- Muốn đo tốc độ cần đo độ dài quãng đường và thời gian đi hết quãng đường đó.\n- Quy trình đo bằng đồng hồ bấm giây: Đo s -> Đo t (3 lần) -> Tính trung bình -> Tính v = s/t.'
           }
         ]
       },
@@ -221,7 +221,7 @@ export const SAMPLE_KHTN_7_BAI_9_DO_TOC_DO: CompleteLessonPlan = {
             id: 'r-9-2-2-4',
             buocSuPham: 'Bước 4: Kết luận, nhận định Đề mục II',
             cot1Trai: '- GV chuẩn hóa: Cổng quang điện và đồng hồ hiện số là phương tiện hiện đại trong phòng thí nghiệm trường học, giúp đo được cả các chuyển động rất nhanh trong khoảng thời gian rất ngắn.',
-            cot2Phai: '* KẾT LUẬN ĐỀ MỤC II:\n- Nắm vững 6 bộ phận của bộ thí nghiệm Hình 9.3.\n- Hiểu rõ nguyên lý đo tự động và công thức v = s / t.'
+            cot2Phai: '* KẾT LUẬN / CHỐT KIẾN THỨC GHI VỞ (Nội dung trọng tâm HS ghi bài để học):\n- Đo tốc độ bằng đồng hồ đo thời gian hiện số và cổng quang điện cho kết quả chính xác cao, loại bỏ hoàn toàn sai số bấm tay của con người.'
           }
         ]
       },
@@ -257,7 +257,7 @@ export const SAMPLE_KHTN_7_BAI_9_DO_TOC_DO: CompleteLessonPlan = {
             id: 'r-9-2-3-2',
             buocSuPham: 'Bước 2: Mở rộng định vị GPS & Chuẩn hóa kiến thức bằng Sơ đồ tư duy 16:9 3D Pixar',
             cot1Trai: '- GV giới thiệu khung "Đọc thêm" SGK trang 51: Đo tốc độ bằng đồng hồ thông minh, smartphone sử dụng hệ thống định vị toàn cầu GPS.\n- [CHUẨN HÓA TOÀN BỘ BÀI HỌC]: GV chiếu SƠ ĐỒ TƯ DUY 16:9 PHONG CÁCH 3D PIXAR lên bảng tương tác.\n- Hướng dẫn HS hệ thống hóa 3 nhánh kiến thức cốt lõi của Bài 9:\n  + Nhánh 1: Đo bằng đồng hồ bấm giây (thước + bấm giây, 3 lần đo Bảng 9.1).\n  + Nhánh 2: Đo bằng cổng quang điện + đồng hồ hiện số (chế độ A <-> B, cực chính xác).\n  + Nhánh 3: Thiết bị bắn tốc độ & GPS (Hình 9.4, ứng dụng an toàn giao thông).',
-            cot2Phai: 'GHI NHỚ CỐT LÕI (SƠ ĐỒ TƯ DUY 16:9 PHONG CÁCH 3D PIXAR):\n• Để đo tốc độ luôn cần đo quãng đường s và thời gian t, tính v = s / t.\n• Trong phòng thực hành: Thường dùng đồng hồ bấm giây (đo 3 lần lấy trung bình) hoặc cổng quang điện kết hợp đồng hồ hiện số.\n• Trong an toàn giao thông: Sử dụng camera và thiết bị bắn tốc độ để kiểm soát tốc độ phương tiện, giảm thiểu tai nạn giao thông.',
+            cot2Phai: '* KẾT LUẬN / CHỐT KIẾN THỨC GHI VỞ (Nội dung trọng tâm HS ghi bài để học):\n• Để đo tốc độ luôn cần đo quãng đường s và thời gian t, tính v = s / t.\n• Trong phòng thực hành: Thường dùng đồng hồ bấm giây (đo 3 lần lấy trung bình) hoặc cổng quang điện kết hợp đồng hồ hiện số.\n• Trong an toàn giao thông: Sử dụng camera và thiết bị bắn tốc độ để kiểm soát tốc độ phương tiện, giảm thiểu tai nạn giao thông.',
             soDoTuDuy: {
               id: 'sdd-khtn7-bai9-do-toc-do',
               chuDeChinh: 'BÀI 9: ĐO TỐC ĐỘ (KHTN 7)',

@@ -213,7 +213,7 @@ export const SAMPLE_KHTN_7_TOC_DO: CompleteLessonPlan = {
             id: 'r-khtn7-2-1-conclude',
             buocSuPham: '3. Kết luận, nhận định Đề mục I',
             cot1Trai: '- GV chuẩn hóa kiến thức trên bảng lớp, chốt lại định nghĩa tốc độ.\n- Yêu cầu cả lớp ghi nhớ khái niệm tốc độ vào vở.',
-            cot2Phai: '- HS lắng nghe, hoàn thiện phần ghi vở mục I: "Tốc độ là đại lượng đặc trưng cho sự nhanh, chậm của chuyển động, được tính bằng quãng đường đi được trong một đơn vị thời gian".'
+            cot2Phai: '* KẾT LUẬN / CHỐT KIẾN THỨC GHI VỞ (Nội dung trọng tâm HS ghi bài để học):\n- Tốc độ là đại lượng cho biết mức độ nhanh hay chậm của chuyển động.\n- Tốc độ được xác định bằng quãng đường đi được trong một đơn vị thời gian: v = s / t.'
           }
         ]
       },
@@ -248,7 +248,7 @@ export const SAMPLE_KHTN_7_TOC_DO: CompleteLessonPlan = {
             id: 'r-khtn7-2-2-conclude',
             buocSuPham: '2. Báo cáo & Kết luận Đề mục II',
             cot1Trai: '- Mời 1 HS lên bảng trình bày lời giải bài toán ví dụ.\n- Nhận xét và chốt lại các bước giải bài toán vật lý: Tóm tắt -> Công thức -> Thay số & Đơn vị.',
-            cot2Phai: '- HS theo dõi bài giải trên bảng, đối chiếu với vở nháp và đóng khung công thức v = s / t.'
+            cot2Phai: '* KẾT LUẬN / CHỐT KIẾN THỨC GHI VỞ (Nội dung trọng tâm HS ghi bài để học):\n- Công thức tính tốc độ: v = s / t\n- Trong đó: s là quãng đường đi được (m, km); t là thời gian (s, h); v là tốc độ (m/s, km/h).\n- Các công thức suy ra: s = v . t ; t = s / v.'
           }
         ]
       },
@@ -283,7 +283,7 @@ export const SAMPLE_KHTN_7_TOC_DO: CompleteLessonPlan = {
             id: 'r-khtn7-2-3-conclude',
             buocSuPham: '2. Luyện tập nhanh quy đổi đơn vị Đề mục III',
             cot1Trai: '- Cho học sinh làm nhanh 2 phép đổi vào bảng con / vở nháp:\n  + 36 km/h = ... m/s?\n  + 15 m/s = ... km/h?\n- Gọi 2 học sinh đọc nhanh kết quả và giải thích cách làm.',
-            cot2Phai: '- HS tính nhanh:\n  + 36 : 3,6 = 10 (m/s).\n  + 15 x 3,6 = 54 (km/h).\n- Ghi nhớ quy tắc chuyển đổi nhanh vào vở.'
+            cot2Phai: '* KẾT LUẬN / CHỐT KIẾN THỨC GHI VỞ (Nội dung trọng tâm HS ghi bài để học):\n- Đơn vị đo tốc độ trong hệ SI là mét trên giây (m/s) và kilômét trên giờ (km/h).\n- Quy tắc đổi đơn vị: 1 m/s = 3,6 km/h (Từ m/s sang km/h nhân 3,6; ngược lại chia 3,6).'
           }
         ]
       },
@@ -379,7 +379,7 @@ export const SAMPLE_KHTN_7_TOC_DO: CompleteLessonPlan = {
             id: 'r-khtn7-2-4-mindmap',
             buocSuPham: '2. Chốt kiến thức toàn bài qua Sơ đồ tư duy 16:9 3D Pixar',
             cot1Trai: '- GV trình chiếu SƠ ĐỒ TƯ DUY 16:9 PHONG CÁCH 3D PIXAR lên bảng tương tác.\n- Cho các nhóm học sinh lần lượt nhìn vào sơ đồ và nhắc lại 4 kiến thức cốt lõi của 4 đề mục SGK: Khái niệm -> Công thức -> Đơn vị -> Thiết bị đo.',
-            cot2Phai: 'HỆ THỐNG KIẾN THỨC CỐT LÕI (SƠ ĐỒ TƯ DUY 16:9 3D PIXAR):\n1. Khái niệm: Tốc độ = Quãng đường / Thời gian (đặc trưng cho sự nhanh, chậm).\n2. Công thức: v = s / t  <=>  s = v . t  <=>  t = s / v.\n3. Đơn vị: m/s (chuẩn SI) và km/h (thông dụng); 1 m/s = 3,6 km/h.\n4. Thiết bị: Tốc kế (đo tốc độ tức thời) & Thiết bị bắn tốc độ CSGT (bảo đảm an toàn giao thông).',
+            cot2Phai: '* KẾT LUẬN / CHỐT KIẾN THỨC GHI VỞ (Nội dung trọng tâm HS ghi bài để học):\n1. Khái niệm: Tốc độ = Quãng đường / Thời gian (đặc trưng cho sự nhanh, chậm).\n2. Công thức: v = s / t  <=>  s = v . t  <=>  t = s / v.\n3. Đơn vị: m/s (chuẩn SI) và km/h (thông dụng); 1 m/s = 3,6 km/h.\n4. Thiết bị: Tốc kế (đo tốc độ tức thời) & Thiết bị bắn tốc độ CSGT (bảo đảm an toàn giao thông).',
             soDoTuDuy: {
               id: 'mindmap-khtn-7-toc-do',
               chuDeChinh: 'TỐC ĐỘ CHUYỂN ĐỘNG',

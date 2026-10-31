@@ -526,19 +526,19 @@ export async function exportGiaoAnToDocx(data: GiaoAnWordData): Promise<void> {
     if (!isTieuHoc) {
       if (hd.mucTieu) {
         children.push(p('a) Mục tiêu:', { bold: true, spaceBefore: 30, spaceAfter: 20 }));
-        hd.mucTieu.split('\n').filter(l => l.trim()).forEach((l) => {
+        hd.mucTieu.replace(/\\r\\n/g, '\n').replace(/\\n/g, '\n').replace(/\r\n/g, '\n').split('\n').filter(l => l.trim()).forEach((l) => {
           children.push(p(formatDashItem(l), { leftIndent: 280, spaceBefore: 20, spaceAfter: 20 }));
         });
       }
       if (hd.noiDung) {
         children.push(p('b) Nội dung:', { bold: true, spaceBefore: 30, spaceAfter: 20 }));
-        hd.noiDung.split('\n').filter(l => l.trim()).forEach((l) => {
+        hd.noiDung.replace(/\\r\\n/g, '\n').replace(/\\n/g, '\n').replace(/\r\n/g, '\n').split('\n').filter(l => l.trim()).forEach((l) => {
           children.push(p(formatDashItem(l), { leftIndent: 280, spaceBefore: 20, spaceAfter: 20 }));
         });
       }
       if (hd.sanPham) {
         children.push(p('c) Sản phẩm:', { bold: true, spaceBefore: 30, spaceAfter: 20 }));
-        hd.sanPham.split('\n').filter(l => l.trim()).forEach((l) => {
+        hd.sanPham.replace(/\\r\\n/g, '\n').replace(/\\n/g, '\n').replace(/\r\n/g, '\n').split('\n').filter(l => l.trim()).forEach((l) => {
           children.push(p(formatDashItem(l), { leftIndent: 280, spaceBefore: 20, spaceAfter: 20 }));
         });
       }
@@ -696,7 +696,11 @@ export async function exportGiaoAnToDocx(data: GiaoAnWordData): Promise<void> {
         );
       }
 
-      const lines = rawText.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+      const normalizedText = rawText
+        .replace(/\\r\\n/g, '\n')
+        .replace(/\\n/g, '\n')
+        .replace(/\r\n/g, '\n');
+      const lines = normalizedText.split('\n').map(l => l.trim()).filter(l => l.length > 0);
 
       lines.forEach((line) => {
         // Skip duplicate step title inside cell content
@@ -708,10 +712,9 @@ export async function exportGiaoAnToDocx(data: GiaoAnWordData): Promise<void> {
           const rawTag = tagMatch[2].trim();
           const rest = tagMatch[3].trim();
           
-          // Chuyển đổi nhãn hình ảnh thô [HÌNH ẢNH SGK TRANG ...] - nếu không có nội dung tiếp nối thì bỏ hẳn
           let displayTag = rawTag;
           if (/^\[HÌNH\s*ẢNH\s*SGK/i.test(rawTag)) {
-            if (!rest) return; // Bỏ hẳn nhãn thô vì hình ảnh SGK đã được chèn trực tiếp ở trên
+            if (!rest) return;
             displayTag = '[Khai thác hình ảnh SGK trực quan]:';
           }
 
@@ -729,10 +732,43 @@ export async function exportGiaoAnToDocx(data: GiaoAnWordData): Promise<void> {
           return;
         }
 
-        // Subheaders like "1. Chuyển giao nhiệm vụ:", "Dự kiến câu trả lời:", "Ghi bảng:"
-        const isSubHeader = /^(Bước\s+\d+|[1-4]\.|\*|Bài tập|\+|Dự kiến|Nội dung ghi bảng)/i.test(line);
+        const isRomanHeader = /^(?:[I|V|X]+\.|\d+\.\s+[A-ZÀ-Ỵ])/i.test(line);
+        const isConclusionHeader = /^\*?\s*(?:KẾT LUẬN|CHỐT KIẾN THỨC|GHI NHỚ)/i.test(line);
+        const isSubHeader = isRomanHeader || isConclusionHeader || /^(Bước\s+\d+|[1-4]\.|\*|Bài tập|\+|Dự kiến|Nội dung ghi bảng)/i.test(line);
 
-        if (isSubHeader) {
+        if (isConclusionHeader) {
+          paras.push(
+            new Paragraph({
+              alignment: AlignmentType.LEFT,
+              spacing: { before: 80, after: 30, line: 260 },
+              children: [
+                new TextRun({
+                  text: line.startsWith('*') ? line : `* ${line}`,
+                  font: fontName,
+                  size: smallSize,
+                  bold: true,
+                  color: 'B45F06'
+                })
+              ]
+            })
+          );
+        } else if (isRomanHeader) {
+          paras.push(
+            new Paragraph({
+              alignment: AlignmentType.LEFT,
+              spacing: { before: 80, after: 30, line: 260 },
+              children: [
+                new TextRun({
+                  text: line,
+                  font: fontName,
+                  size: smallSize,
+                  bold: true,
+                  color: '002060'
+                })
+              ]
+            })
+          );
+        } else if (isSubHeader) {
           paras.push(
             new Paragraph({
               alignment: AlignmentType.LEFT,

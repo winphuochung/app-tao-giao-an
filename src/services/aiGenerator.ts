@@ -800,8 +800,8 @@ export function generateIntelligentPlan(
                 ? `- GV chuẩn hóa toàn bộ kiến thức khoa học bám sát nội dung SGK, chiếu SƠ ĐỒ TƯ DUY 16:9 PHONG CÁCH 3D PIXAR lên bảng tương tác.\n- Tổ chức cho học sinh nhìn sơ đồ tư duy, tự nhắc lại định nghĩa và các công thức cốt lõi để khắc sâu kiến thức lâu dài.`
                 : `- GV nhận xét tinh thần học tập chủ động của cả lớp.\n- Chuẩn hóa kiến thức khoa học của ${sec.deMuc} và hướng dẫn HS ghi ý chính vào vở.`,
               cot2Phai: isLastSec
-                ? `GHI NHỚ CỐT LÕI (SƠ ĐỒ TƯ DUY 16:9 3D PIXAR):\n• Hệ thống hóa toàn bộ định nghĩa, tính chất và các quy tắc chủ đạo của "${topic}".\n• Khắc sâu bản chất khoa học bám sát SGK và chuẩn GDPT 2018.`
-                : `* GHI NHỚ ${sec.deMuc.toUpperCase()}:\n- HS ghi chép nội dung trọng tâm và công thức/quy tắc vào vở bài học.`,
+                ? `* KẾT LUẬN / CHỐT KIẾN THỨC GHI VỞ (Nội dung trọng tâm HS ghi bài để học):\n- ${sec.deMuc}: Học sinh ghi nhớ kiến thức cốt lõi và nội dung trọng tâm vào vở.\n- Sơ đồ tư duy 16:9 3D Pixar: Khắc sâu toàn bộ kiến thức trọng tâm của "${topic}" để ôn tập và vận dụng thực tiễn.`
+                : `* KẾT LUẬN / CHỐT KIẾN THỨC GHI VỞ (Nội dung trọng tâm HS ghi bài để học):\n- ${sec.deMuc}: Ghi nhớ nội dung trọng tâm, định nghĩa và công thức/quy tắc vào vở bài học.`,
               ...(isLastSec ? {
                 soDoTuDuy: generateMindmapData(metadata, topic, subject, isTH)
               } : {})
