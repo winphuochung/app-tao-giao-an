@@ -141,10 +141,24 @@ export const InfographicWorksheet: React.FC<InfographicWorksheetProps> = ({ data
     if (!imgUrl) return;
 
     if (!imgUrl.startsWith('data:')) {
-      const a = document.createElement('a');
-      a.href = imgUrl;
-      a.download = filename;
-      a.click();
+      fetch(imgUrl)
+        .then(res => res.blob())
+        .then(blob => {
+          const blobUrl = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = blobUrl;
+          a.download = filename;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(blobUrl);
+        })
+        .catch(() => {
+          const a = document.createElement('a');
+          a.href = imgUrl;
+          a.download = filename;
+          a.click();
+        });
       return;
     }
 
@@ -163,7 +177,9 @@ export const InfographicWorksheet: React.FC<InfographicWorksheetProps> = ({ data
         const a = document.createElement('a');
         a.href = dataUrl;
         a.download = filename;
+        document.body.appendChild(a);
         a.click();
+        document.body.removeChild(a);
       }
     };
     img.src = imgUrl;

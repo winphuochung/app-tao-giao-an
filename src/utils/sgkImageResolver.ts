@@ -33,91 +33,110 @@ export function resolveSgkImageUrl(
   monHoc?: string,
   khoiLop?: string | number
 ): string {
-  // 1. Nếu đã có imageUrl hợp lệ (không phải undefined / rỗng)
+  const gradeNum = Number(khoiLop) || 0;
+  const isKhtn = /khoa học tự nhiên|khtn|vật lí/i.test(monHoc || '');
+  const isToan = /toán/i.test(monHoc || '');
+
+  // 1. Nếu đã có imageUrl hợp lệ và đúng môn/lớp
   if (hinhAnhSGK?.imageUrl && hinhAnhSGK.imageUrl.trim().length > 0) {
-    return hinhAnhSGK.imageUrl.trim();
+    const url = hinhAnhSGK.imageUrl.trim();
+    const isKhtn7Image = url.includes('khtn-7');
+    const isToan3Image = url.includes('toan-3');
+    const isToan6Image = url.includes('toan-6');
+
+    if (isKhtn7Image && (gradeNum !== 7 || !isKhtn)) {
+      // Bỏ qua ảnh khtn-7 nếu bài hiện tại không phải KHTN Lớp 7
+    } else if (isToan3Image && (gradeNum !== 3 || !isToan)) {
+      // Bỏ qua ảnh toan-3 nếu bài hiện tại không phải Toán Lớp 3
+    } else if (isToan6Image && (gradeNum !== 6 || !isToan)) {
+      // Bỏ qua ảnh toan-6 nếu bài hiện tại không phải Toán Lớp 6
+    } else {
+      return url;
+    }
   }
 
   const rawText = `${hinhAnhSGK?.tenHinh || ''} ${hinhAnhSGK?.moTa || ''}`.toLowerCase();
 
-  // 2. Đối soát từ khóa bài học KHTN 7 - Bài 8 (Tốc độ chuyển động)
-  if (
-    rawText.includes('8.2') && rawText.includes('8.3') ||
-    rawText.includes('tốc kế') && (rawText.includes('bắn tốc độ') || rawText.includes('csgt'))
-  ) {
-    return '/sgk-images/khtn-7-hinh-8-2-8-3-toc-ke-va-thiet-bi-ban-toc-do.png';
+  // 2. Chỉ đối soát ảnh thực tế KHTN 7 nếu đúng là môn KHTN Lớp 7!
+  if (gradeNum === 7 && isKhtn) {
+    if (
+      (rawText.includes('8.2') && rawText.includes('8.3')) ||
+      (rawText.includes('tốc kế') && (rawText.includes('bắn tốc độ') || rawText.includes('csgt')))
+    ) {
+      return '/sgk-images/khtn-7-hinh-8-2-8-3-toc-ke-va-thiet-bi-ban-toc-do.png';
+    }
+
+    if (
+      rawText.includes('8.1') ||
+      rawText.includes('chạy cự li 60') ||
+      rawText.includes('chạy 60m') ||
+      rawText.includes('bảng kết quả chạy')
+    ) {
+      return '/sgk-images/khtn-7-hinh-8-1-bang-chay-60m.png';
+    }
+
+    if (
+      (rawText.includes('tam giác') && rawText.includes('công thức')) ||
+      rawText.includes('v = s / t') || rawText.includes('v = s/t')
+    ) {
+      return '/sgk-images/khtn-7-hinh-8-2-tam-giac-cong-thuc.png';
+    }
+
+    if (
+      (rawText.includes('8.2') && (rawText.includes('vật thể') || rawText.includes('tốc độ của một số'))) ||
+      rawText.includes('bảng 8.2')
+    ) {
+      return '/sgk-images/khtn-7-bang-8-2-toc-do-vat-the.png';
+    }
+
+    if (rawText.includes('9.1') || rawText.includes('tốc kế trên ô tô')) {
+      return '/sgk-images/khtn-7-hinh-9-1-toc-ke.png';
+    }
+
+    if (rawText.includes('bấm giây') || rawText.includes('9.2') || rawText.includes('máng nghiêng')) {
+      return '/sgk-images/khtn-7-hinh-9-2-thi-nghiem-bam-giay.png';
+    }
+
+    if (rawText.includes('cổng quang') || rawText.includes('hiện số') || rawText.includes('9.3')) {
+      return '/sgk-images/khtn-7-hinh-9-3-cong-quang-dien.png';
+    }
+
+    if (rawText.includes('súng radar') || rawText.includes('9.4')) {
+      return '/sgk-images/khtn-7-hinh-9-4-thiet-bi-ban-toc-do.png';
+    }
+
+    if (rawText.includes('bảng 9.1') || rawText.includes('kết quả đo tốc độ')) {
+      return '/sgk-images/khtn-7-bang-9-1-ket-qua-do-toc-do.png';
+    }
   }
 
-  if (
-    rawText.includes('8.1') ||
-    rawText.includes('chạy cự li 60') ||
-    rawText.includes('chạy 60m') ||
-    rawText.includes('bảng kết quả chạy')
-  ) {
-    return '/sgk-images/khtn-7-hinh-8-1-bang-chay-60m.png';
+  // 3. Chỉ đối soát từ khóa Toán học Lớp 3 nếu đúng là môn Toán Lớp 3!
+  if (gradeNum === 3 && isToan) {
+    if (rawText.includes('mặt đồng hồ') || rawText.includes('hình tròn tâm o') || rawText.includes('tâm o')) {
+      return '/sgk-images/toan-3-hinh-tron-tam-o.png';
+    }
+
+    if (rawText.includes('bán kính') || rawText.includes('đường kính') || rawText.includes('độ dài bán kính')) {
+      return '/sgk-images/toan-3-ban-kinh-duong-kinh.png';
+    }
+
+    if (rawText.includes('compa') || rawText.includes('com-pa') || rawText.includes('vẽ hình tròn')) {
+      return '/sgk-images/toan-3-thao-tac-compa.png';
+    }
   }
 
-  if (
-    rawText.includes('tam giác') && (rawText.includes('công thức') || rawText.includes('v = s / t') || rawText.includes('tốc độ')) ||
-    rawText.includes('v = s / t') || rawText.includes('v = s/t')
-  ) {
-    return '/sgk-images/khtn-7-hinh-8-2-tam-giac-cong-thuc.png';
+  // 4. Chỉ đối soát từ khóa Toán học Lớp 6 nếu đúng là môn Toán Lớp 6!
+  if (gradeNum === 6 && isToan) {
+    if (rawText.includes('cánh bướm') || rawText.includes('tháp rùa') || rawText.includes('đối xứng trục')) {
+      return '/sgk-images/toan-6-canh-buom-thap-rua.png';
+    }
+
+    if (rawText.includes('trục đối xứng') || rawText.includes('hình phẳng') || rawText.includes('tam giác đều')) {
+      return '/sgk-images/toan-6-cac-hinh-phang-doi-xung.png';
+    }
   }
 
-  if (
-    rawText.includes('8.2') && (rawText.includes('vật thể') || rawText.includes('tốc độ của một số')) ||
-    rawText.includes('bảng tốc độ') ||
-    rawText.includes('ốc sên') ||
-    rawText.includes('ánh sáng') ||
-    rawText.includes('âm thanh')
-  ) {
-    return '/sgk-images/khtn-7-bang-8-2-toc-do-vat-the.png';
-  }
-
-  // 3. Đối soát từ khóa bài học KHTN 7 - Bài 9 (Đo tốc độ)
-  if (rawText.includes('9.1') || rawText.includes('tốc kế trên ô tô')) {
-    return '/sgk-images/khtn-7-hinh-9-1-toc-ke.png';
-  }
-
-  if (rawText.includes('bấm giây') || rawText.includes('9.2') || rawText.includes('máng nghiêng')) {
-    return '/sgk-images/khtn-7-hinh-9-2-thi-nghiem-bam-giay.png';
-  }
-
-  if (rawText.includes('cổng quang') || rawText.includes('hiện số') || rawText.includes('9.3')) {
-    return '/sgk-images/khtn-7-hinh-9-3-cong-quang-dien.png';
-  }
-
-  if (rawText.includes('bắn tốc độ') || rawText.includes('súng radar') || rawText.includes('9.4')) {
-    return '/sgk-images/khtn-7-hinh-9-4-thiet-bi-ban-toc-do.png';
-  }
-
-  if (rawText.includes('bảng 9.1') || rawText.includes('kết quả đo tốc độ')) {
-    return '/sgk-images/khtn-7-bang-9-1-ket-qua-do-toc-do.png';
-  }
-
-  // 4. Đối soát từ khóa Toán học Lớp 3
-  if (rawText.includes('mặt đồng hồ') || rawText.includes('hình tròn tâm o') || rawText.includes('tâm o')) {
-    return '/sgk-images/toan-3-hinh-tron-tam-o.png';
-  }
-
-  if (rawText.includes('bán kính') || rawText.includes('đường kính') || rawText.includes('độ dài bán kính')) {
-    return '/sgk-images/toan-3-ban-kinh-duong-kinh.png';
-  }
-
-  if (rawText.includes('compa') || rawText.includes('com-pa') || rawText.includes('vẽ hình tròn')) {
-    return '/sgk-images/toan-3-thao-tac-compa.png';
-  }
-
-  // 5. Đối soát từ khóa Toán học Lớp 6
-  if (rawText.includes('cánh bướm') || rawText.includes('tháp rùa') || rawText.includes('đối xứng trục')) {
-    return '/sgk-images/toan-6-canh-buom-thap-rua.png';
-  }
-
-  if (rawText.includes('trục đối xứng') || rawText.includes('hình phẳng') || rawText.includes('tam giác đều')) {
-    return '/sgk-images/toan-6-cac-hinh-phang-doi-xung.png';
-  }
-
-  // 6. Áp dụng cho TẤT CẢ các bài học khác: Tự động sinh sơ đồ học liệu trực quan SGK tương ứng theo bài học
+  // 5. Áp dụng cho TẤT CẢ các bài học khác: Tự động sinh sơ đồ học liệu trực quan SGK tương ứng theo bài học
   const mon = monHoc || 'Khoa học tự nhiên';
   const lop = khoiLop || 7;
   const sectionName = hinhAnhSGK?.tenHinh || 'Sơ đồ kiến thức SGK';

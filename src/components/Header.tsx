@@ -111,18 +111,6 @@ export const Header: React.FC<HeaderProps> = ({
               <span className="hidden 2xl:inline">Hiệu Ứng</span>
             </button>
 
-            {/* Google Gemini AI Direct Bridge */}
-            {onOpenGeminiBridgeModal && (
-              <button
-                onClick={onOpenGeminiBridgeModal}
-                title="Liên kết trực tiếp Google Gemini AI tự động soạn Giáo Án Word & Slide PowerPoint"
-                className="px-3 py-1.5 text-xs font-black text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 active:scale-95 rounded-lg shadow-sm transition-all flex items-center gap-1.5 whitespace-nowrap flex-shrink-0 cursor-pointer ring-1 ring-blue-300/50"
-              >
-                <Sparkles className="w-4 h-4 text-amber-300 animate-pulse flex-shrink-0" />
-                <span>Google Gemini AI</span>
-              </button>
-            )}
-
             {/* Gemini API Key */}
             <button
               onClick={onOpenApiKeyModal}
