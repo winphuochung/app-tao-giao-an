@@ -22,19 +22,19 @@ export const PixarMindmapView: React.FC<PixarMindmapViewProps> = ({ soDoTuDuy })
   };
 
   return (
-    <div className="my-3 rounded-xl border border-sky-200 bg-sky-50/50 p-3 sm:p-3.5 shadow-sm transition-all">
-      {/* Header bar - Chuẩn mực giáo dục, thanh lịch */}
+    <div className="my-3 rounded-xl border border-sky-200 bg-sky-50/50 p-3 sm:p-3.5 shadow-sm transition-all" style={{ fontFamily: '"Times New Roman", Times, serif' }}>
+      {/* Header bar - Chuẩn mực giáo dục Times New Roman */}
       <div className="flex flex-wrap items-center justify-between gap-2 pb-2 mb-2 border-b border-sky-100">
         <div className="flex items-center gap-2">
           <div className="w-7 h-7 rounded-lg bg-sky-600 text-white flex items-center justify-center shadow-xs">
             <Network className="w-4 h-4" />
           </div>
           <div className="flex items-center gap-1.5 flex-wrap">
-            <span className="font-sans font-bold text-[11pt] sm:text-[11.5pt] text-slate-800 uppercase tracking-tight">
+            <span className="font-bold text-[12pt] sm:text-[13pt] text-slate-800 uppercase tracking-tight">
               Sơ đồ tư duy tổng kết toàn bài
             </span>
-            <span className="px-2 py-0.5 rounded-full text-[8pt] font-semibold bg-sky-100 text-sky-800 border border-sky-200">
-              Chuẩn 16:9
+            <span className="px-2.5 py-0.5 rounded-full text-[9pt] font-semibold bg-sky-100 text-sky-800 border border-sky-200">
+              Times New Roman - Chuẩn 16:9
             </span>
           </div>
         </div>
