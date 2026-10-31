@@ -33,6 +33,7 @@ import { InfographicWorksheet } from './components/InfographicWorksheet';
 import { TextbookExplorerModal } from './components/TextbookExplorerModal';
 import { AiLessonAnalysisModal } from './components/AiLessonAnalysisModal';
 import { GeminiBridgeModal } from './components/GeminiBridgeModal';
+import { GEMINI_WEB_URL, buildGeminiLessonPrompt } from './utils/geminiBridge';
 
 type ActiveTab = 'giao-an' | 'phieu-hoc-tap' | 'slide-deck' | 'quiz-game';
 
@@ -174,12 +175,26 @@ export const App: React.FC = () => {
     }));
   };
 
-  // AI Generation trigger
+  // AI Generation trigger - Tự động liên kết Google Gemini & Soạn toàn diện
   const handleGeneratePlan = async () => {
     setIsGenerating(true);
 
+    // 1. Tự động Copy Prompt chuẩn sư phạm của bài này vào Clipboard
+    try {
+      const promptText = buildGeminiLessonPrompt(currentPlan.giaoAn.metadata);
+      navigator.clipboard.writeText(promptText);
+    } catch {
+      // ignore
+    }
 
+    // 2. Tự động mở đúng link Google Gemini theo yêu cầu
+    try {
+      window.open(GEMINI_WEB_URL, '_blank');
+    } catch {
+      // ignore
+    }
 
+    // 3. Tự động chạy bộ máy AI trong App để soạn toàn diện Kế hoạch bài dạy Word & Slide PowerPoint cho bài này
     try {
       const generated = await generateLessonPlanWithAI(
         currentPlan.giaoAn.metadata,
@@ -187,7 +202,7 @@ export const App: React.FC = () => {
         apiKey
       );
       setCurrentPlan(generated);
-      showNotification(`✅ Đã đồng bộ SGK & soạn xong: ${generated.giaoAn.metadata.tenBaiDay}`, 'success');
+      showNotification(`🚀 Đã mở Google Gemini và tự động soạn xong Giáo án & Slide: ${generated.giaoAn.metadata.tenBaiDay}`, 'success');
     } catch (err: any) {
       console.error(err);
       showNotification(`Lỗi khi tạo giáo án: ${err.message || 'Vui lòng thử lại'}`, 'error');

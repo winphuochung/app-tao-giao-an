@@ -1,9 +1,10 @@
 import { HinhAnhSGK } from '../types';
+import { generateSvgDiagramForTopic } from './dynamicSgkDiagram';
 
 /**
  * Universal SGK Image Resolver
  * Tự động tìm và gán đường dẫn hình ảnh thực tế từ Sách giáo khoa cho mọi bài học.
- * Tuyệt đối không để xảy ra tình trạng ô hình ảnh chỉ có text mà không có ảnh thật.
+ * Tuyệt đối không để xảy ra tình trạng bài khác lại hiển thị nhầm tranh ảnh của Bài 8.
  */
 
 // Danh sách toàn bộ hình ảnh thực tế SGK có sẵn trong hệ thống
@@ -116,21 +117,10 @@ export function resolveSgkImageUrl(
     return '/sgk-images/toan-6-cac-hinh-phang-doi-xung.png';
   }
 
-  // 6. Áp dụng chung cho TẤT CẢ các bài học khác theo Môn học & Khối lớp
-  const mon = (monHoc || '').toLowerCase();
-  const lop = String(khoiLop || '').toLowerCase();
+  // 6. Áp dụng cho TẤT CẢ các bài học khác: Tự động sinh sơ đồ học liệu trực quan SGK tương ứng theo bài học
+  const mon = monHoc || 'Khoa học tự nhiên';
+  const lop = khoiLop || 7;
+  const sectionName = hinhAnhSGK?.tenHinh || 'Sơ đồ kiến thức SGK';
 
-  if (mon.includes('khoa học') || mon.includes('khtn') || mon.includes('vật lí') || mon.includes('hóa') || mon.includes('sinh')) {
-    return '/sgk-images/khtn-7-hinh-8-2-8-3-toc-ke-va-thiet-bi-ban-toc-do.png';
-  }
-
-  if (mon.includes('toán')) {
-    if (lop.includes('3') || lop.includes('1') || lop.includes('2') || lop.includes('4') || lop.includes('5')) {
-      return '/sgk-images/toan-3-hinh-tron-tam-o.png';
-    }
-    return '/sgk-images/toan-6-canh-buom-thap-rua.png';
-  }
-
-  // Mặc định fallback an toàn tuyệt đối
-  return '/sgk-images/khtn-7-hinh-8-2-8-3-toc-ke-va-thiet-bi-ban-toc-do.png';
+  return generateSvgDiagramForTopic(rawText || sectionName, sectionName, mon, lop);
 }

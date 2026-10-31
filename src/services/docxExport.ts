@@ -17,6 +17,40 @@ import { saveAs } from 'file-saver';
 import { GiaoAnWordData } from '../types';
 import { generateInfographicPrompts } from '../utils/infographicPrompts';
 
+async function svgDataUriToPngBuffer(svgDataUri: string): Promise<Uint8Array | null> {
+  if (typeof window === 'undefined') return null;
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      try {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width || 600;
+        canvas.height = img.height || 340;
+        const ctx = canvas.getContext('2d');
+        if (ctx) {
+          ctx.fillStyle = '#ffffff';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(img, 0, 0);
+          canvas.toBlob((blob) => {
+            if (blob) {
+              blob.arrayBuffer().then((buf) => resolve(new Uint8Array(buf)));
+            } else {
+              resolve(null);
+            }
+          }, 'image/png');
+        } else {
+          resolve(null);
+        }
+      } catch {
+        resolve(null);
+      }
+    };
+    img.onerror = () => resolve(null);
+    img.src = svgDataUri;
+  });
+}
+
 export async function exportGiaoAnToDocx(data: GiaoAnWordData): Promise<void> {
   const isTieuHoc = data.metadata.capHoc === 'TIEU_HOC';
   const meta = data.metadata;
@@ -72,10 +106,17 @@ export async function exportGiaoAnToDocx(data: GiaoAnWordData): Promise<void> {
 
   for (const path of imageFilesToLoad) {
     try {
-      const res = await fetch(path);
-      if (res.ok) {
-        const buf = await res.arrayBuffer();
-        sgkImageMap[path] = new Uint8Array(buf);
+      if (path.startsWith('data:image/svg')) {
+        const pngBuf = await svgDataUriToPngBuffer(path);
+        if (pngBuf) {
+          sgkImageMap[path] = pngBuf;
+        }
+      } else {
+        const res = await fetch(path);
+        if (res.ok) {
+          const buf = await res.arrayBuffer();
+          sgkImageMap[path] = new Uint8Array(buf);
+        }
       }
     } catch {
       // ignore

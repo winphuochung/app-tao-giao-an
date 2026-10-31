@@ -502,34 +502,30 @@ export const SidebarControl: React.FC<SidebarControlProps> = ({
             </div>
 
             {/* Nút Đồng Bộ Nhanh nếu Giáo viên tự gõ / chỉnh sửa tên bài */}
-            <div className="flex items-center justify-between gap-2 pt-1">
-              <span className="text-[10px] text-slate-500 italic">
-                * Có thể tự gõ tên bài hoặc chọn từ mục lục SGK ở trên
-              </span>
+            <div className="pt-1">
               <button
                 type="button"
                 onClick={onGeneratePlan}
                 disabled={isGenerating}
-                className="px-3 py-1.5 rounded-xl text-xs font-black text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 active:scale-95 transition-all flex items-center gap-1.5 shadow-sm whitespace-nowrap cursor-pointer"
-                title="Bấm để AI tự động phân tích bài học, liên kết SGK và bóc tách đề mục soạn Giáo án Word"
+                className="w-full px-4 py-2.5 rounded-xl text-xs font-black text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-md cursor-pointer border border-blue-400/50"
+                title="Bấm để AI tự động liên kết Google Gemini, mở tab và soạn hoàn tất Giáo Án Word & Slide PowerPoint"
               >
-                <Sparkles className="w-3.5 h-3.5 text-amber-300 animate-pulse" />
-                <span>⚡ Soạn ngay bài này</span>
+                <Sparkles className="w-4 h-4 text-amber-300 animate-pulse flex-shrink-0" />
+                <span>{isGenerating ? 'Đang liên kết & soạn...' : '🤖 Yêu cầu AI Soạn (Mở Gemini & Tự Soạn)'}</span>
               </button>
+              <div className="flex items-center justify-between mt-1 px-1 text-[10px] text-slate-500">
+                <span>* Tự động mở Google Gemini & soạn trọn vẹn</span>
+                {onOpenGeminiBridgeModal && (
+                  <button
+                    type="button"
+                    onClick={onOpenGeminiBridgeModal}
+                    className="text-blue-600 hover:text-blue-800 font-bold underline cursor-pointer"
+                  >
+                    Trạm đồng bộ Gemini
+                  </button>
+                )}
+              </div>
             </div>
-
-            {/* Nút Liên Kết Google Gemini AI */}
-            {onOpenGeminiBridgeModal && (
-              <button
-                type="button"
-                onClick={onOpenGeminiBridgeModal}
-                className="w-full mt-2 px-3 py-2 rounded-xl text-xs font-black text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-sm cursor-pointer border border-blue-300"
-                title="Mở Google Gemini Web AI và nạp trực tiếp kết quả vào Giáo án Word + Slide PowerPoint"
-              >
-                <Sparkles className="w-4 h-4 text-amber-300 animate-pulse" />
-                <span>🤖 Soạn bằng Google Gemini AI</span>
-              </button>
-            )}
 
             {/* Quick Pick Sample Lessons */}
             <div className="pt-2.5 border-t border-blue-200">

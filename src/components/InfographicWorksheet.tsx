@@ -26,6 +26,7 @@ import {
   RanAvatar,
   PixarStudentAvatar
 } from './CartoonAvatars';
+import { generateComicPosterSvg } from '../utils/comicPosterGenerator';
 
 interface InfographicWorksheetProps {
   data: GiaoAnWordData;
@@ -58,36 +59,6 @@ export const InfographicWorksheet: React.FC<InfographicWorksheetProps> = ({ data
   React.useEffect(() => {
     setImgError(false);
   }, [style, meta.tenBaiDay]);
-
-  // Dynamically map high-resolution AI generated images matching the lesson
-  const getImageForStyle = (st: WorksheetStyle): string => {
-    if (isExactToan3) {
-      if (st === 'conan-ai') return '/infographics/phieu-hoc-tap-conan.jpg';
-      return '/infographics/phieu-hoc-tap-doraemon-toan-3.jpg';
-    }
-    if (isExactKhtn7Bai9) {
-      if (st === 'doraemon-ai') return '/infographics/phieu-doraemon-khtn7-bai9-do-toc-do.jpg';
-      return '';
-    }
-    if (isExactToan6) {
-      if (st === 'doraemon-ai') return '/infographics/phieu-doraemon-toan6-truc-doi-xung.jpg';
-      return '';
-    }
-    if (isExactKhtn7Bai8) {
-      switch (st) {
-        case 'doraemon-ai':
-          return '/infographics/phieu-doraemon-khtn7-bai8-toc-do.jpg';
-        case 'science-case-ai':
-          return '/infographics/phieu-vu-an-khoa-hoc-khtn7-bai8.jpg';
-        case 'conan-ai':
-          return '/infographics/poster-conan-khtn7-bai8.jpg';
-        case 'cute-students-ai':
-        default:
-          return '/infographics/phieu-hoc-sinh-khtn7-bai8.jpg';
-      }
-    }
-    return '';
-  };
 
   // Extract authentic group activity and worksheet matching the lesson
   const groupActivity =
@@ -123,6 +94,69 @@ export const InfographicWorksheet: React.FC<InfographicWorksheetProps> = ({ data
   const questions = phieu?.cauHoiNhiemVu?.length
     ? phieu.cauHoiNhiemVu
     : defaultQuestions;
+
+  // Dynamically map high-resolution AI generated images matching the lesson
+  const getImageForStyle = (st: WorksheetStyle): string => {
+    if (isExactToan3) {
+      if (st === 'conan-ai') return '/infographics/phieu-hoc-tap-conan.jpg';
+      return '/infographics/phieu-hoc-tap-doraemon-toan-3.jpg';
+    }
+    if (isExactKhtn7Bai9) {
+      if (st === 'doraemon-ai') return '/infographics/phieu-doraemon-khtn7-bai9-do-toc-do.jpg';
+    }
+    if (isExactToan6) {
+      if (st === 'doraemon-ai') return '/infographics/phieu-doraemon-toan6-truc-doi-xung.jpg';
+    }
+    if (isExactKhtn7Bai8) {
+      switch (st) {
+        case 'doraemon-ai':
+          return '/infographics/phieu-doraemon-khtn7-bai8-toc-do.jpg';
+        case 'science-case-ai':
+          return '/infographics/phieu-vu-an-khoa-hoc-khtn7-bai8.jpg';
+        case 'conan-ai':
+          return '/infographics/poster-conan-khtn7-bai8.jpg';
+        case 'cute-students-ai':
+        default:
+          return '/infographics/phieu-hoc-sinh-khtn7-bai8.jpg';
+      }
+    }
+    // Tạo poster infographic vector A4 chuẩn khớp 100% nội dung cho mọi bài học khác
+    return generateComicPosterSvg(meta, st, questions);
+  };
+
+  const handleDownloadWorksheetImage = () => {
+    const filename = `Phieu-Hoc-Tap-${style}-${meta.tenBaiDay}.jpg`;
+    const imgUrl = currentImageUrl;
+    if (!imgUrl) return;
+
+    if (!imgUrl.startsWith('data:')) {
+      const a = document.createElement('a');
+      a.href = imgUrl;
+      a.download = filename;
+      a.click();
+      return;
+    }
+
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width || 1000;
+      canvas.height = img.height || 1414;
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0);
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.95);
+        const a = document.createElement('a');
+        a.href = dataUrl;
+        a.download = filename;
+        a.click();
+      }
+    };
+    img.src = imgUrl;
+  };
 
   const rubrics = groupActivity?.tieuChiDanhGia?.length
     ? groupActivity.tieuChiDanhGia
@@ -317,14 +351,14 @@ export const InfographicWorksheet: React.FC<InfographicWorksheetProps> = ({ data
               </div>
 
               <div className="flex items-center gap-2">
-                <a
-                  href={currentImageUrl}
-                  download={`Phieu-Hoc-Tap-${style}-${meta.tenBaiDay}.jpg`}
-                  className="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all shadow-sm active:scale-95"
+                <button
+                  type="button"
+                  onClick={handleDownloadWorksheetImage}
+                  className="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all shadow-sm active:scale-95 cursor-pointer"
                 >
                   <Download className="w-4 h-4" />
                   <span>Tải Ảnh (.JPG)</span>
-                </a>
+                </button>
               </div>
             </div>
 
