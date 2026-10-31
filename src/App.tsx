@@ -31,6 +31,7 @@ import { ApiKeyModal } from './components/ApiKeyModal';
 import { InfographicPromptModal } from './components/InfographicPromptModal';
 import { InfographicWorksheet } from './components/InfographicWorksheet';
 import { TextbookExplorerModal } from './components/TextbookExplorerModal';
+import { AiLessonAnalysisModal } from './components/AiLessonAnalysisModal';
 
 type ActiveTab = 'giao-an' | 'phieu-hoc-tap' | 'slide-deck' | 'quiz-game';
 
@@ -55,6 +56,7 @@ export const App: React.FC = () => {
   const [isStoryboardModalOpen, setIsStoryboardModalOpen] = useState<boolean>(false);
   const [isInfographicModalOpen, setIsInfographicModalOpen] = useState<boolean>(false);
   const [isTextbookModalOpen, setIsTextbookModalOpen] = useState<boolean>(false);
+  const [isAnalysisModalOpen, setIsAnalysisModalOpen] = useState<boolean>(false);
 
   // Load API key from localStorage on mount
   useEffect(() => {
@@ -170,6 +172,7 @@ export const App: React.FC = () => {
   // AI Generation trigger
   const handleGeneratePlan = async () => {
     setIsGenerating(true);
+    setIsAnalysisModalOpen(true);
     const sgkUrl = `https://taphuan.nxbgd.vn/tap-huan?grade=${currentPlan.giaoAn.metadata.khoiLop}`;
     showNotification(`🔗 Đang kết nối SGK (${sgkUrl}) & nạp tri thức bài: ${currentPlan.giaoAn.metadata.tenBaiDay}...`, 'info');
     try {
@@ -333,6 +336,8 @@ export const App: React.FC = () => {
                 onChange={handleGiaoAnChange}
                 onExportDocx={handleExportDocx}
                 isExporting={isExportingDocx}
+                aiReport={currentPlan.aiAnalysisReport}
+                onOpenAnalysisModal={() => setIsAnalysisModalOpen(true)}
               />
             )}
 
@@ -413,6 +418,16 @@ export const App: React.FC = () => {
         }}
         currentGrade={currentPlan.giaoAn.metadata.khoiLop}
         currentSubject={currentPlan.giaoAn.metadata.monHoc}
+      />
+
+      <AiLessonAnalysisModal
+        isOpen={isAnalysisModalOpen}
+        onClose={() => setIsAnalysisModalOpen(false)}
+        metadata={currentPlan.giaoAn.metadata}
+        aiReport={currentPlan.aiAnalysisReport}
+        isAnalyzing={isGenerating}
+        onExportDocx={handleExportDocx}
+        onExportPptx={handleExportPptx}
       />
 
     </div>

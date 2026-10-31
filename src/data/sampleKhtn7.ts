@@ -838,5 +838,39 @@ export const SAMPLE_KHTN_7_TOC_DO: CompleteLessonPlan = {
       explanation: 'Thiết bị "bắn tốc độ" (Hình 8.3 SGK) gồm máy đo tốc độ bằng sóng vô tuyến/laser kết hợp camera ghi lại hình ảnh, biển số và tốc độ của phương tiện để xử phạt vi phạm.',
       funFact: 'Thiết bị bắn tốc độ laser hiện đại có thể phát hiện vi phạm tốc độ ở khoảng cách hơn 1 km chỉ trong 0,3 giây!'
     }
-  ]
+  ],
+  aiAnalysisReport: {
+    tenBaiDay: 'Bài 8: Tốc độ chuyển động',
+    monHoc: 'Khoa học tự nhiên',
+    khoiLop: 7,
+    boSach: 'Kết nối tri thức với cuộc sống',
+    sgkUrl: 'https://taphuan.nxbgd.vn/tap-huan?grade=7',
+    tongSoDeMuc: 3,
+    danhSachDeMuc: [
+      {
+        deMuc: 'I. Khái niệm tốc độ',
+        tenHoatDong: 'Hoạt động 2.1: Tìm hiểu khái niệm tốc độ (Đề mục I SGK Trang 45 - 46)',
+        mucTieu: 'Xác định được chuyển động nhanh hay chậm dựa vào quãng đường đi được trong cùng một khoảng thời gian hoặc thời gian để đi cùng một quãng đường; định nghĩa tốc độ.'
+      },
+      {
+        deMuc: 'II. Công thức tính tốc độ',
+        tenHoatDong: 'Hoạt động 2.2: Công thức tính tốc độ và hoạt động nhóm 4 vai trò (Đề mục II SGK Trang 46 - 47)',
+        mucTieu: 'Viết được công thức v = s / t; biết suy ra s = v . t và t = s / v; thảo luận nhóm 4 vai trò 4 màu mực giải bài tập mẫu.'
+      },
+      {
+        deMuc: 'III. Đơn vị đo tốc độ',
+        tenHoatDong: 'Hoạt động 2.3: Đơn vị đo tốc độ & Sơ đồ tư duy 16:9 3D Pixar (Đề mục III SGK Trang 47 - 48)',
+        mucTieu: 'Nắm được các đơn vị đo tốc độ m/s, km/h; đổi đơn vị 1 m/s = 3,6 km/h; nhận biết tốc kế trên phương tiện; Sơ đồ tư duy 16:9.'
+      }
+    ],
+    tienTrinhHoatDong: [
+      'Hoạt động 1: Khởi động (Trò chơi Ai nhanh hơn - So sánh chạy 60m)',
+      'Hoạt động 2.1: Khái niệm tốc độ (Đề mục I SGK Trang 45 - 46)',
+      'Hoạt động 2.2: Công thức tính tốc độ v = s / t (Đề mục II SGK Trang 46 - 47)',
+      'Hoạt động 2.3: Đơn vị đo tốc độ & Sơ đồ tư duy 16:9 (Đề mục III SGK Trang 47 - 48)',
+      'Hoạt động 3: Luyện tập (Giải bài toán đổi đơn vị và so sánh tốc độ)',
+      'Hoạt động 4: Vận dụng (Biển báo an toàn giao thông và ứng dụng đời sống)'
+    ],
+    phanTichSuPham: 'Bài học thuộc Chủ đề 3 (Tốc độ - Phần Vật lí). Tuân thủ 100% nội dung SGK (Trang 45 - 48). Hoạt động 2 được chia thành 3 hoạt động độc lập tương ứng với 3 đề mục I, II, III theo Công văn 5512/BGDĐT-GDTrH.'
+  }
 };

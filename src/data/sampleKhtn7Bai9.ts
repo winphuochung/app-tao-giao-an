@@ -606,5 +606,39 @@ export const SAMPLE_KHTN_7_BAI_9_DO_TOC_DO: CompleteLessonPlan = {
       explanation: 'Theo bài toán SGK KHTN 7 (Trang 51): v = s / t = 5 / 0,35 ≈ 14,29 m/s. Đổi ra km/h: 14,29 x 3,6 ≈ 51,43 km/h. Vì 51,43 km/h < 60 km/h nên ô tô không vi phạm.',
       funFact: 'Hệ thống camera giám sát trên các tuyến cao tốc Việt Nam tự động chụp ảnh biển số và đo tốc độ với sai số dưới 1 km/h!'
     }
-  ]
+  ],
+  aiAnalysisReport: {
+    tenBaiDay: 'Bài 9: Đo tốc độ',
+    monHoc: 'Khoa học tự nhiên',
+    khoiLop: 7,
+    boSach: 'Kết nối tri thức với cuộc sống',
+    sgkUrl: 'https://taphuan.nxbgd.vn/tap-huan?grade=7',
+    tongSoDeMuc: 3,
+    danhSachDeMuc: [
+      {
+        deMuc: 'I. Đo tốc độ dùng đồng hồ bấm giây',
+        tenHoatDong: 'Hoạt động 2.1: Đo tốc độ dùng đồng hồ bấm giây (Đề mục I SGK Trang 49 - 50)',
+        mucTieu: 'Mô tả được cách đo tốc độ bằng đồng hồ bấm giây trong thực hành; đo 3 lần tính giá trị trung bình; liên hệ môn Thể chất (chạy 60m).'
+      },
+      {
+        deMuc: 'II. Dùng đồng hồ đo thời gian hiện số và cổng quang điện trong việc đo tốc độ',
+        tenHoatDong: 'Hoạt động 2.2: Dùng đồng hồ đo thời gian hiện số và cổng quang điện (Đề mục II SGK Trang 50 - 51)',
+        mucTieu: 'Mô tả cấu tạo 6 bộ phận của bộ thí nghiệm Hình 9.3; chế độ A <-> B; tính tốc độ viên bi sắt v = 1,6 m/s.'
+      },
+      {
+        deMuc: 'III. Thiết bị bắn tốc độ',
+        tenHoatDong: 'Hoạt động 2.3: Thiết bị bắn tốc độ & Sơ đồ tư duy 16:9 3D Pixar (Đề mục III SGK Trang 51)',
+        mucTieu: 'Giải thích nguyên tắc hoạt động thiết bị bắn tốc độ; giải bài toán ô tô (s = 5m, t = 0,35s -> v = 51,43 km/h < 60 km/h); Sơ đồ tư duy 16:9 3D Pixar.'
+      }
+    ],
+    tienTrinhHoatDong: [
+      'Hoạt động 1: Mở đầu / Khởi động (Tình huống xác định tốc độ mở đầu SGK)',
+      'Hoạt động 2.1: Đo tốc độ dùng đồng hồ bấm giây (Đề mục I SGK)',
+      'Hoạt động 2.2: Dùng đồng hồ đo thời gian hiện số và cổng quang điện (Đề mục II SGK)',
+      'Hoạt động 2.3: Thiết bị bắn tốc độ & Sơ đồ tư duy 16:9 3D Pixar (Đề mục III SGK)',
+      'Hoạt động 3: Luyện tập (Giải bài tập chạy 60m và tính ưu việt của cổng quang)',
+      'Hoạt động 4: Vận dụng (Lồng ghép An toàn giao thông & Dự án STEM mini)'
+    ],
+    phanTichSuPham: 'Bài học thuộc Chủ đề 3 (Tốc độ - Phần Vật lí). Tuân thủ 100% nội dung 3 trang SGK (Trang 49 - 51). Chia Hoạt động 2 thành 3 hoạt động độc lập tương ứng với 3 đề mục I, II, III theo Công văn 5512/BGDĐT-GDTrH.'
+  }
 };

@@ -244,8 +244,26 @@ export interface QuizQuestion {
   funFact?: string;
 }
 
+export interface AiAnalysisReport {
+  tenBaiDay: string;
+  monHoc: string;
+  khoiLop: number;
+  boSach: string;
+  sgkUrl: string;
+  tongSoDeMuc: number;
+  danhSachDeMuc: {
+    deMuc: string;
+    tenHoatDong: string;
+    mucTieu: string;
+    noiDung?: string;
+  }[];
+  tienTrinhHoatDong: string[];
+  phanTichSuPham: string;
+}
+
 export interface CompleteLessonPlan {
   giaoAn: GiaoAnWordData;
   slideDeck: SlidePowerPointData;
   quizGame: QuizQuestion[];
+  aiAnalysisReport?: AiAnalysisReport;
 }
