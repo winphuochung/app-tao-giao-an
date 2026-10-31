@@ -68,6 +68,35 @@ export async function exportGiaoAnToDocx(data: GiaoAnWordData): Promise<void> {
     }
   }
 
+  // Load authentic Infographic Worksheet image matching this lesson if available
+  let worksheetInfographicBuffer: Uint8Array | null = null;
+  const isBai9 = meta.tenBaiDay.toLowerCase().includes('bài 9') || meta.tenBaiDay.toLowerCase().includes('đo tốc độ');
+  const isBai8 = !isBai9 && (meta.tenBaiDay.toLowerCase().includes('bài 8') || meta.tenBaiDay.toLowerCase().includes('tốc độ'));
+  const isToan6 = meta.tenBaiDay.toLowerCase().includes('trục đối xứng');
+
+  let infographicImgUrl = '';
+  if (isTieuHoc) {
+    infographicImgUrl = '/infographics/phieu-hoc-tap-doraemon-toan-3.jpg';
+  } else if (isBai8) {
+    infographicImgUrl = '/infographics/phieu-doraemon-khtn7-bai8-toc-do.jpg';
+  } else if (isBai9) {
+    infographicImgUrl = '/infographics/phieu-doraemon-khtn7-bai9-do-toc-do.jpg';
+  } else if (isToan6) {
+    infographicImgUrl = '/infographics/phieu-doraemon-toan6-truc-doi-xung.jpg';
+  }
+
+  if (infographicImgUrl) {
+    try {
+      const res = await fetch(infographicImgUrl);
+      if (res.ok) {
+        const arr = await res.arrayBuffer();
+        worksheetInfographicBuffer = new Uint8Array(arr);
+      }
+    } catch (err) {
+      console.warn('Infographic worksheet image fetch skipped:', err);
+    }
+  }
+
   // Nghị định 30/2020/NĐ-CP Margins (in dxa: 1cm ≈ 567 dxa)
   // Top: 2cm = 1134, Bottom: 2cm = 1134, Left: 3cm = 1701, Right: 1.5cm = 850
   // Total printable width = 11906 - 1701 - 850 = 9355 dxa.
@@ -1003,7 +1032,37 @@ export async function exportGiaoAnToDocx(data: GiaoAnWordData): Promise<void> {
         rows: phieuRows
       });
       children.push(phieuTable);
-      children.push(p('', { spaceBefore: 30, spaceAfter: 20 }));
+      children.push(p('', { spaceBefore: 20, spaceAfter: 10 }));
+
+      // Nhúng Ảnh Infographic Phiếu học tập chính xác theo đúng bài học
+      if (worksheetInfographicBuffer) {
+        children.push(
+          p('• HÌNH ẢNH INFOGRAPHIC PHIẾU HỌC TẬP (IN VÀ PHÁT TRỰC TIẾP CHO HỌC SINH):', {
+            leftIndent: 280,
+            bold: true,
+            size: headingSize - 2,
+            spaceBefore: 30,
+            spaceAfter: 20
+          })
+        );
+        children.push(
+          new Paragraph({
+            alignment: AlignmentType.CENTER,
+            spacing: { before: 20, after: 30 },
+            children: [
+              new ImageRun({
+                data: worksheetInfographicBuffer,
+                transformation: {
+                  width: 450,
+                  height: 636 // Tỉ lệ 1:1,414 khổ A4 chuẩn
+                },
+                type: 'jpg'
+              })
+            ]
+          })
+        );
+        children.push(p('', { spaceBefore: 20, spaceAfter: 20 }));
+      }
 
       // Bảng tiêu chí đánh giá (Rubric)
       children.push(p('- Bảng tiêu chí đánh giá (Rubric) hoạt động nhóm và trách nhiệm cá nhân:', { leftIndent: 280, bold: true, spaceBefore: 30, spaceAfter: 20 }));
