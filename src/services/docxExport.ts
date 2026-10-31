@@ -475,13 +475,7 @@ export async function exportGiaoAnToDocx(data: GiaoAnWordData): Promise<void> {
     });
   }
 
-  // Tích hợp mở rộng (nếu có)
-  if (data.mucTieu.tichHopMoRong && data.mucTieu.tichHopMoRong.length > 0) {
-    children.push(p('* Tích hợp liên môn & mở rộng:', { bold: true, italic: true, spaceBefore: 50, spaceAfter: 30 }));
-    data.mucTieu.tichHopMoRong.forEach((th) => {
-      children.push(p(formatDashItem(th), { leftIndent: 280, spaceBefore: 30, spaceAfter: 30 }));
-    });
-  }
+// Đã lược bỏ phần Tích hợp liên môn & mở rộng theo chuẩn CV 5512 / 2345
 
   // 4. SECTION II: ĐỒ DÙNG DẠY HỌC / THIẾT BỊ DẠY HỌC VÀ HỌC LIỆU
   const section2Title = isTieuHoc

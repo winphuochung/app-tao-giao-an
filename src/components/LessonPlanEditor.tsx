@@ -360,19 +360,7 @@ export const LessonPlanEditor: React.FC<LessonPlanEditorProps> = ({
               </div>
             </div>
 
-            {/* Tích hợp liên môn & mở rộng */}
-            {data.mucTieu.tichHopMoRong && data.mucTieu.tichHopMoRong.length > 0 && (
-              <div className="pl-4 pt-1 space-y-1">
-                <p className="font-bold italic text-blue-950">* Tích hợp liên môn & mở rộng:</p>
-                <div className="pl-4 space-y-1">
-                  {data.mucTieu.tichHopMoRong.map((th, i) => (
-                    <p key={i} className="leading-relaxed text-slate-900">
-                      {renderDashItem(th)}
-                    </p>
-                  ))}
-                </div>
-              </div>
-            )}
+
           </div>
 
           {/* 4. SECTION II: ĐỒ DÙNG DẠY HỌC / THIẾT BỊ DẠY HỌC */}
